@@ -1,19 +1,6 @@
 package com.example.colabjdbcmysqlthaycan;
 
 import javafx.fxml.FXML;
-<<<<<<< HEAD
-import javafx.scene.control.Label;
-
-public class LoginController {
-    @FXML
-    private Label welcomeText;
-
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
-}
-=======
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -95,4 +82,4 @@ public class LoginController {
         }
     }
 }
->>>>>>> 2c7ee3576e99ddffb850ec49720f441f6ef5f314
+
