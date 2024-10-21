@@ -11,8 +11,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <junit.version>5.10.0</junit.version>
-    </properties>
+        <junit.version>5.10.0</junit.version>  </properties>
 
     <dependencies>
         <dependency>
@@ -65,9 +64,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>
-                                com.example.colabjdbcmysqlthaycan/com.example.colabjdbcmysqlthaycan.LoginApplication
-                            </mainClass>
+                            <mainClass>com.example.colabjdbcmysqlthaycan/com.example.colabjdbcmysqlthaycan.LoginApplication</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
