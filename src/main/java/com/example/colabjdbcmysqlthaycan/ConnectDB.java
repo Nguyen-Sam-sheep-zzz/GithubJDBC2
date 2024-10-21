@@ -1,8 +1,5 @@
 package com.example.colabjdbcmysqlthaycan;
 
-<<<<<<< HEAD
-public class ConnectDB {
-=======
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -26,6 +23,5 @@ public class ConnectDB {
         }
         return connection;
     }
->>>>>>> 2c7ee3576e99ddffb850ec49720f441f6ef5f314
 }
 
