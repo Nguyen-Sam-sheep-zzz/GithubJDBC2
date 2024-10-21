@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -33,7 +34,11 @@ public class LoginController {
         String role = validateLogin(username, password);
 
         if (role != null) {
-            loginMessageLabel.setText("Login successful as" + role + "!");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Login Successful");
+            alert.setHeaderText(null);
+            alert.setContentText("Welcome " + role + "!");
+            alert.showAndWait();
             loadNextScreen(role);
         } else {
             loginMessageLabel.setText("Invalid credentials. Try again.");
