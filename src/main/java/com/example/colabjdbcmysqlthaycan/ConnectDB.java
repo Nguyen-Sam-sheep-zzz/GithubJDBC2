@@ -1,12 +1,14 @@
 package com.example.colabjdbcmysqlthaycan;
 
-
+<<<<<<< HEAD
+public class ConnectDB {
+=======
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectDB {
-    private static final String urlConnection = "jdbc:mysql://localhost:3306/thay_can_csdl_jdbc";
+    private static final String urlConnection = "jdbc:mysql://localhost:3306/Thay_Can_CSDL_JDBC";
 
     public Connection connectionDB() {
         Connection connection = null;
@@ -24,4 +26,5 @@ public class ConnectDB {
         }
         return connection;
     }
+>>>>>>> 2c7ee3576e99ddffb850ec49720f441f6ef5f314
 }
