@@ -1,27 +1,19 @@
 package com.example.colabjdbcmysqlthaycan;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-<<<<<<< HEAD
-import javafx.scene.control.Label;
-
-public class LoginController {
-    @FXML
-    private Label welcomeText;
-
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
-}
-=======
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import javax.swing.text.html.ImageView;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -35,6 +27,12 @@ public class LoginController {
     private PasswordField passwordField;
     @FXML
     private Label loginMessageLabel;
+    @FXML
+    private Button SignUp;
+    @FXML
+    private Pane pnSignUp;
+    @FXML
+    private Pane pnSignIn;
 
     private ConnectDB connectDB = new ConnectDB();
 
@@ -94,5 +92,15 @@ public class LoginController {
             e.printStackTrace();
         }
     }
+
+    public void register(ActionEvent actionEvent) {
+        if (actionEvent.getSource().equals(SignUp)){
+            pnSignUp.toFront();
+        }
+
+    }
+
+    public void handleBack(MouseEvent mouseEvent) {
+            pnSignIn.toFront();
+    }
 }
->>>>>>> 2c7ee3576e99ddffb850ec49720f441f6ef5f314

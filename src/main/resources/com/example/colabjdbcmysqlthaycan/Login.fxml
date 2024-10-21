@@ -40,7 +40,37 @@
          <center>
             <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Pane prefHeight="400.0" prefWidth="307.0" stylesheets="@login.css">
+                  <Pane fx:id="pnSignUp" layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="307.0" style="-fx-background-color: #fff;" stylesheets="@login.css">
+                     <children>
+                        <TextField fx:id="usernameField1" layoutX="46.0" layoutY="133.0" prefHeight="35.0" prefWidth="245.0" promptText="fullname" styleClass="text" stylesheets="@login.css">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                        <PasswordField fx:id="passwordField1" layoutX="46.0" layoutY="184.0" prefHeight="35.0" prefWidth="245.0" promptText="password" styleClass="text" stylesheets="@login.css">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </PasswordField>
+                        <Button fx:id="handleLogin1" layoutX="109.0" layoutY="302.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="35.0" prefWidth="120.0" styleClass="button1" stylesheets="@login.css" text="Sign up" />
+                        <Label layoutX="33.0" layoutY="68.0" prefHeight="27.0" prefWidth="68.0" text="Sign Up">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <ImageView fx:id="back" fitHeight="22.0" fitWidth="21.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#handleBack" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../img/back.png" />
+                           </image>
+                        </ImageView>
+                        <TextField fx:id="usernameField11" layoutX="47.0" layoutY="234.0" prefHeight="35.0" prefWidth="245.0" promptText="username" styleClass="text" stylesheets="@login.css">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pnSignIn" prefHeight="400.0" prefWidth="307.0" style="-fx-background-color: #fff;" stylesheets="@login.css">
                      <children>
                         <TextField fx:id="usernameField" layoutX="46.0" layoutY="133.0" prefHeight="35.0" prefWidth="245.0" promptText="username" styleClass="text" stylesheets="@login.css">
                            <font>
@@ -52,7 +82,7 @@
                            </font></PasswordField>
                         <Label fx:id="loginMessageLabel" layoutX="54.0" layoutY="226.0" prefHeight="27.0" prefWidth="238.0" textFill="red" />
                         <Button fx:id="handleLogin" layoutX="169.0" layoutY="260.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="35.0" prefWidth="120.0" styleClass="button1" stylesheets="@login.css" text="Sign in" />
-                        <Button fx:id="bntSignUp" layoutX="46.0" layoutY="316.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="245.0" styleClass="button2" stylesheets="@login.css" text="Don't have an account? Sign up" />
+                        <Button fx:id="SignUp" layoutX="46.0" layoutY="316.0" mnemonicParsing="false" onAction="#register" prefHeight="40.0" prefWidth="245.0" styleClass="button2" stylesheets="@login.css" text="Don't have an account? Sign up" />
                         <Label layoutX="54.0" layoutY="267.0" prefHeight="17.0" prefWidth="95.0" text="Forgot Password?" />
                         <Label layoutX="33.0" layoutY="68.0" prefHeight="27.0" prefWidth="68.0" text="Sign In">
                            <font>
