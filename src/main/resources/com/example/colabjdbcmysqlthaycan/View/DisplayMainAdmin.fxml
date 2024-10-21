@@ -37,7 +37,7 @@
                         </Button>
                         <ImageView fitHeight="36.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../img/add.png" />
+                              <Image url="@../img/add.png" />
                            </image>
                         </ImageView>
                      </children>
@@ -55,7 +55,7 @@
                         </Button>
                         <ImageView fitHeight="38.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../img/Logout.png" />
+                              <Image url="@../img/Logout.png" />
                            </image>
                            <HBox.margin>
                               <Insets top="65.0" />
