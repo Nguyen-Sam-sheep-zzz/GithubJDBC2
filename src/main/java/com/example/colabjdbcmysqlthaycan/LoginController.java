@@ -130,7 +130,6 @@ public class LoginController {
         if (actionEvent.getSource().equals(SignUp)) {
             pnSignUp.toFront();
         }
-
     }
 
     public void handleBack(MouseEvent mouseEvent) {
@@ -178,7 +177,7 @@ public class LoginController {
             preparedStatement.setString(2, password);
             preparedStatement.setString(3, uFullname);
             preparedStatement.setString(4, "user");
-            preparedStatement.setString(6, "active");
+            preparedStatement.setString(5, "active");
 
             int row = preparedStatement.executeUpdate();
 
