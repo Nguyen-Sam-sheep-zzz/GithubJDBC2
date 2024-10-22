@@ -3,7 +3,6 @@ package com.example.colabjdbcmysqlthaycan;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,19 +12,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.EventObject;
-
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -87,6 +78,10 @@ public class LoginController {
         }
         if (password.length() < 6) {
             showAlert("ERROR", "Password must be at least 6 characters");
+            return false;
+        }
+        if(password.length() > 100) {
+            showAlert("ERROR", "Password limit 100 characters");
             return false;
         }
         if (!password.matches(".*[0-9].*")) {
@@ -178,11 +173,23 @@ public class LoginController {
             showAlert("Registration failed", "Please fill in the registration information completely");
             return;
         }
+        if (username.length() <= 6) {
+            showAlert("ERROR", "Username must be at least 6 characters");
+            return;
+        }
+        if (username.length() > 30) {
+            showAlert("ERROR", "Username cannot exceed 30 characters");
+            return;
+        }
         if (!validateUsername(username)) {
             showAlert("ERROR", "Spaces and diacritics cannot exist in username");
             return;
         }
         if (!validatePassword(password)) {
+            return;
+        }
+        if (uFullName.length() > 100) {
+            showAlert("ERROR", "Your full name cannot exceed 100 characters");
             return;
         }
         if (!validateUFullName(uFullName)) {
