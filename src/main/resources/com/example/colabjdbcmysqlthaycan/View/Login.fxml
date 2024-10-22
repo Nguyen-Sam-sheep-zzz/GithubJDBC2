@@ -42,6 +42,11 @@
                <children>
                   <Pane fx:id="pnSignUp" layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="307.0" style="-fx-background-color: #fff;" stylesheets="@../CSS/login.css">
                      <children>
+                        <TextField fx:id="registerUsername" layoutX="45.0" layoutY="125.0" prefHeight="35.0" prefWidth="245.0" promptText="username" styleClass="text" stylesheets="@../CSS/login.css">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
                         <PasswordField fx:id="registerPassword" layoutX="46.0" layoutY="173.0" prefHeight="35.0" prefWidth="245.0" promptText="password" styleClass="text" stylesheets="@../CSS/login.css">
                            <font>
                               <Font size="14.0" />
@@ -68,11 +73,6 @@
                               <Image url="@../img/back.png" />
                            </image>
                         </ImageView>
-                        <TextField fx:id="registerUsername" layoutX="45.0" layoutY="125.0" prefHeight="35.0" prefWidth="245.0" promptText="username" styleClass="text" stylesheets="@../CSS/login.css">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </TextField>
                      </children>
                   </Pane>
                   <Pane fx:id="pnSignIn" prefHeight="400.0" prefWidth="307.0" style="-fx-background-color: #fff;" stylesheets="@../CSS/login.css">

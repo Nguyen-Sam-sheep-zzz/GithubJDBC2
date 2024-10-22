@@ -82,7 +82,7 @@ public class LoginController {
     public boolean validatePassword(String password) {
         String rePassword = reEnterPassword.getText();
         if (!password.equals(rePassword)) {
-            showAlert("ERROR","Passwords do not match, please re-enter your password");
+            showAlert("ERROR", "Passwords do not match, please re-enter your password");
             return false;
         }
         if (password.length() < 6) {
@@ -159,6 +159,16 @@ public class LoginController {
         pnSignIn.toFront();
     }
 
+    public boolean validateUsername(String username) {
+        String regex = "^[a-zA-Z0-9]*$";
+        return username.matches(regex);
+    }
+
+    public boolean validateUFullName(String uFullName) {
+        String regex = "^[^0-9]*$";
+        return uFullName.matches(regex);
+    }
+
     public void handleRegister(ActionEvent actionEvent) throws IOException {
         String username = registerUsername.getText();
         String password = registerPassword.getText();
@@ -168,7 +178,15 @@ public class LoginController {
             showAlert("Registration failed", "Please fill in the registration information completely");
             return;
         }
+        if (!validateUsername(username)) {
+            showAlert("ERROR", "Spaces and diacritics cannot exist in username");
+            return;
+        }
         if (!validatePassword(password)) {
+            return;
+        }
+        if (!validateUFullName(uFullName)) {
+            showAlert("ERROR","You cannot have numbers in your full name.");
             return;
         }
         if (registerUser(username, password, uFullName)) {
