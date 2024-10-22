@@ -3,6 +3,7 @@ package com.example.colabjdbcmysqlthaycan;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,6 +19,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.EventObject;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -25,13 +32,15 @@ import javafx.scene.control.Alert.AlertType;
 
 public class LoginController {
     @FXML
+    private PasswordField reEnterPassword;
+    @FXML
     private TextField usernameField;
     @FXML
     private PasswordField passwordField;
     @FXML
     private Label loginMessageLabel;
     @FXML
-    private Button SignUp;
+    private Button signUp;
     @FXML
     private Pane pnSignUp;
     @FXML
@@ -71,6 +80,11 @@ public class LoginController {
     }
 
     public boolean validatePassword(String password) {
+        String rePassword = reEnterPassword.getText();
+        if (!password.equals(rePassword)) {
+            showAlert("ERROR","Passwords do not match, please re-enter your password");
+            return false;
+        }
         if (password.length() < 6) {
             showAlert("ERROR", "Password must be at least 6 characters");
             return false;
@@ -126,8 +140,17 @@ public class LoginController {
         }
     }
 
+    public void loadToLoginScreenFromRegister() throws IOException {
+        Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/Login.fxml"));
+        Stage stage = (Stage) signUp.getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle("Login");
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public void register(ActionEvent actionEvent) {
-        if (actionEvent.getSource().equals(SignUp)) {
+        if (actionEvent.getSource().equals(signUp)) {
             pnSignUp.toFront();
         }
     }
@@ -136,19 +159,21 @@ public class LoginController {
         pnSignIn.toFront();
     }
 
-    public void handleRegister(ActionEvent actionEvent) {
+    public void handleRegister(ActionEvent actionEvent) throws IOException {
         String username = registerUsername.getText();
         String password = registerPassword.getText();
         String uFullName = registerFullName.getText();
 
         if (username.isEmpty() || password.isEmpty() || uFullName.isEmpty()) {
             showAlert("Registration failed", "Please fill in the registration information completely");
+            return;
         }
         if (!validatePassword(password)) {
             return;
         }
         if (registerUser(username, password, uFullName)) {
-            showAlert("Registration successful", "Welcome: + " + uFullName);
+            showAlert("Registration successful", "Please login again");
+            loadToLoginScreenFromRegister();
         } else {
             showAlert("Registration failed", "Username already exists. Please choose another name.");
         }

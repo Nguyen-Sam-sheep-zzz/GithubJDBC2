@@ -42,22 +42,22 @@
                <children>
                   <Pane fx:id="pnSignUp" layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="307.0" style="-fx-background-color: #fff;" stylesheets="@../CSS/login.css">
                      <children>
-                        <TextField fx:id="registerFullName" layoutX="46.0" layoutY="133.0" prefHeight="35.0" prefWidth="245.0" promptText="Your full name" styleClass="text" stylesheets="@../CSS/login.css">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </TextField>
-                        <TextField fx:id="registerUsername" layoutX="46.0" layoutY="183.0" prefHeight="35.0" prefWidth="245.0" promptText="username" styleClass="text" stylesheets="@../CSS/login.css">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </TextField>
-                        <PasswordField fx:id="registerPassword" layoutX="46.0" layoutY="236.0" prefHeight="35.0" prefWidth="245.0" promptText="password" styleClass="text" stylesheets="@../CSS/login.css">
+                        <PasswordField fx:id="registerPassword" layoutX="46.0" layoutY="173.0" prefHeight="35.0" prefWidth="245.0" promptText="password" styleClass="text" stylesheets="@../CSS/login.css">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </PasswordField>
-                        <Button fx:id="handleLogin1" layoutX="109.0" layoutY="302.0" mnemonicParsing="false" onAction="#handleRegister" prefHeight="35.0" prefWidth="120.0" styleClass="button1" stylesheets="@../CSS/login.css" text="Sign up" />
+                        <PasswordField fx:id="reEnterPassword" layoutX="45.0" layoutY="221.0" prefHeight="35.0" prefWidth="245.0" promptText="Re-enter password" styleClass="text" stylesheets="@../CSS/login.css">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </PasswordField>
+                        <TextField fx:id="registerFullName" layoutX="45.0" layoutY="269.0" prefHeight="35.0" prefWidth="245.0" promptText="Your full name" styleClass="text" stylesheets="@../CSS/login.css">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                        <Button fx:id="signUp1" layoutX="108.0" layoutY="342.0" mnemonicParsing="false" onAction="#handleRegister" prefHeight="35.0" prefWidth="120.0" styleClass="button1" stylesheets="@../CSS/login.css" text="Sign up" />
                         <Label layoutX="33.0" layoutY="68.0" prefHeight="27.0" prefWidth="68.0" text="Sign Up">
                            <font>
                               <Font name="System Bold" size="18.0" />
@@ -68,6 +68,11 @@
                               <Image url="@../img/back.png" />
                            </image>
                         </ImageView>
+                        <TextField fx:id="registerUsername" layoutX="45.0" layoutY="125.0" prefHeight="35.0" prefWidth="245.0" promptText="username" styleClass="text" stylesheets="@../CSS/login.css">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
                      </children>
                   </Pane>
                   <Pane fx:id="pnSignIn" prefHeight="400.0" prefWidth="307.0" style="-fx-background-color: #fff;" stylesheets="@../CSS/login.css">
@@ -84,7 +89,7 @@
                         </PasswordField>
                         <Label fx:id="loginMessageLabel" layoutX="54.0" layoutY="226.0" prefHeight="27.0" prefWidth="238.0" textFill="red" />
                         <Button fx:id="handleLogin" layoutX="172.0" layoutY="256.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="35.0" prefWidth="120.0" styleClass="button1" stylesheets="@../CSS/login.css" text="Sign in" />
-                        <Button fx:id="SignUp" layoutX="50.0" layoutY="318.0" mnemonicParsing="false" onAction="#register" prefHeight="40.0" prefWidth="245.0" styleClass="button2" stylesheets="@../CSS/login.css" text="Don't have an account? Sign up" />
+                        <Button fx:id="signUp" layoutX="50.0" layoutY="318.0" mnemonicParsing="false" onAction="#register" prefHeight="40.0" prefWidth="245.0" styleClass="button2" stylesheets="@../CSS/login.css" text="Don't have an account? Sign up" />
                         <Label layoutX="63.0" layoutY="265.0" prefHeight="17.0" prefWidth="95.0" text="Forgot Password?" />
                         <Label layoutX="33.0" layoutY="68.0" prefHeight="27.0" prefWidth="68.0" text="Sign In">
                            <font>
