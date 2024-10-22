@@ -1,37 +1,35 @@
 .text-input {
-    -fx-background-radius: 20;
+    -fx-background-radius: 5;
     -fx-text-fill: #ffffff;
     -fx-prompt-text-fill: #D4CEE3;
 }
 
 .button1 {
-    -fx-background-color: #431FA0;
+    -fx-background-color: #6F4CBB;
     -fx-text-fill: #ffffff;
 }
-
 .button1:hover {
-    -fx-text-fill: #6F4;
+    -fx-text-fill: #431FA0;
 }
 
 .button1:pressed {
-    -fx-text-fill: #80AFF5;
+    -fx-text-fill: #371897;
 }
-
-
-
 .button2 {
-    -fx-background-color: #ffffff;
-    -fx-background-radius: 20;
-    -fx-text-fill: #2262C6;
-}
+    -fx-background-color: #D5CBEB;
+    -fx-background-radius: 5;
+    -fx-text-fill: #371897;
 
+    -fx-border-radius: 5;
+}
 .button2:hover {
-    -fx-text-fill: #A7B3C4;
+    -fx-background-color: #E4EEFD;
 }
 .button2:pressed {
     -fx-background-color: #E4EEFD;
     -fx-background-radius: 20;
 }
+
 
 .button3 {
     -fx-background-color: linear-gradient(to top left, #35ACF1, #F6B46F);
@@ -158,6 +156,9 @@
 
 .linear-grad {
     -fx-background-color: linear-gradient(to bottom left, #6F4CBB, #431FA0);
+}
+.text{
+    -fx-text-fill: #454545;
 }
 
 
