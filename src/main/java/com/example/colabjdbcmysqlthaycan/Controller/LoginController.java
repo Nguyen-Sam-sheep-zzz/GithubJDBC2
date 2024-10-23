@@ -1,5 +1,7 @@
-package com.example.colabjdbcmysqlthaycan;
+package com.example.colabjdbcmysqlthaycan.Controller;
 
+import com.example.colabjdbcmysqlthaycan.Application.LoginApplication;
+import com.example.colabjdbcmysqlthaycan.ConnectDB;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

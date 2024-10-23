@@ -1,4 +1,4 @@
-package com.example.colabjdbcmysqlthaycan;
+package com.example.colabjdbcmysqlthaycan.Application;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
