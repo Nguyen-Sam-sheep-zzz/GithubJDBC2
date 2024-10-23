@@ -126,9 +126,9 @@ public class LoginController {
         try {
             FXMLLoader loader;
             if (role.equals("admin")) {
-                loader = new FXMLLoader(getClass().getResource("/com/example/colabjdbcmysqlthaycan/View/DisplayMainAdmin.fxml"));
+                loader = new FXMLLoader(getClass().getResource("/com/example/colabjdbcmysqlthaycan/View/HomeAdmin.fxml"));
             } else {
-                loader = new FXMLLoader(getClass().getResource("/com/example/colabjdbcmysqlthaycan/View/DisplayMainUser.fxml"));
+                loader = new FXMLLoader(getClass().getResource("/com/example/colabjdbcmysqlthaycan/View/HomeUser.fxml"));
             }
             Parent root = loader.load();
             Stage stage = (Stage) usernameField.getScene().getWindow();
