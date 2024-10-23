@@ -1,4 +1,4 @@
 package com.example.colabjdbcmysqlthaycan.Controller;
 
-public class DisplayMainAdminController {
+public class HomeAdminController {
 }
