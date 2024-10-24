@@ -9,4 +9,5 @@ module com.example.colabjdbcmysqlthaycan {
     opens com.example.colabjdbcmysqlthaycan.Controller to javafx.fxml;
     exports com.example.colabjdbcmysqlthaycan.Application;
     opens com.example.colabjdbcmysqlthaycan.Application to javafx.fxml;
+    opens com.example.colabjdbcmysqlthaycan.Class to javafx.base;
 }
