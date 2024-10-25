@@ -1,5 +1,7 @@
-package com.example.colabjdbcmysqlthaycan;
+package com.example.colabjdbcmysqlthaycan.Controller;
 
+import com.example.colabjdbcmysqlthaycan.Application.LoginApplication;
+import com.example.colabjdbcmysqlthaycan.ConnectDB;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -124,9 +126,9 @@ public class LoginController {
         try {
             FXMLLoader loader;
             if (role.equals("admin")) {
-                loader = new FXMLLoader(getClass().getResource("/com/example/colabjdbcmysqlthaycan/View/DisplayMainAdmin.fxml"));
+                loader = new FXMLLoader(getClass().getResource("/com/example/colabjdbcmysqlthaycan/View/HomeAdmin.fxml"));
             } else {
-                loader = new FXMLLoader(getClass().getResource("/com/example/colabjdbcmysqlthaycan/View/DisplayMainUser.fxml"));
+                loader = new FXMLLoader(getClass().getResource("/com/example/colabjdbcmysqlthaycan/View/HomeUser.fxml"));
             }
             Parent root = loader.load();
             Stage stage = (Stage) usernameField.getScene().getWindow();
