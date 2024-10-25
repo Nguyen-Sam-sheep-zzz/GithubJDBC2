@@ -27,6 +27,10 @@ import javafx.scene.control.Alert.AlertType;
 
 public class LoginController {
     @FXML
+    private Label lableShowPassword;
+    @FXML
+    private TextField passwordShow;
+    @FXML
     private PasswordField reEnterPassword;
     @FXML
     private TextField usernameField;
@@ -48,6 +52,24 @@ public class LoginController {
     private PasswordField registerPassword;
 
     private ConnectDB connectDB = new ConnectDB();
+
+    public void initialize() {
+        passwordShow.textProperty().bindBidirectional(passwordField.textProperty());
+
+        lableShowPassword.setOnMousePressed(event -> {
+            passwordShow.setVisible(true);
+            passwordShow.setManaged(true);
+            passwordField.setVisible(false);
+            passwordField.setManaged(false);
+        });
+
+        lableShowPassword.setOnMouseReleased(event -> {
+            passwordShow.setVisible(false);
+            passwordShow.setManaged(false);
+            passwordField.setVisible(true);
+            passwordField.setManaged(true);
+        });
+    }
 
     @FXML
     public void handleLogin() {
@@ -89,7 +111,7 @@ public class LoginController {
             return false;
         }
         if (!password.matches(".*[0-9].*")) {
-            showAlert("EROROR", "Password must have at least one number");
+            showAlert("ERROR", "Password must have at least one number");
             return false;
         }
         return true;
@@ -172,6 +194,7 @@ public class LoginController {
         String username = registerUsername.getText();
         String password = registerPassword.getText();
         String uFullName = registerFullName.getText();
+
 
         if (username.isEmpty() || password.isEmpty() || uFullName.isEmpty()) {
             showAlert("Registration failed", "Please fill in the registration information completely");
@@ -269,5 +292,7 @@ public class LoginController {
         }
         return false;
     }
+
+
 }
 

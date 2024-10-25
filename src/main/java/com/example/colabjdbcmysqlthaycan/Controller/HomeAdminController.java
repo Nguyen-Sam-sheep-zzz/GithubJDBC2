@@ -14,8 +14,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
 public class HomeAdminController {
+
     private ConnectDB connectDB = new ConnectDB();
 
     @FXML
@@ -50,6 +50,8 @@ public class HomeAdminController {
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         productTableView.setItems(getProductDisplayList());
+
+
     }
 
     public ObservableList<ProductDisplay> getProductDisplayList() {
@@ -82,5 +84,7 @@ public class HomeAdminController {
         }
         return productDisplayList;
     }
+
+
 }
 

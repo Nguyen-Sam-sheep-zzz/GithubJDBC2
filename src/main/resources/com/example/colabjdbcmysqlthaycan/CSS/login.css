@@ -82,9 +82,10 @@
     -fx-alignment: CENTER;
 }
 
+
 .table-view .cell {
     -fx-cell-size: 30;
-    -fx-alignment: center-left;
+    -fx-alignment: CENTER-LEFT;
     -fx-text-fill: #000000;
 }
 
@@ -137,6 +138,8 @@
 .text-field1{
     -fx-border-color: #bb1a3a;
 }
+
+
 
 
 
