@@ -72,12 +72,12 @@
                                         <String fx:value="shadow" />
                                     </styleClass>
                                     <children>
-                                        <ImageView fitHeight="128.0" fitWidth="122.0" layoutX="2.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" />
-                                        <Button layoutY="129.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="125.0" styleClass="button3" stylesheets="@../CSS/login.css" text="Import" textFill="WHITE">
+                                        <Button fx:id="sd" layoutY="129.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="125.0" styleClass="button3" stylesheets="@../CSS/login.css" text="Import" textFill="WHITE">
                                             <font>
                                                 <Font size="15.0" />
                                             </font>
                                         </Button>
+                                        <ImageView fx:id="imageProductImageView" fitHeight="128.0" fitWidth="122.0" layoutX="2.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" />
                                     </children>
                                 </AnchorPane>
                                 <Label layoutX="37.0" layoutY="201.0" prefHeight="25.0" prefWidth="185.0" text="Laptop Name:">
@@ -90,20 +90,20 @@
                                         <Font size="15.0" />
                                     </font>
                                 </Label>
-                                <TextField layoutX="38.0" layoutY="226.0" prefHeight="25.0" prefWidth="225.0" styleClass="text-field1" stylesheets="@../CSS/login.css" />
-                                <TextField layoutX="38.0" layoutY="285.0" prefHeight="25.0" prefWidth="225.0" styleClass="text-field1" />
+                                <TextField fx:id="nameProductTextField" layoutX="38.0" layoutY="226.0" prefHeight="25.0" prefWidth="225.0" styleClass="text-field1" stylesheets="@../CSS/login.css" />
+                                <TextField fx:id="descriptionProductTextField" layoutX="38.0" layoutY="285.0" prefHeight="25.0" prefWidth="225.0" styleClass="text-field1" />
                                 <Label layoutX="38.0" layoutY="315.0" prefHeight="25.0" prefWidth="185.0" text="Laptop Status:">
                                     <font>
                                         <Font size="15.0" />
                                     </font>
                                 </Label>
-                                <ComboBox layoutX="38.0" layoutY="340.0" prefHeight="25.0" prefWidth="224.0" style="-fx-background-color: #fff; -fx-border-radius: 5px; -fx-border-color: #bb1a3a;" />
+                                <ComboBox fx:id="statusProductComboBox" layoutX="38.0" layoutY="340.0" prefHeight="25.0" prefWidth="224.0" style="-fx-background-color: #fff; -fx-border-radius: 5px; -fx-border-color: #bb1a3a;" />
                                 <Label layoutX="38.0" layoutY="370.0" prefHeight="25.0" prefWidth="185.0" text="Laptop Price:">
                                     <font>
                                         <Font size="15.0" />
                                     </font>
                                 </Label>
-                                <TextField layoutX="37.0" layoutY="399.0" prefHeight="25.0" prefWidth="225.0" promptText="0.0$" styleClass="text-field1" />
+                                <TextField fx:id="priceProductTextField" layoutX="37.0" layoutY="399.0" prefHeight="25.0" prefWidth="225.0" promptText="0.0$" styleClass="text-field1" />
                                 <Button fx:id="addProductToTableview" layoutX="38.0" layoutY="448.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" styleClass="button3" stylesheets="@../CSS/login.css" text="Add" textFill="WHITE">
                                     <font>
                                         <Font size="15.0" />
@@ -114,12 +114,12 @@
                                         <Font size="15.0" />
                                     </font>
                                 </Button>
-                                <Button layoutX="186.0" layoutY="448.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" styleClass="button3" stylesheets="@../CSS/login.css" text="Update" textFill="WHITE">
+                                <Button fx:id="updateProductToTableview" layoutX="186.0" layoutY="448.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" styleClass="button3" stylesheets="@../CSS/login.css" text="Update" textFill="WHITE" onAction="#handleUpdateProduct">
                                     <font>
                                         <Font size="15.0" />
                                     </font>
                                 </Button>
-                                <Button layoutX="185.0" layoutY="508.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" styleClass="button3" stylesheets="@../CSS/login.css" text="Delete" textFill="WHITE">
+                                <Button fx:id="deleteProductToTableview" layoutX="185.0" layoutY="508.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" styleClass="button3" stylesheets="@../CSS/login.css" text="Delete" textFill="WHITE">
                                     <font>
                                         <Font size="15.0" />
                                     </font>
@@ -141,6 +141,7 @@
                                         <TableColumn fx:id="descriptionColumn" prefWidth="152.66668701171875" text="Description" />
                                         <TableColumn fx:id="priceColumn" prefWidth="98.6666259765625" text="Price" />
                                         <TableColumn fx:id="statusColumn" prefWidth="78.0" text="Status" />
+                              <TableColumn fx:id="idImageProduct" prefWidth="78.0" text="Status" />
                                     </columns>
                                 </TableView>
                                 <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="30.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
@@ -148,6 +149,8 @@
                                         <Image url="@../img/search.png" />
                                     </image>
                                 </ImageView>
+                        <TextField fx:id="idProductTextField" layoutX="257.0" layoutY="26.0" prefHeight="25.0" prefWidth="225.0" styleClass="text-field1" stylesheets="@../CSS/login.css" />
+                        <TextField fx:id="idImageProductTextField" layoutX="408.0" layoutY="26.0" prefHeight="25.0" prefWidth="225.0" styleClass="text-field1" stylesheets="@../CSS/login.css" />
                             </children>
                         </AnchorPane>
                     </children>

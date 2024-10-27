@@ -137,6 +137,7 @@
 }
 .text-field1{
     -fx-border-color: #bb1a3a;
+    -fx-text-fill: #333333;
 }
 
 

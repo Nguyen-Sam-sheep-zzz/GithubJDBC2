@@ -1,30 +1,41 @@
 package com.example.colabjdbcmysqlthaycan.Class;
 
+import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 
 public class ProductDisplay {
     private String imageLink;
-    private int id;
+    private String id;
     private String name;
     private String description;
     private double price;
     private String status;
     private ImageView imageView;
+    private String idImage;
 
-    public ProductDisplay(String imageLink, int id, String name, String description, double price, String status) {
+    public ProductDisplay(String imageLink, String id, String name, String description, double price, String status, String idImage) {
         this.imageLink = imageLink;
         this.imageView = new ImageView(new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + imageLink).toExternalForm()));
 
         this.imageView.setFitWidth(50);
-        this.imageView.setFitHeight(35);
+        this.imageView.setFitHeight(37);
 
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.status = status;
+        this.idImage = idImage;
+    }
+
+    public String getIdImage() {
+        return idImage;
+    }
+
+    public void setIdImage(String idImage) {
+        this.idImage = idImage;
     }
 
     public String getImageLink() {
@@ -35,11 +46,11 @@ public class ProductDisplay {
         this.imageLink = imageLink;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
