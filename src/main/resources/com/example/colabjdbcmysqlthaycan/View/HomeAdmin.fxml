@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -72,8 +73,8 @@
                               <String fx:value="shadow" />
                            </styleClass>
                            <children>
-                              <ImageView fitHeight="128.0" fitWidth="122.0" layoutX="2.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" />
-                              <Button layoutY="129.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="125.0" styleClass="button3" stylesheets="@../CSS/login.css" text="Import" textFill="WHITE">
+                              <ImageView fx:id="imageLaptopImageView" fitHeight="128.0" fitWidth="122.0" layoutX="2.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" />
+                              <Button layoutY="129.0" mnemonicParsing="false" onAction="#importImage" prefHeight="30.0" prefWidth="125.0" styleClass="button3" stylesheets="@../CSS/login.css" text="Import" textFill="WHITE">
                                  <font>
                                     <Font size="15.0" />
                                  </font></Button>
@@ -89,21 +90,28 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="38.0" layoutY="226.0" prefHeight="25.0" prefWidth="225.0" styleClass="text-field1" stylesheets="@../CSS/login.css" />
-                        <TextField layoutX="38.0" layoutY="285.0" prefHeight="25.0" prefWidth="225.0" styleClass="text-field1" />
+                        <TextField fx:id="nameLaptopTextField" layoutX="38.0" layoutY="226.0" prefHeight="25.0" prefWidth="225.0" styleClass="text-field1" stylesheets="@../CSS/login.css" />
+                        <TextField fx:id="descriptionLaptopTextField" layoutX="38.0" layoutY="285.0" prefHeight="25.0" prefWidth="225.0" styleClass="text-field1" />
                         <Label layoutX="38.0" layoutY="315.0" prefHeight="25.0" prefWidth="185.0" text="Laptop Status:">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <ComboBox layoutX="38.0" layoutY="340.0" prefHeight="25.0" prefWidth="224.0" style="-fx-background-color: #fff; -fx-border-radius: 5px; -fx-border-color: #bb1a3a;" />
+                        <ComboBox fx:id="statusLaptopTextField" layoutX="38.0" layoutY="340.0" prefHeight="25.0" prefWidth="224.0" style="-fx-background-color: #fff; -fx-border-radius: 5px; -fx-border-color: #bb1a3a;">
+                           <items>
+                              <FXCollections fx:factory="observableArrayList">
+                                 <String fx:value="available" />
+                                 <String fx:value="unavailable" />
+                              </FXCollections>
+                           </items>
+                        </ComboBox>
                         <Label layoutX="38.0" layoutY="370.0" prefHeight="25.0" prefWidth="185.0" text="Laptop Price:">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="37.0" layoutY="399.0" prefHeight="25.0" prefWidth="225.0" promptText="0.0$" styleClass="text-field1" />
-                        <Button layoutX="38.0" layoutY="448.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" styleClass="button3" stylesheets="@../CSS/login.css" text="Add" textFill="WHITE">
+                        <TextField fx:id="priceLaptopTextField" layoutX="37.0" layoutY="399.0" prefHeight="25.0" prefWidth="225.0" promptText="0.0$" styleClass="text-field1" />
+                        <Button layoutX="38.0" layoutY="448.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="30.0" prefWidth="75.0" styleClass="button3" stylesheets="@../CSS/login.css" text="Add" textFill="WHITE">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -133,16 +141,16 @@
                      <children>
                         <TextField layoutX="24.0" layoutY="23.0" prefHeight="30.0" prefWidth="226.0" promptText="      Search" style="-fx-background-radius: 50; -fx-border-radius: 50;" styleClass="text-field1" />
                         <TableView fx:id="productTableView" layoutX="22.0" layoutY="64.0" prefHeight="475.0" prefWidth="625.0" stylesheets="@../CSS/login.css">
-                          <columns>
-                              <TableColumn  fx:id="imageColumn" prefWidth="115.333251953125" text="Image" />
-                            <TableColumn fx:id="idColumn" prefWidth="40.0001220703125" text="ID" />
-                            <TableColumn fx:id="nameColumn" prefWidth="137.77777099609375" text="Name" />
+                           <columns>
+                              <TableColumn fx:id="imageColumn" prefWidth="115.333251953125" text="Image" />
+                              <TableColumn fx:id="idColumn" prefWidth="40.0001220703125" text="ID" />
+                              <TableColumn fx:id="nameColumn" prefWidth="137.77777099609375" text="Name" />
                               <TableColumn fx:id="descriptionColumn" prefWidth="152.66668701171875" text="Description" />
                               <TableColumn fx:id="priceColumn" prefWidth="98.6666259765625" text="Price" />
                               <TableColumn fx:id="statusColumn" prefWidth="78.0" text="Status" />
-                          </columns>
+                           </columns>
                         </TableView>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="30.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="30.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../img/search.png" />
                            </image>
