@@ -128,24 +128,18 @@ public class HomeAdminController {
     }
 
     public void handleUpdateProduct() {
-        String id = idProductTextField.getText();
-        String name = nameProductTextField.getText();
-        String description = descriptionProductTextField.getText();
-        double price = Double.parseDouble(priceProductTextField.getText());
-        String status = statusProductComboBox.getValue().toString();
-
-        if (name.isEmpty()) {
+        if (nameProductTextField.getText().isEmpty()) {
             showAlert("ERROR", "Product name cannot be left blank");
             return;
         }
-        if (description.isEmpty()) {
+        if (descriptionProductTextField.getText().isEmpty()) {
             showAlert("ERROR", "Description product cannot be left blank");
             return;
         }
         if (priceProductTextField.getText().isEmpty()) {
             showAlert("ERROR", "Price product cannot be left blank");
             return;
-        } else if (!priceProductTextField.getText().matches("\\d+")) {
+        } else if (!priceProductTextField.getText().matches("\\d+(\\.\\d+)?")) {
             showAlert("ERROR", "Price can only be numeric");
             return;
         }
@@ -153,6 +147,11 @@ public class HomeAdminController {
             showAlert("ERROR", "Image cannot be left blank");
             return;
         }
+        String id = idProductTextField.getText();
+        String name = nameProductTextField.getText();
+        String description = descriptionProductTextField.getText();
+        double price = Double.parseDouble(priceProductTextField.getText());
+        String status = statusProductComboBox.getValue().toString();
 
         String imagePath = imageProductImageView.getImage().getUrl();
         File file = new File(imagePath);
@@ -171,7 +170,7 @@ public class HomeAdminController {
         nameProductTextField.clear();
         descriptionProductTextField.clear();
         priceProductTextField.clear();
-        idImageProductTextField.clear();
+        idProductTextField.clear();
 //        imageProductImageView = new ImageView(new Image(getClass().getResource("").toExternalForm()));
         imageProductImageView.setImage(null);
         statusProductComboBox.setValue("available");
@@ -276,7 +275,7 @@ public class HomeAdminController {
             if (priceProductTextField.getText().isEmpty()) {
                 showAlert("ERROR", "Price product cannot be left blank");
                 return;
-            } else if (!priceProductTextField.getText().matches("\\d+")) {
+            } else if (!priceProductTextField.getText().matches("\\d+(\\.\\d+)?")) {
                 showAlert("ERROR", "Price can only be numeric");
                 return;
             }
@@ -339,6 +338,10 @@ public class HomeAdminController {
 
     public void handleDeleteProduct() {
         String id = idProductTextField.getText();
+        if (id.isEmpty()) {
+            showAlert("ERROR", "ID product cannot be left blank");
+            return;
+        }
         String status = statusProductComboBox.getValue().toString();
         if (status.equalsIgnoreCase("unavailable")) {
             showAlert("ERROR", "This product is unavailable");
