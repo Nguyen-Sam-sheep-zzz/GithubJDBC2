@@ -17,6 +17,7 @@ public class HomeAdminApplication extends Application {
         stage.setScene(scene);
         stage.show();
     }
+    // đừng sửa
     public static void main(String[] args) {
         launch();
     }
