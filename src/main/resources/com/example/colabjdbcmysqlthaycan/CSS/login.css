@@ -137,7 +137,17 @@
 }
 .text-field1{
     -fx-border-color: #bb1a3a;
-    -fx-text-fill: #333333;
+    -fx-text-fill: #454545;
+    -fx-font-size: 15px;
+}
+.search{
+    -fx-background-radius: 50px;
+    -fx-border-radius: 50px;
+    -fx-start-margin: 10px;
+    -fx-border-color: #bb1a3a;
+    -fx-padding: 5px 15px;
+    -fx-text-fill: #454545;
+    -fx-font-size: 15px;
 }
 
 

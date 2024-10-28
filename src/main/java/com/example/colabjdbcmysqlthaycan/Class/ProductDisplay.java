@@ -18,7 +18,6 @@ public class ProductDisplay {
     public ProductDisplay(String imageLink, String id, String name, String description, double price, String status, String idImage) {
         this.imageLink = imageLink;
         this.imageView = new ImageView(new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + imageLink).toExternalForm()));
-
         this.imageView.setFitWidth(50);
         this.imageView.setFitHeight(37);
 
