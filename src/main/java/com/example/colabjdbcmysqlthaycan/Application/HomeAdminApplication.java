@@ -19,7 +19,6 @@ public class HomeAdminApplication extends Application {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            System.err.println("Failed to load FXML: " + e.getMessage());
         }
     }
 
