@@ -114,7 +114,7 @@ public class HomeAdminController {
             }
         });
     }
-
+//
     private void populateFields(ProductDisplay product) {
         idProductTextField.setText(String.valueOf(product.getId()));
         nameProductTextField.setText(product.getName());
