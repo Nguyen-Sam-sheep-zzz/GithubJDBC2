@@ -15,7 +15,7 @@ public class ConnectDB {
 
         }
         try {
-            connection = DriverManager.getConnection(urlConnection, "root", "13122005");
+            connection = DriverManager.getConnection(urlConnection, "root", "root@123");
             System.out.println("Successful! It's Dung.");
         } catch (SQLException e) {
 
@@ -23,3 +23,4 @@ public class ConnectDB {
         return connection;
     }
 }
+///sadfsa
