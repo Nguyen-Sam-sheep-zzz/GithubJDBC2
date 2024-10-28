@@ -21,13 +21,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.sql.*;
 
 
@@ -63,6 +60,8 @@ public class HomeAdminController {
     private TableColumn<ProductDisplay, String> statusColumn;
     @FXML
     private TableColumn<ProductDisplay, String> idImageProduct;
+    @FXML
+    private TextField searchProductTextField;
 
     public void initialize() {
         imageColumn.setCellValueFactory(new PropertyValueFactory<>("imageView"));
@@ -74,6 +73,9 @@ public class HomeAdminController {
         idImageProduct.setCellValueFactory(new PropertyValueFactory<>("idImage"));
         statusProductComboBox.setValue("available");
         idImageProduct.setVisible(false);
+        searchProductTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            handleSearchProduct(); // Gọi phương thức tìm kiếm khi có thay đổi
+        });
 
         String defaultImage = "/com/example/colabjdbcmysqlthaycan/img/HoiCham-removebg-preview.png";
         Image image = new Image(getClass().getResource(defaultImage).toExternalForm());
@@ -185,8 +187,6 @@ public class HomeAdminController {
         Connection connection = connectDB.connectionDB();
 
         String query = "select p.idProduct, p.nameProduct, p.productDescription, p.price, p.status, i.idImage, i.link from Products p join ImageProducts ip on p.idProduct = ip.idProduct join Images i on ip.idImage = i.idImage";
-
-
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -268,4 +268,35 @@ public class HomeAdminController {
         }
     }
 
+
+
+    public void handleSearchProduct() {
+        ObservableList<ProductDisplay> searchProduct = FXCollections.observableArrayList();
+        String searchQuery = searchProductTextField.getText().trim();
+        String query = "SELECT p.idProduct, p.nameProduct, p.productDescription, p.price, p.status, i.idImage, i.link " +
+                "FROM Products p " +
+                "JOIN ImageProducts ip ON p.idProduct = ip.idProduct " +
+                "JOIN Images i ON ip.idImage = i.idImage " +
+                "WHERE p.nameProduct LIKE ? or P.price LIKE ?";
+
+        try {
+            PreparedStatement ps = connectDB.connectionDB().prepareStatement(query);
+            ps.setString(1, "%" + searchQuery + "%");
+            ps.setString(2, "%" + searchQuery + "%");
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                String id = resultSet.getString("idProduct");
+                String name = resultSet.getString("nameProduct");
+                String description = resultSet.getString("productDescription");
+                double price = resultSet.getDouble("price");
+                String status = resultSet.getString("status");
+                String imageLink = resultSet.getString("link");
+                String idImage = resultSet.getString("idImage");
+                searchProduct.add(new ProductDisplay(imageLink, id, name, description, price, status, idImage));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        productTableView.setItems(searchProduct);
+    }
 }
