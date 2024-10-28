@@ -10,7 +10,6 @@ import javafx.fxml.FXML;
 
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -30,8 +29,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
-
 import javafx.scene.layout.VBox;
 
 import javafx.stage.FileChooser;
@@ -93,10 +90,6 @@ public class HomeAdminController {
             handleSearchProduct();
         });
 
-//        String defaultImage = "/com/example/colabjdbcmysqlthaycan/img/HoiCham-removebg-preview.png";
-//        Image image = new Image(getClass().getResource(defaultImage).toExternalForm());
-//        imageProductImageView.setImage(image);
-
         imageProductImageView.setFitWidth(122);
         imageProductImageView.setFitHeight(128);
 
@@ -108,13 +101,14 @@ public class HomeAdminController {
             if (event.getClickCount() == 1 && productTableView.getSelectionModel().getSelectedItem() != null) {
                 ProductDisplay selectedProduct = productTableView.getSelectionModel().getSelectedItem();
                 populateFields(selectedProduct);
-            } else if (event.getClickCount() == 2 && productTableView.getSelectionModel().getSelectedItem() != null) {
+            } else if (event.getClickCount() == 3 && productTableView.getSelectionModel().getSelectedItem() != null) {
                 ProductDisplay selectedProduct = productTableView.getSelectionModel().getSelectedItem();
                 showProductDialog(selectedProduct);
             }
         });
     }
-//
+
+    //
     private void populateFields(ProductDisplay product) {
         idProductTextField.setText(String.valueOf(product.getId()));
         nameProductTextField.setText(product.getName());
@@ -128,6 +122,9 @@ public class HomeAdminController {
     }
 
     public void handleUpdateProduct() {
+        if (nameProductTextField.getText().isEmpty() || descriptionProductTextField.getText().isEmpty() || priceProductTextField.getText().isEmpty() || imageProductImageView.getImage() == null) {
+            showAlert("ERROR", "Please select a product");
+        }
         if (nameProductTextField.getText().isEmpty()) {
             showAlert("ERROR", "Product name cannot be left blank");
             return;
@@ -171,7 +168,6 @@ public class HomeAdminController {
         descriptionProductTextField.clear();
         priceProductTextField.clear();
         idProductTextField.clear();
-//        imageProductImageView = new ImageView(new Image(getClass().getResource("").toExternalForm()));
         imageProductImageView.setImage(null);
         statusProductComboBox.setValue("available");
     }
