@@ -66,18 +66,18 @@
                                 <String fx:value="shadow" />
                             </styleClass>
                             <children>
-                                <AnchorPane layoutX="89.0" layoutY="20.0" prefHeight="150.0" prefWidth="115.0">
+                                <AnchorPane layoutX="89.0" layoutY="24.0" prefHeight="157.0" prefWidth="126.0">
                                     <styleClass>
                                         <String fx:value="anchor" />
                                         <String fx:value="shadow" />
                                     </styleClass>
                                     <children>
-                                        <Button fx:id="sd" layoutY="129.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="125.0" styleClass="button3" stylesheets="@../CSS/login.css" text="Import" textFill="WHITE">
+                                        <Button fx:id="importButton" layoutY="129.0" mnemonicParsing="false" onAction="#importImage" prefHeight="30.0" prefWidth="125.0" styleClass="button3" stylesheets="@../CSS/login.css" text="Import" textFill="WHITE">
                                             <font>
                                                 <Font size="15.0" />
                                             </font>
                                         </Button>
-                                        <ImageView fx:id="imageProductImageView" fitHeight="128.0" fitWidth="122.0" layoutX="2.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" />
+                                        <ImageView fx:id="imageProductImageView" fitHeight="128.0" fitWidth="122.0" layoutX="2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
                                     </children>
                                 </AnchorPane>
                                 <Label layoutX="37.0" layoutY="201.0" prefHeight="25.0" prefWidth="185.0" text="Laptop Name:">
@@ -104,12 +104,12 @@
                                     </font>
                                 </Label>
                                 <TextField fx:id="priceProductTextField" layoutX="37.0" layoutY="399.0" prefHeight="25.0" prefWidth="225.0" promptText="0.0$" styleClass="text-field1" />
-                                <Button fx:id="addProductToTableview" layoutX="38.0" layoutY="448.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" styleClass="button3" stylesheets="@../CSS/login.css" text="Add" textFill="WHITE">
+                                <Button fx:id="addProductToTableview" layoutX="38.0" layoutY="448.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="30.0" prefWidth="75.0" styleClass="button3" stylesheets="@../CSS/login.css" text="Add" textFill="WHITE">
                                     <font>
                                         <Font size="15.0" />
                                     </font>
                                 </Button>
-                                <Button layoutX="38.0" layoutY="507.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" styleClass="button3" stylesheets="@../CSS/login.css" text="Clear" textFill="WHITE">
+                                <Button layoutX="38.0" layoutY="507.0" mnemonicParsing="false" onAction="#clearHomeAdmin" prefHeight="30.0" prefWidth="75.0" styleClass="button3" stylesheets="@../CSS/login.css" text="Clear" textFill="WHITE">
                                     <font>
                                         <Font size="15.0" />
                                     </font>
