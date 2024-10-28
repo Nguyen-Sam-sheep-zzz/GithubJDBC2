@@ -67,6 +67,13 @@ public class HomeAdminController {
         statusProductComboBox.setValue("available");
         idImageProduct.setVisible(false);
 
+        String defaultImage = "/com/example/colabjdbcmysqlthaycan/img/HoiCham-removebg-preview.png";
+        Image image = new Image(getClass().getResource(defaultImage).toExternalForm());
+        imageProductImageView.setImage(image);
+
+        imageProductImageView.setFitWidth(122);
+        imageProductImageView.setFitHeight(128);
+
         productTableView.setItems(getProductDisplayList());
 
         idProductTextField.setVisible(false);
