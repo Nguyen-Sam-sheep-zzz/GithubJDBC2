@@ -12,5 +12,4 @@ module com.example.colabjdbcmysqlthaycan {
     opens com.example.colabjdbcmysqlthaycan.Class to javafx.base;
     opens com.example.colabjdbcmysqlthaycan.View to javafx.fxml;
 
-
 }
