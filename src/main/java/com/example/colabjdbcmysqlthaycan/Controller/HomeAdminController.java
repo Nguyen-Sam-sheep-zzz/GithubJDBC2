@@ -25,7 +25,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+
 import javafx.scene.layout.VBox;
+
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -68,6 +76,8 @@ public class HomeAdminController {
     private TableColumn<ProductDisplay, String> statusColumn;
     @FXML
     private TableColumn<ProductDisplay, String> idImageProduct;
+    @FXML
+    private TextField searchProductTextField;
 
     public void initialize() {
         imageColumn.setCellValueFactory(new PropertyValueFactory<>("imageView"));
@@ -79,6 +89,9 @@ public class HomeAdminController {
         idImageProduct.setCellValueFactory(new PropertyValueFactory<>("idImage"));
         statusProductComboBox.setValue("available");
         idImageProduct.setVisible(false);
+        searchProductTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            handleSearchProduct();
+        });
 
 //        String defaultImage = "/com/example/colabjdbcmysqlthaycan/img/HoiCham-removebg-preview.png";
 //        Image image = new Image(getClass().getResource(defaultImage).toExternalForm());
@@ -101,7 +114,7 @@ public class HomeAdminController {
             }
         });
     }
-
+//
     private void populateFields(ProductDisplay product) {
         idProductTextField.setText(String.valueOf(product.getId()));
         nameProductTextField.setText(product.getName());
@@ -212,8 +225,6 @@ public class HomeAdminController {
         Connection connection = connectDB.connectionDB();
 
         String query = "select p.idProduct, p.nameProduct, p.productDescription, p.price, p.status, i.idImage, i.link from Products p join ImageProducts ip on p.idProduct = ip.idProduct join Images i on ip.idImage = i.idImage";
-
-
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -317,6 +328,7 @@ public class HomeAdminController {
         }
     }
 
+
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -380,7 +392,7 @@ public class HomeAdminController {
             productImageView.setSmooth(true);
         }
 
-        content.getChildren().addAll(nameLabel, descriptionLabel, priceLabel, status,productImageView);
+        content.getChildren().addAll(nameLabel, descriptionLabel, priceLabel, status, productImageView);
         dialog.getDialogPane().setContent(content);
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.showAndWait();
@@ -393,5 +405,36 @@ public class HomeAdminController {
         stage.setTitle("Login");
         stage.setScene(scene);
         stage.show();
+
+    }
+
+    public void handleSearchProduct() {
+        ObservableList<ProductDisplay> searchProduct = FXCollections.observableArrayList();
+        String searchQuery = searchProductTextField.getText().trim();
+        String query = "SELECT p.idProduct, p.nameProduct, p.productDescription, p.price, p.status, i.idImage, i.link " +
+                "FROM Products p " +
+                "JOIN ImageProducts ip ON p.idProduct = ip.idProduct " +
+                "JOIN Images i ON ip.idImage = i.idImage " +
+                "WHERE p.nameProduct LIKE ? or P.price LIKE ?";
+
+        try {
+            PreparedStatement ps = connectDB.connectionDB().prepareStatement(query);
+            ps.setString(1, "%" + searchQuery + "%");
+            ps.setString(2, "%" + searchQuery + "%");
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                String id = resultSet.getString("idProduct");
+                String name = resultSet.getString("nameProduct");
+                String description = resultSet.getString("productDescription");
+                double price = resultSet.getDouble("price");
+                String status = resultSet.getString("status");
+                String imageLink = resultSet.getString("link");
+                String idImage = resultSet.getString("idImage");
+                searchProduct.add(new ProductDisplay(imageLink, id, name, description, price, status, idImage));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        productTableView.setItems(searchProduct);
     }
 }
