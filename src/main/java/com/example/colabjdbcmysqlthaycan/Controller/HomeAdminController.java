@@ -1,5 +1,6 @@
 package com.example.colabjdbcmysqlthaycan.Controller;
 
+import com.example.colabjdbcmysqlthaycan.Application.LoginApplication;
 import com.example.colabjdbcmysqlthaycan.Class.ProductDisplay;
 import com.example.colabjdbcmysqlthaycan.ConnectDB;
 import javafx.collections.FXCollections;
@@ -7,27 +8,28 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.sql.*;
 
 
@@ -47,6 +49,9 @@ public class HomeAdminController {
     private TextField priceProductTextField;
     @FXML
     private TextField idImageProductTextField;
+    @FXML
+    private Button buttonSingOut;
+
     @FXML
     private TableView<ProductDisplay> productTableView;
     @FXML
@@ -75,22 +80,24 @@ public class HomeAdminController {
         statusProductComboBox.setValue("available");
         idImageProduct.setVisible(false);
 
-        String defaultImage = "/com/example/colabjdbcmysqlthaycan/img/HoiCham-removebg-preview.png";
-        Image image = new Image(getClass().getResource(defaultImage).toExternalForm());
-        imageProductImageView.setImage(image);
+//        String defaultImage = "/com/example/colabjdbcmysqlthaycan/img/HoiCham-removebg-preview.png";
+//        Image image = new Image(getClass().getResource(defaultImage).toExternalForm());
+//        imageProductImageView.setImage(image);
 
         imageProductImageView.setFitWidth(122);
         imageProductImageView.setFitHeight(128);
 
         productTableView.setItems(getProductDisplayList());
-
         idProductTextField.setVisible(false);
         idImageProductTextField.setVisible(false);
 
         productTableView.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 2 && productTableView.getSelectionModel().getSelectedItem() != null) {
+            if (event.getClickCount() == 1 && productTableView.getSelectionModel().getSelectedItem() != null) {
                 ProductDisplay selectedProduct = productTableView.getSelectionModel().getSelectedItem();
                 populateFields(selectedProduct);
+            } else if (event.getClickCount() == 2 && productTableView.getSelectionModel().getSelectedItem() != null) {
+                ProductDisplay selectedProduct = productTableView.getSelectionModel().getSelectedItem();
+                showProductDialog(selectedProduct);
             }
         });
     }
@@ -114,17 +121,36 @@ public class HomeAdminController {
         double price = Double.parseDouble(priceProductTextField.getText());
         String status = statusProductComboBox.getValue().toString();
 
+        if (name.isEmpty()) {
+            showAlert("ERROR", "Product name cannot be left blank");
+            return;
+        }
+        if (description.isEmpty()) {
+            showAlert("ERROR", "Description product cannot be left blank");
+            return;
+        }
+        if (priceProductTextField.getText().isEmpty()) {
+            showAlert("ERROR", "Price product cannot be left blank");
+            return;
+        } else if (!priceProductTextField.getText().matches("\\d+")) {
+            showAlert("ERROR", "Price can only be numeric");
+            return;
+        }
+        if (imageProductImageView.getImage() == null) {
+            showAlert("ERROR", "Image cannot be left blank");
+            return;
+        }
+
         String imagePath = imageProductImageView.getImage().getUrl();
         File file = new File(imagePath);
         String link = file.getName();
 
         String idImage = idImageProductTextField.getText();
 
-
-
         updateProductDisplay(id, name, description, price, status, link, idImage);
         clearHomeAdmin();
         productTableView.setItems(getProductDisplayList());
+        showAlert("Add product successful", "Product has been added");
     }
 
     public void clearHomeAdmin() {
@@ -133,7 +159,8 @@ public class HomeAdminController {
         descriptionProductTextField.clear();
         priceProductTextField.clear();
         idImageProductTextField.clear();
-        imageProductImageView = new ImageView(new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/HoiCham-removebg-preview.png").toExternalForm()));
+//        imageProductImageView = new ImageView(new Image(getClass().getResource("").toExternalForm()));
+        imageProductImageView.setImage(null);
         statusProductComboBox.setValue("available");
     }
 
@@ -227,6 +254,25 @@ public class HomeAdminController {
 
         try {
             PreparedStatement psProduct = connectDB.connectionDB().prepareStatement(queryProduct, Statement.RETURN_GENERATED_KEYS);
+            if (nameProductTextField.getText().isEmpty()) {
+                showAlert("ERROR", "Product name cannot be left blank");
+                return;
+            }
+            if (descriptionProductTextField.getText().isEmpty()) {
+                showAlert("ERROR", "Description product cannot be left blank");
+                return;
+            }
+            if (priceProductTextField.getText().isEmpty()) {
+                showAlert("ERROR", "Price product cannot be left blank");
+                return;
+            } else if (!priceProductTextField.getText().matches("\\d+")) {
+                showAlert("ERROR", "Price can only be numeric");
+                return;
+            }
+            if (imageProductImageView.getImage() == null) {
+                showAlert("ERROR", "Image cannot be left blank");
+                return;
+            }
             psProduct.setString(1, nameProductTextField.getText());
             psProduct.setString(2, descriptionProductTextField.getText());
             psProduct.setDouble(3, Double.parseDouble(priceProductTextField.getText()));
@@ -261,6 +307,9 @@ public class HomeAdminController {
             System.out.println("Product added successfully");
 
             productTableView.setItems(getProductDisplayList());
+            clearHomeAdmin();
+            showAlert("Add product successful", "Product has been added");
+
 
         } catch (SQLException | NumberFormatException e) {
             e.printStackTrace();
@@ -268,4 +317,81 @@ public class HomeAdminController {
         }
     }
 
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    public void handleDeleteProduct() {
+        String id = idProductTextField.getText();
+        String status = statusProductComboBox.getValue().toString();
+        if (status.equalsIgnoreCase("unavailable")) {
+            showAlert("ERROR", "This product is unavailable");
+            return;
+        }
+        deleteProduct(id);
+        clearHomeAdmin();
+        productTableView.setItems(getProductDisplayList());
+        showAlert("Delete successful", "Product has been discontinued");
+    }
+
+    public void deleteProduct(String id) {
+        Connection connection = connectDB.connectionDB();
+        PreparedStatement preparedStatement;
+        String deleteProduct = "update Products set status = ? where idProduct = ?";
+        try {
+            preparedStatement = connection.prepareStatement(deleteProduct);
+
+            preparedStatement.setString(1, "unavailable");
+            preparedStatement.setString(2, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showProductDialog(ProductDisplay product) {
+        Dialog<Void> dialog = new Dialog<>();
+        dialog.setTitle("Product Details");
+
+        ButtonType closeButtonType = new ButtonType("Close", ButtonBar.ButtonData.CANCEL_CLOSE);
+        dialog.getDialogPane().getButtonTypes().addAll(closeButtonType);
+
+        VBox content = new VBox(10);
+        content.setPadding(new Insets(10));
+
+        Label nameLabel = new Label("Name: " + product.getName());
+        Label descriptionLabel = new Label("Description: " + product.getDescription());
+        Label priceLabel = new Label("Price: " + product.getPrice());
+        Label status = new Label("Status: " + product.getStatus());
+
+        ImageView productImageView = new ImageView();
+        String imagePath = product.getImageLink();
+        File file = new File(imagePath);
+        String link = file.getName();
+
+        if (link != null) {
+            productImageView.setImage(new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + link).toExternalForm()));
+            productImageView.setFitHeight(100);
+            productImageView.setPreserveRatio(true);
+            productImageView.setSmooth(true);
+        }
+
+        content.getChildren().addAll(nameLabel, descriptionLabel, priceLabel, status,productImageView);
+        dialog.getDialogPane().setContent(content);
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.showAndWait();
+    }
+
+    public void loadToLoginScreenFromHomeAdmin() throws IOException {
+        Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/Login.fxml"));
+        Stage stage = (Stage) buttonSingOut.getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle("Login");
+        stage.setScene(scene);
+        stage.show();
+    }
 }

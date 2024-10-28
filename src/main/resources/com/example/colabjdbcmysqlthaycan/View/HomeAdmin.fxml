@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -47,7 +48,7 @@
                                 <Image url="@../img/bill.png" />
                             </image>
                         </ImageView>
-                        <Button layoutX="64.0" layoutY="542.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="74.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="Sign Out" />
+                        <Button fx:id="buttonSingOut" layoutX="21.0" layoutY="543.0" mnemonicParsing="false" onAction="#loadToLoginScreenFromHomeAdmin" prefHeight="36.0" prefWidth="134.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="           Sign Out" />
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="37.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../img/signOut.png" />
@@ -97,7 +98,14 @@
                                         <Font size="15.0" />
                                     </font>
                                 </Label>
-                                <ComboBox fx:id="statusProductComboBox" layoutX="38.0" layoutY="340.0" prefHeight="25.0" prefWidth="224.0" style="-fx-background-color: #fff; -fx-border-radius: 5px; -fx-border-color: #bb1a3a;" />
+                                <ComboBox fx:id="statusProductComboBox" layoutX="38.0" layoutY="340.0" prefHeight="25.0" prefWidth="224.0" style="-fx-background-color: #fff; -fx-border-radius: 5px; -fx-border-color: #bb1a3a;">
+                                    <items>
+                                        <FXCollections fx:factory="observableArrayList">
+                                            <String fx:value="available" />
+                                            <String fx:value="unavailable" />
+                                        </FXCollections>
+                                    </items>
+                                </ComboBox>
                                 <Label layoutX="38.0" layoutY="370.0" prefHeight="25.0" prefWidth="185.0" text="Laptop Price:">
                                     <font>
                                         <Font size="15.0" />
@@ -119,7 +127,7 @@
                                         <Font size="15.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="deleteProductToTableview" layoutX="185.0" layoutY="508.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" styleClass="button3" stylesheets="@../CSS/login.css" text="Delete" textFill="WHITE">
+                                <Button fx:id="deleteProductToTableview" layoutX="185.0" layoutY="508.0" mnemonicParsing="false" onAction="#handleDeleteProduct" prefHeight="30.0" prefWidth="75.0" styleClass="button3" stylesheets="@../CSS/login.css" text="Delete" textFill="WHITE">
                                     <font>
                                         <Font size="15.0" />
                                     </font>
@@ -133,7 +141,7 @@
                             </styleClass>
                             <children>
                                 <TextField layoutX="24.0" layoutY="23.0" prefHeight="30.0" prefWidth="226.0" promptText="      Search" style="-fx-background-radius: 50; -fx-border-radius: 50;" styleClass="text-field1" />
-                                <TableView fx:id="productTableView" layoutX="22.0" layoutY="64.0" prefHeight="475.0" prefWidth="625.0" stylesheets="@../CSS/login.css">
+                                <TableView fx:id="productTableView" layoutX="22.0" layoutY="76.0" prefHeight="475.0" prefWidth="625.0" stylesheets="@../CSS/login.css">
                                     <columns>
                                         <TableColumn fx:id="imageColumn" prefWidth="115.333251953125" text="Image" />
                                         <TableColumn fx:id="idColumn" prefWidth="40.0001220703125" text="ID" />
