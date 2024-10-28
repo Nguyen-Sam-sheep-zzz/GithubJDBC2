@@ -73,7 +73,7 @@
                               <String fx:value="shadow" />
                            </styleClass>
                            <children>
-                              <ImageView fx:id="imageLaptopImageView" fitHeight="128.0" fitWidth="122.0" layoutX="2.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imageLaptopImageView" fitHeight="100.0" fitWidth="100.0" layoutX="18.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
                               <Button layoutY="129.0" mnemonicParsing="false" onAction="#importImage" prefHeight="30.0" prefWidth="125.0" styleClass="button3" stylesheets="@../CSS/login.css" text="Import" textFill="WHITE">
                                  <font>
                                     <Font size="15.0" />
