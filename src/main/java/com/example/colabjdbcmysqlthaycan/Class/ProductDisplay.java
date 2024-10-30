@@ -1,6 +1,5 @@
 package com.example.colabjdbcmysqlthaycan.Class;
 
-import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -13,19 +12,29 @@ public class ProductDisplay {
     private double price;
     private String status;
     private ImageView imageView;
+    private ImageView imageViewStatus;
     private String idImage;
+    private int quantity;
 
-    public ProductDisplay(String imageLink, String id, String name, String description, double price, String status, String idImage) {
+    public ProductDisplay(String id, String imageLink, String name, String description, double price,int quantity ,String status, String idImage) {
+        this.id = id;
         this.imageLink = imageLink;
         this.imageView = new ImageView(new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + imageLink).toExternalForm()));
         this.imageView.setFitWidth(50);
         this.imageView.setFitHeight(37);
 
-        this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
+        this.quantity =quantity;
         this.status = status;
+        if ("available".equals(status)) {
+            this.imageViewStatus = new ImageView(new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/DauV.png").toExternalForm()));
+        } else if ("unavailable".equals(status)) {
+            this.imageViewStatus = new ImageView(new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/DauX.png").toExternalForm()));
+        }
+        this.imageViewStatus.setFitWidth(20);
+        this.imageViewStatus.setFitHeight(20);
         this.idImage = idImage;
     }
 
@@ -91,6 +100,22 @@ public class ProductDisplay {
 
     public void setImageView(ImageView imageView) {
         this.imageView = imageView;
+    }
+
+    public ImageView getImageViewStatus() {
+        return imageViewStatus;
+    }
+
+    public void setImageViewStatus(ImageView imageViewStatus) {
+        this.imageViewStatus = imageViewStatus;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
 

@@ -149,6 +149,46 @@
     -fx-text-fill: #454545;
     -fx-font-size: 15px;
 }
+.user{
+    -fx-background-color: linear-gradient(to bottom right, #181EFF, #000084);
+}
+.text-field2{
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-color: #black;
+}
+.button6{
+
+}
+.button7 {
+
+}
+.search-user{
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-start-margin: 10px;
+    -fx-border-color: #fff;
+    -fx-padding: 5px 15px;
+    -fx-text-fill: #454545;
+    -fx-font-size: 15px;
+}
+.table-view .cell #statusColumn {
+    -fx-alignment: CENTER;
+}
+.table-view .cell #idColumn {
+    -fx-alignment: CENTER;
+}
+.table-view .cell #imageColumn {
+    -fx-alignment: CENTER;
+}
+.table-view .cell #priceColumn {
+    -fx-alignment: CENTER;
+}
+.table-view .cell #quantityColumn {
+    -fx-alignment: CENTER;
+}
+
+
 
 
 
