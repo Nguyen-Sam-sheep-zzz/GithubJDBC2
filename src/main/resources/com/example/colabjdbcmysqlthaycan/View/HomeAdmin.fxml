@@ -114,17 +114,17 @@
                                         <Font size="15.0" />
                                     </font>
                                 </Button>
-                        <TextField fx:id="quantityProductTextField" layoutX="40.0" layoutY="472.0" prefHeight="25.0" prefWidth="225.0" styleClass="text-field1" stylesheets="@../CSS/login.css" />
-                        <Label layoutX="37.0" layoutY="446.0" prefHeight="25.0" prefWidth="185.0" text="Laptop quantity:">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="234.0" layoutY="417.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../img/coin.png" />
-                           </image>
-                        </ImageView>
+                                <TextField fx:id="quantityProductTextField" layoutX="40.0" layoutY="472.0" prefHeight="25.0" prefWidth="225.0" styleClass="text-field1" stylesheets="@../CSS/login.css" />
+                                <Label layoutX="37.0" layoutY="446.0" prefHeight="25.0" prefWidth="185.0" text="Laptop quantity:">
+                                    <font>
+                                        <Font size="15.0" />
+                                    </font>
+                                </Label>
+                                <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="234.0" layoutY="417.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../img/coin.png" />
+                                    </image>
+                                </ImageView>
                             </children>
                         </AnchorPane>
                         <AnchorPane layoutX="336.0" layoutY="13.0" prefHeight="575.0" prefWidth="675.0" stylesheets="@../CSS/login.css">
@@ -134,16 +134,16 @@
                             </styleClass>
                             <children>
                                 <TextField fx:id="searchProductTextField" layoutX="24.0" layoutY="23.0" prefHeight="30.0" prefWidth="226.0" promptText="  Search" style="-fx-background-radius: 50; -fx-border-radius: 50;" styleClass="text-field1" />
-                                <TableView fx:id="productTableView" layoutX="26.0" layoutY="77.0" prefHeight="475.0" prefWidth="625.0" style="-fx-border-color: #bb1a3a;" stylesheets="@../CSS/login.css">
+                                <TableView fx:id="productTableView" layoutX="26.0" layoutY="77.0" prefHeight="475.0" prefWidth="640.0" style="-fx-border-color: #bb1a3a;" stylesheets="@../CSS/login.css">
                                     <columns>
                                         <TableColumn fx:id="idColumn" prefWidth="100.0" text="ID" />
                                         <TableColumn fx:id="imageColumn" prefWidth="100.0" text="Image" />
                                         <TableColumn fx:id="nameColumn" prefWidth="125.0" text="Name" />
                                         <TableColumn fx:id="priceColumn" minWidth="4.0" prefWidth="100.0" text="Price" />
-                              <TableColumn fx:id="quantityColumn" minWidth="0.0" prefWidth="100.0" text="Quantity" />
+                                        <TableColumn fx:id="quantityColumn" minWidth="0.0" prefWidth="100.0" text="Quantity" />
                                         <TableColumn fx:id="statusColumn" maxWidth="92.0" prefWidth="100.0" text="Status" />
-                                        <TableColumn fx:id="descriptionColumn" maxWidth="106.39996337890625" minWidth="0.0" prefWidth="15.2000732421875" text="Description" />
-                              <TableColumn fx:id="idImageProduct" minWidth="0.0" prefWidth="0.0" text="idImage" />
+                                        <TableColumn fx:id="descriptionColumn" maxWidth="106.39996337890625" minWidth="0.0" prefWidth="0.0" text="Description" />
+                                        <TableColumn fx:id="idImageProduct" minWidth="0.0" prefWidth="0.0" text="idImage" />
                                     </columns>
                                 </TableView>
                                 <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="219.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
@@ -151,8 +151,8 @@
                                         <Image url="@../img/search.png" />
                                     </image>
                                 </ImageView>
-                        <TextField fx:id="idProductTextField" layoutX="264.0" layoutY="21.0" prefHeight="25.0" prefWidth="225.0" styleClass="text-field1" stylesheets="@../CSS/login.css" />
-                        <TextField fx:id="idImageProductTextField" layoutX="433.0" layoutY="21.0" prefHeight="25.0" prefWidth="225.0" styleClass="text-field1" stylesheets="@../CSS/login.css" />
+                                <TextField fx:id="idProductTextField" layoutX="264.0" layoutY="21.0" prefHeight="25.0" prefWidth="225.0" styleClass="text-field1" stylesheets="@../CSS/login.css" />
+                                <TextField fx:id="idImageProductTextField" layoutX="433.0" layoutY="21.0" prefHeight="25.0" prefWidth="225.0" styleClass="text-field1" stylesheets="@../CSS/login.css" />
                             </children>
                         </AnchorPane>
                     </children>
