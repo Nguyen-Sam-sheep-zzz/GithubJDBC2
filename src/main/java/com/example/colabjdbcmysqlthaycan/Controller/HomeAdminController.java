@@ -36,7 +36,6 @@ import javafx.stage.Stage;
 
 import java.sql.*;
 
-
 public class HomeAdminController {
     private ConnectDB connectDB = new ConnectDB();
     @FXML
@@ -46,7 +45,7 @@ public class HomeAdminController {
     @FXML
     private TextField nameProductTextField;
     @FXML
-    private TextField descriptionProductTextField;
+    private TextArea descriptionProductTextArea;
     @FXML
     private ComboBox statusProductComboBox;
     @FXML
@@ -55,7 +54,6 @@ public class HomeAdminController {
     private TextField idImageProductTextField;
     @FXML
     private Button buttonSingOut;
-
     @FXML
     private TableView<ProductDisplay> productTableView;
     @FXML
@@ -76,13 +74,14 @@ public class HomeAdminController {
     private TextField searchProductTextField;
 
     public void initialize() {
-        imageColumn.setCellValueFactory(new PropertyValueFactory<>("imageView"));
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        imageColumn.setCellValueFactory(new PropertyValueFactory<>("imageView"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+        statusColumn.setCellValueFactory(new PropertyValueFactory<>("imageViewStatus"));
         idImageProduct.setCellValueFactory(new PropertyValueFactory<>("idImage"));
+        descriptionColumn.setVisible(false);
         statusProductComboBox.setValue("available");
         idImageProduct.setVisible(false);
         searchProductTextField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -107,11 +106,10 @@ public class HomeAdminController {
         });
     }
 
-    //
     private void populateFields(ProductDisplay product) {
         idProductTextField.setText(String.valueOf(product.getId()));
         nameProductTextField.setText(product.getName());
-        descriptionProductTextField.setText(product.getDescription());
+        descriptionProductTextArea.setText(product.getDescription());
         priceProductTextField.setText(String.valueOf(product.getPrice()));
         statusProductComboBox.setValue(product.getStatus());
         idImageProductTextField.setText(product.getIdImage());
@@ -121,14 +119,14 @@ public class HomeAdminController {
     }
 
     public void handleUpdateProduct() {
-        if (nameProductTextField.getText().isEmpty() || descriptionProductTextField.getText().isEmpty() || priceProductTextField.getText().isEmpty() || imageProductImageView.getImage() == null) {
+        if (nameProductTextField.getText().isEmpty() || descriptionProductTextArea.getText().isEmpty() || priceProductTextField.getText().isEmpty() || imageProductImageView.getImage() == null) {
             showAlert("ERROR", "Please select a product");
         }
         if (nameProductTextField.getText().isEmpty()) {
             showAlert("ERROR", "Product name cannot be left blank");
             return;
         }
-        if (descriptionProductTextField.getText().isEmpty()) {
+        if (descriptionProductTextArea.getText().isEmpty()) {
             showAlert("ERROR", "Description product cannot be left blank");
             return;
         }
@@ -145,7 +143,7 @@ public class HomeAdminController {
         }
         String id = idProductTextField.getText();
         String name = nameProductTextField.getText();
-        String description = descriptionProductTextField.getText();
+        String description = descriptionProductTextArea.getText();
         double price = Double.parseDouble(priceProductTextField.getText());
         String status = statusProductComboBox.getValue().toString();
 
@@ -164,7 +162,7 @@ public class HomeAdminController {
     public void clearHomeAdmin() {
         idImageProductTextField.clear();
         nameProductTextField.clear();
-        descriptionProductTextField.clear();
+        descriptionProductTextArea.clear();
         priceProductTextField.clear();
         idProductTextField.clear();
         imageProductImageView.setImage(null);
@@ -231,7 +229,7 @@ public class HomeAdminController {
                 String imageLink = resultSet.getString("link");
                 String idImage = resultSet.getString("idImage");
 
-                productDisplayList.add(new ProductDisplay(imageLink, id, name, description, price, status, idImage));
+                productDisplayList.add(new ProductDisplay(id, imageLink, name, description, price, status, idImage));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -263,7 +261,7 @@ public class HomeAdminController {
                 showAlert("ERROR", "Product name cannot be left blank");
                 return;
             }
-            if (descriptionProductTextField.getText().isEmpty()) {
+            if (descriptionProductTextArea.getText().isEmpty()) {
                 showAlert("ERROR", "Description product cannot be left blank");
                 return;
             }
@@ -279,7 +277,7 @@ public class HomeAdminController {
                 return;
             }
             psProduct.setString(1, nameProductTextField.getText());
-            psProduct.setString(2, descriptionProductTextField.getText());
+            psProduct.setString(2, descriptionProductTextArea.getText());
             psProduct.setDouble(3, Double.parseDouble(priceProductTextField.getText()));
             psProduct.setString(4, (String) statusProductComboBox.getValue());
             psProduct.executeUpdate();
