@@ -10,7 +10,7 @@
    <children>
       <AnchorPane prefHeight="115.0" prefWidth="200.0" style="-fx-background-color: #fff;" />
       <ImageView fitHeight="115.0" fitWidth="200.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="20.0" layoutY="148.0" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #fff;" styleClass="button2" />
+      <Label layoutX="20.0" layoutY="148.0" prefHeight="25.0" prefWidth="170.0" style="-fx-background-color: #fff;" styleClass="button2" textFill="#ff2c00" />
       <TextField layoutX="5.0" layoutY="119.0" prefHeight="0.0" prefWidth="10.0" style="-fx-background-color: #fff;">
          <font>
             <Font size="5.0" />
