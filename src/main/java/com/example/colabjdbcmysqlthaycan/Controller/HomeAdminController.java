@@ -51,6 +51,8 @@ public class HomeAdminController {
     @FXML
     private TextField priceProductTextField;
     @FXML
+    private TextField quantityProductTextField;
+    @FXML
     private TextField idImageProductTextField;
     @FXML
     private Button buttonSingOut;
@@ -67,6 +69,8 @@ public class HomeAdminController {
     @FXML
     private TableColumn<ProductDisplay, Double> priceColumn;
     @FXML
+    private TableColumn<ProductDisplay, Integer> quantityColumn;
+    @FXML
     private TableColumn<ProductDisplay, String> statusColumn;
     @FXML
     private TableColumn<ProductDisplay, String> idImageProduct;
@@ -79,27 +83,38 @@ public class HomeAdminController {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+        quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("imageViewStatus"));
         idImageProduct.setCellValueFactory(new PropertyValueFactory<>("idImage"));
         descriptionColumn.setVisible(false);
         statusProductComboBox.setValue("available");
         idImageProduct.setVisible(false);
+
         searchProductTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             handleSearchProduct();
         });
-
-        imageProductImageView.setFitWidth(122);
-        imageProductImageView.setFitHeight(128);
 
         productTableView.setItems(getProductDisplayList());
         idProductTextField.setVisible(false);
         idImageProductTextField.setVisible(false);
 
+        priceColumn.setCellFactory(column -> new TableCell<ProductDisplay, Double>() {
+            @Override
+            protected void updateItem(Double price, boolean empty) {
+                super.updateItem(price, empty);
+                if (empty || price == null) {
+                    setText(null);
+                } else {
+                    setText(String.format("%.2f $", price));
+                }
+            }
+        });
+
         productTableView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 1 && productTableView.getSelectionModel().getSelectedItem() != null) {
                 ProductDisplay selectedProduct = productTableView.getSelectionModel().getSelectedItem();
                 populateFields(selectedProduct);
-            } else if (event.getClickCount() == 3 && productTableView.getSelectionModel().getSelectedItem() != null) {
+            } else if (event.getClickCount() == 2 && productTableView.getSelectionModel().getSelectedItem() != null) {
                 ProductDisplay selectedProduct = productTableView.getSelectionModel().getSelectedItem();
                 showProductDialog(selectedProduct);
             }
@@ -111,6 +126,7 @@ public class HomeAdminController {
         nameProductTextField.setText(product.getName());
         descriptionProductTextArea.setText(product.getDescription());
         priceProductTextField.setText(String.valueOf(product.getPrice()));
+        quantityProductTextField.setText(String.valueOf(product.getQuantity()));
         statusProductComboBox.setValue(product.getStatus());
         idImageProductTextField.setText(product.getIdImage());
 
@@ -137,6 +153,10 @@ public class HomeAdminController {
             showAlert("ERROR", "Price can only be numeric");
             return;
         }
+        if (quantityProductTextField.getText().isEmpty()) {
+            showAlert("ERROR", "Quantity product cannot be left blank");
+            return;
+        }
         if (imageProductImageView.getImage() == null) {
             showAlert("ERROR", "Image cannot be left blank");
             return;
@@ -145,6 +165,7 @@ public class HomeAdminController {
         String name = nameProductTextField.getText();
         String description = descriptionProductTextArea.getText();
         double price = Double.parseDouble(priceProductTextField.getText());
+        int quantity = Integer.parseInt(quantityProductTextField.getText());
         String status = statusProductComboBox.getValue().toString();
 
         String imagePath = imageProductImageView.getImage().getUrl();
@@ -153,7 +174,7 @@ public class HomeAdminController {
 
         String idImage = idImageProductTextField.getText();
 
-        updateProductDisplay(id, name, description, price, status, link, idImage);
+        updateProductDisplay(id, name, description, price, quantity, status, link, idImage);
         clearHomeAdmin();
         productTableView.setItems(getProductDisplayList());
         showAlert("Add product successful", "Product has been added");
@@ -169,15 +190,15 @@ public class HomeAdminController {
         statusProductComboBox.setValue("available");
     }
 
-    private void updateProductDisplay(String id, String name, String description, double price, String status, String imagePath, String idImage) {
-        updateProduct(id, name, description, price, status);
+    private void updateProductDisplay(String id, String name, String description, double price, int quantity, String status, String imagePath, String idImage) {
+        updateProduct(id, name, description, price, quantity, status);
         updateImages(idImage, imagePath);
     }
 
-    private void updateProduct(String id, String name, String description, double price, String status) {
+    private void updateProduct(String id, String name, String description, double price, int quantity, String status) {
         Connection connection = connectDB.connectionDB();
         PreparedStatement preparedStatement;
-        String updateProduct = "update Products set nameProduct=?, productDescription=?, price=?, status=? where idProduct=?";
+        String updateProduct = "update Products set nameProduct=?, productDescription=?, price=?, quantity=? , status=? where idProduct=?";
 
         try {
             preparedStatement = connection.prepareStatement(updateProduct);
@@ -185,8 +206,9 @@ public class HomeAdminController {
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, description);
             preparedStatement.setDouble(3, price);
-            preparedStatement.setString(4, status);
-            preparedStatement.setString(5, id);
+            preparedStatement.setInt(4, quantity);
+            preparedStatement.setString(5, status);
+            preparedStatement.setString(6, id);
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -215,8 +237,21 @@ public class HomeAdminController {
     public ObservableList<ProductDisplay> getProductDisplayList() {
         ObservableList<ProductDisplay> productDisplayList = FXCollections.observableArrayList();
         Connection connection = connectDB.connectionDB();
-
-        String query = "select p.idProduct, p.nameProduct, p.productDescription, p.price, p.status, i.idImage, i.link from Products p join ImageProducts ip on p.idProduct = ip.idProduct join Images i on ip.idImage = i.idImage";
+        String query = "SELECT \n" +
+                "    p.idProduct, \n" +
+                "    p.nameProduct, \n" +
+                "    p.productDescription, \n" +
+                "    p.price, \n" +
+                "    p.status, \n" +
+                "    p.quantity,\n" +
+                "    i.idImage, \n" +
+                "    i.link\n" +
+                "FROM \n" +
+                "    Products p\n" +
+                "JOIN \n" +
+                "    ImageProducts ip ON p.idProduct = ip.idProduct\n" +
+                "JOIN \n" +
+                "    Images i ON ip.idImage = i.idImage;";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -228,8 +263,8 @@ public class HomeAdminController {
                 String status = resultSet.getString("status");
                 String imageLink = resultSet.getString("link");
                 String idImage = resultSet.getString("idImage");
-
-                productDisplayList.add(new ProductDisplay(id, imageLink, name, description, price, status, idImage));
+                int quantity = resultSet.getInt("quantity");
+                productDisplayList.add(new ProductDisplay(id, imageLink, name, description, price, quantity, status, idImage));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -251,7 +286,7 @@ public class HomeAdminController {
     }
 
     public void addProduct(ActionEvent actionEvent) {
-        String queryProduct = "INSERT INTO Products (nameProduct, productDescription, price, status) VALUES (?, ?, ?, ?)";
+        String queryProduct = "INSERT INTO Products (nameProduct, productDescription, price,quantity, status) VALUES (?, ?, ? ,?, ?)";
         String queryImage = "INSERT INTO Images (link) VALUES (?)";
         String queryImageProduct = "INSERT INTO ImageProducts (idImage, idProduct) VALUES (?, ?)";
 
@@ -272,6 +307,10 @@ public class HomeAdminController {
                 showAlert("ERROR", "Price can only be numeric");
                 return;
             }
+            if (quantityProductTextField.getText().isEmpty()) {
+                showAlert("ERROR", "Quantity product cannot be left blank");
+                return;
+            }
             if (imageProductImageView.getImage() == null) {
                 showAlert("ERROR", "Image cannot be left blank");
                 return;
@@ -279,7 +318,8 @@ public class HomeAdminController {
             psProduct.setString(1, nameProductTextField.getText());
             psProduct.setString(2, descriptionProductTextArea.getText());
             psProduct.setDouble(3, Double.parseDouble(priceProductTextField.getText()));
-            psProduct.setString(4, (String) statusProductComboBox.getValue());
+            psProduct.setInt(4, Integer.parseInt(quantityProductTextField.getText()));
+            psProduct.setString(5, (String) statusProductComboBox.getValue());
             psProduct.executeUpdate();
             ResultSet generatedKeys = psProduct.getGeneratedKeys();
             int productId = 0;
@@ -329,38 +369,6 @@ public class HomeAdminController {
         alert.showAndWait();
     }
 
-    public void handleDeleteProduct() {
-        String id = idProductTextField.getText();
-        if (id.isEmpty()) {
-            showAlert("ERROR", "ID product cannot be left blank");
-            return;
-        }
-        String status = statusProductComboBox.getValue().toString();
-        if (status.equalsIgnoreCase("unavailable")) {
-            showAlert("ERROR", "This product is unavailable");
-            return;
-        }
-        deleteProduct(id);
-        clearHomeAdmin();
-        productTableView.setItems(getProductDisplayList());
-        showAlert("Delete successful", "Product has been discontinued");
-    }
-
-    public void deleteProduct(String id) {
-        Connection connection = connectDB.connectionDB();
-        PreparedStatement preparedStatement;
-        String deleteProduct = "update Products set status = ? where idProduct = ?";
-        try {
-            preparedStatement = connection.prepareStatement(deleteProduct);
-
-            preparedStatement.setString(1, "unavailable");
-            preparedStatement.setString(2, id);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void showProductDialog(ProductDisplay product) {
         Dialog<Void> dialog = new Dialog<>();
         dialog.setTitle("Product Details");
@@ -374,6 +382,7 @@ public class HomeAdminController {
         Label nameLabel = new Label("Name: " + product.getName());
         Label descriptionLabel = new Label("Description: " + product.getDescription());
         Label priceLabel = new Label("Price: " + product.getPrice());
+        Label quantityLabel = new Label("Quantity: " + product.getQuantity());
         Label status = new Label("Status: " + product.getStatus());
 
         ImageView productImageView = new ImageView();
@@ -388,7 +397,7 @@ public class HomeAdminController {
             productImageView.setSmooth(true);
         }
 
-        content.getChildren().addAll(nameLabel, descriptionLabel, priceLabel, status, productImageView);
+        content.getChildren().addAll(nameLabel, descriptionLabel, priceLabel, quantityLabel, status, productImageView);
         dialog.getDialogPane().setContent(content);
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.showAndWait();
@@ -407,12 +416,11 @@ public class HomeAdminController {
     public void handleSearchProduct() {
         ObservableList<ProductDisplay> searchProduct = FXCollections.observableArrayList();
         String searchQuery = searchProductTextField.getText().trim();
-        String query = "SELECT p.idProduct, p.nameProduct, p.productDescription, p.price, p.status, i.idImage, i.link " +
+        String query = "SELECT p.idProduct, p.nameProduct, p.productDescription, p.price, p.status, p.quantity, i.idImage, i.link " +
                 "FROM Products p " +
                 "JOIN ImageProducts ip ON p.idProduct = ip.idProduct " +
                 "JOIN Images i ON ip.idImage = i.idImage " +
-                "WHERE p.nameProduct LIKE ? or P.price LIKE ?";
-
+                "WHERE p.nameProduct LIKE ? OR p.price LIKE ?";
         try {
             PreparedStatement ps = connectDB.connectionDB().prepareStatement(query);
             ps.setString(1, "%" + searchQuery + "%");
@@ -423,10 +431,11 @@ public class HomeAdminController {
                 String name = resultSet.getString("nameProduct");
                 String description = resultSet.getString("productDescription");
                 double price = resultSet.getDouble("price");
+                int quantity = resultSet.getInt("quantity");
                 String status = resultSet.getString("status");
                 String imageLink = resultSet.getString("link");
                 String idImage = resultSet.getString("idImage");
-                searchProduct.add(new ProductDisplay(imageLink, id, name, description, price, status, idImage));
+                searchProduct.add(new ProductDisplay(id, imageLink, name, description, price, quantity, status, idImage));
             }
         } catch (SQLException e) {
             e.printStackTrace();

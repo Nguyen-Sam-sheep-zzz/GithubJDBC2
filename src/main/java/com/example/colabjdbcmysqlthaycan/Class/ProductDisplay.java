@@ -14,8 +14,9 @@ public class ProductDisplay {
     private ImageView imageView;
     private ImageView imageViewStatus;
     private String idImage;
+    private int quantity;
 
-    public ProductDisplay(String id, String imageLink, String name, String description, double price, String status, String idImage) {
+    public ProductDisplay(String id, String imageLink, String name, String description, double price,int quantity ,String status, String idImage) {
         this.id = id;
         this.imageLink = imageLink;
         this.imageView = new ImageView(new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + imageLink).toExternalForm()));
@@ -25,6 +26,7 @@ public class ProductDisplay {
         this.name = name;
         this.description = description;
         this.price = price;
+        this.quantity =quantity;
         this.status = status;
         if ("available".equals(status)) {
             this.imageViewStatus = new ImageView(new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/DauV.png").toExternalForm()));
@@ -106,6 +108,14 @@ public class ProductDisplay {
 
     public void setImageViewStatus(ImageView imageViewStatus) {
         this.imageViewStatus = imageViewStatus;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
 

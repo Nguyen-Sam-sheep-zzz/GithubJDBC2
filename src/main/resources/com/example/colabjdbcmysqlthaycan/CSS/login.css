@@ -172,6 +172,23 @@
     -fx-text-fill: #454545;
     -fx-font-size: 15px;
 }
+.table-view .cell #statusColumn {
+    -fx-alignment: CENTER;
+}
+.table-view .cell #idColumn {
+    -fx-alignment: CENTER;
+}
+.table-view .cell #imageColumn {
+    -fx-alignment: CENTER;
+}
+.table-view .cell #priceColumn {
+    -fx-alignment: CENTER;
+}
+.table-view .cell #quantityColumn {
+    -fx-alignment: CENTER;
+}
+
+
 
 
 
