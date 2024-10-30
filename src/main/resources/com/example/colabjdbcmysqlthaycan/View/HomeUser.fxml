@@ -76,7 +76,7 @@
                            </styleClass>
                         </AnchorPane>
                         <Label layoutX="62.0" layoutY="327.0" />
-                        <Label layoutX="26.0" layoutY="413.0" text="Quantity:">
+                        <Label layoutX="38.0" layoutY="420.0" text="Quantity:">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
@@ -114,7 +114,7 @@
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Button layoutX="77.0" layoutY="463.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #fff;" text="Add to cart">
+                        <Button layoutX="37.0" layoutY="489.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="103.0" style="-fx-background-color: #fff;" text="Add to cart">
                            <styleClass>
                               <String fx:value="shadow" />
                               <String fx:value="text-field2" />
@@ -123,7 +123,7 @@
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Button>
-                        <Button layoutX="77.0" layoutY="515.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #fff;" text="Buy">
+                        <Button layoutX="163.0" layoutY="489.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="106.0" style="-fx-background-color: #fff;" text="Buy">
                            <styleClass>
                               <String fx:value="shadow" />
                               <String fx:value="text-field2" />
@@ -132,13 +132,13 @@
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Button>
-                        <TextField layoutX="158.0" layoutY="411.0" prefHeight="35.0" prefWidth="75.0" style="-fx-border-color: gray;" styleClass="text-field2" stylesheets="@../CSS/login.css" />
-                        <Button layoutX="125.0" layoutY="411.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #fff; -fx-border-color: gray;" stylesheets="@../CSS/login.css" text="-">
+                        <TextField layoutX="158.0" layoutY="414.0" prefHeight="35.0" prefWidth="75.0" style="-fx-border-color: gray;" styleClass="text-field2" stylesheets="@../CSS/login.css" />
+                        <Button layoutX="125.0" layoutY="414.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #fff; -fx-border-color: gray;" stylesheets="@../CSS/login.css" text="-">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Button>
-                        <Button layoutX="232.0" layoutY="411.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #fff; -fx-border-color: gray;" text="+">
+                        <Button layoutX="232.0" layoutY="414.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #fff; -fx-border-color: gray;" text="+">
                            <font>
                               <Font size="15.0" />
                            </font>
