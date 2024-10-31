@@ -20,9 +20,6 @@ public class ProductUserController {
     @FXML
     private Label allQuantityProductUserLabel;
     public void initialize() {
-        Image image = new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/DauV.png").toExternalForm());
-        imageViewUser.setImage(image);
-        imageViewUser = new ImageView(new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/DauV.png").toExternalForm()));
         descriptionProductUserLabel.setVisible(false);
         allQuantityProductUserLabel.setVisible(false);
         idProductUserLabel.setVisible(false);
@@ -38,7 +35,5 @@ public class ProductUserController {
 
         Image image = new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + productDisplay.getImageLink()).toExternalForm());
         imageViewUser.setImage(image);
-        imageViewUser.setFitWidth(200);
-        imageViewUser.setFitHeight(115);
     }
 }
