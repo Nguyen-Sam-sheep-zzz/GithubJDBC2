@@ -72,7 +72,7 @@
                                         <Font size="15.0" />
                                     </font>
                                 </Label>
-                                <TextField fx:id="nameProductTextField" layoutX="39.0" layoutY="180.0" prefHeight="25.0" prefWidth="225.0" styleClass="text-field1" stylesheets="@../CSS/login.css" />
+                                <TextField fx:id="nameProductTextField" layoutX="38.0" layoutY="180.0" prefHeight="25.0" prefWidth="225.0" styleClass="text-field1" stylesheets="@../CSS/login.css" />
                                 <Label layoutX="33.0" layoutY="331.0" prefHeight="25.0" prefWidth="185.0" text="Laptop Status:">
                                     <font>
                                         <Font size="15.0" />

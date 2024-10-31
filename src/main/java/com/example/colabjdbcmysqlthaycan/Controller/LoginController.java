@@ -89,7 +89,6 @@ public class LoginController {
                 loadNextScreen(role);
             } else {
                 loginMessageLabel.setText("Account is not active.");
-                System.out.println(username + " " + password + " " + status);
             }
         } else {
             loginMessageLabel.setText("Invalid credentials. Try again.");
@@ -120,7 +119,7 @@ public class LoginController {
     private String[] validateLogin(String username, String password) {
         Connection connection = connectDB.connectionDB();
         PreparedStatement preparedStatement;
-        String LoginCheck = "select * from user where username = ? and password = ?";
+        String LoginCheck = "select * from user where LOWER(username) = LOWER(?) and password = ?";
 
         try {
             preparedStatement = connection.prepareStatement(LoginCheck);
