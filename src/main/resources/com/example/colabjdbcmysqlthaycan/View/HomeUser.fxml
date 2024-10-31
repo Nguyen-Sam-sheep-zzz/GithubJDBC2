@@ -3,6 +3,7 @@
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -66,39 +67,14 @@
                                 <String fx:value="shadow" />
                             </styleClass>
                      <children>
-                        <AnchorPane layoutX="74.0" layoutY="23.0" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #fff;">
-                           <children>
-                              <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="-1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
-                           </children>
-                           <styleClass>
-                              <String fx:value="shadow" />
-                              <String fx:value="text-field2" />
-                           </styleClass>
-                        </AnchorPane>
                         <Label layoutX="62.0" layoutY="327.0" />
-                        <Label layoutX="38.0" layoutY="420.0" text="Quantity:">
+                        <Label layoutX="30.0" layoutY="463.0" text="Quantity:">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Label layoutX="26.0" layoutY="212.0" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #fff;" stylesheets="@../CSS/login.css">
-                           <styleClass>
-                              <String fx:value="shadow" />
-                              <String fx:value="text-field2" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="26.0" layoutY="281.0" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #fff;">
-                           <styleClass>
-                              <String fx:value="shadow" />
-                              <String fx:value="text-field2" />
-                           </styleClass>
-                        </Label>
-                        <Label layoutX="27.0" layoutY="353.0" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #fff;">
-                           <styleClass>
-                              <String fx:value="shadow" />
-                              <String fx:value="text-field2" />
-                           </styleClass>
-                        </Label>
+                        <Label layoutX="26.0" layoutY="212.0" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #fff;" styleClass="text-field2" stylesheets="@../CSS/login.css" />
+                        <Label layoutX="26.0" layoutY="281.0" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #fff;" styleClass="text-field2" />
                         <Label layoutX="27.0" layoutY="328.0" prefHeight="21.0" prefWidth="92.0" text="Description:">
                            <font>
                               <Font name="System Bold" size="15.0" />
@@ -114,35 +90,29 @@
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Button layoutX="37.0" layoutY="489.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="103.0" style="-fx-background-color: #fff;" text="Add to cart">
-                           <styleClass>
-                              <String fx:value="shadow" />
-                              <String fx:value="text-field2" />
-                           </styleClass>
+                        <Button layoutX="37.0" layoutY="516.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="103.0" styleClass="button9" stylesheets="@../CSS/login.css" text="Add to cart" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Button>
-                        <Button layoutX="163.0" layoutY="489.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="106.0" style="-fx-background-color: #fff;" text="Buy">
-                           <styleClass>
-                              <String fx:value="shadow" />
-                              <String fx:value="text-field2" />
-                           </styleClass>
+                        <Button layoutX="163.0" layoutY="516.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="106.0" styleClass="button9" stylesheets="@../CSS/login.css" text="Buy" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Button>
-                        <TextField layoutX="158.0" layoutY="414.0" prefHeight="35.0" prefWidth="75.0" style="-fx-border-color: gray;" styleClass="text-field2" stylesheets="@../CSS/login.css" />
-                        <Button layoutX="125.0" layoutY="414.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #fff; -fx-border-color: gray;" stylesheets="@../CSS/login.css" text="-">
+                        <TextField layoutX="167.0" layoutY="459.0" prefHeight="35.0" prefWidth="75.0" style="-fx-border-color: gray;" styleClass="text-field2" stylesheets="@../CSS/login.css" />
+                        <Button layoutX="133.0" layoutY="459.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #fff; -fx-border-color: gray;" stylesheets="@../CSS/login.css" text="-">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Button>
-                        <Button layoutX="232.0" layoutY="414.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #fff; -fx-border-color: gray;" text="+">
+                        <Button layoutX="241.0" layoutY="459.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #fff; -fx-border-color: gray;" text="+">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Button>
+                        <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="75.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
+                        <TextArea layoutX="26.0" layoutY="351.0" prefHeight="93.0" prefWidth="250.0" styleClass="text-field2" stylesheets="@../CSS/login.css" />
                      </children>
                         </AnchorPane>
                   <AnchorPane layoutX="344.0" layoutY="53.0" prefHeight="534.0" prefWidth="657.0" style="-fx-background-color: #fff;" stylesheets="@../CSS/login.css">
@@ -165,13 +135,8 @@
                         </GridPane>
                      </children>
                   </AnchorPane>
-                  <TextField layoutX="348.0" layoutY="7.0" prefHeight="33.0" prefWidth="328.0" promptText="Search" stylesheets="@../CSS/login.css">
-                     <styleClass>
-                        <String fx:value="search-user" />
-                        <String fx:value="shadow" />
-                     </styleClass>
-                  </TextField>
-                  <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="647.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                  <TextField layoutX="348.0" layoutY="7.0" prefHeight="33.0" prefWidth="328.0" promptText="Search" styleClass="search-user" stylesheets="@../CSS/login.css" />
+                  <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="647.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/search-search.png" />
                      </image>
