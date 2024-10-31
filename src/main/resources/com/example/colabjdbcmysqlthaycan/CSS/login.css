@@ -19,19 +19,17 @@
 }
 .button2 {
     -fx-background-color: #D5CBEB;
-    -fx-background-radius: 5;
+    -fx-background-radius: 5px;
     -fx-text-fill: #371897;
-
-    -fx-border-radius: 5;
+    -fx-border-radius: 5px;
 }
 .button2:hover {
     -fx-background-color: #E4EEFD;
 }
 .button2:pressed {
     -fx-background-color: #E4EEFD;
-    -fx-background-radius: 20;
+    -fx-background-radius: 20px;
 }
-
 
 .button3 {
     -fx-background-color: #bb1a3a;
@@ -39,40 +37,40 @@
 }
 .button4 {
     -fx-background-color: linear-gradient(to top left, #41951C, #D4CEE3);
-    -fx-background-radius: 30 30 30 30;
+    -fx-background-radius: 30px;
 }
 
 .button4:hover {
     -fx-background-color: linear-gradient(to top left, #D4CEE3, #41951C);
-    -fx-background-radius: 30 30 30 30;
+    -fx-background-radius: 30px;
 }
 
 .button4:pressed {
     -fx-background-color: linear-gradient(to top left, #41951C, #D4CEE3);
-    -fx-background-radius: 30 30 30 30;
+    -fx-background-radius: 30px;
 }
 
 .combo-box {
     -fx-background-color: #141124;
     -fx-border-color: #515658;
-    -fx-border-radius: 30;
+    -fx-border-radius: 30px;
 }
 
 .combo-box:hover {
     -fx-background-color: #141124;
-    -fx-border-color: #FFFF;
-    -fx-border-radius: 30;
+    -fx-border-color: #FFFFFF;
+    -fx-border-radius: 30px;
 }
 
 .combo-box:pressed {
     -fx-background-color: #141124;
-    -fx-border-color: #FFFF;
-    -fx-border-radius: 30;
+    -fx-border-color: #FFFFFF;
+    -fx-border-radius: 30px;
 }
 
 .table-view .column-header,
 .table-view .column-header-background .filler {
-    -fx-cell-size: 20;
+    -fx-cell-size: 20px;
     -fx-background-color: #bb1a3a;
 }
 
@@ -82,9 +80,8 @@
     -fx-alignment: CENTER;
 }
 
-
 .table-view .cell {
-    -fx-cell-size: 30;
+    -fx-cell-size: 30px;
     -fx-alignment: CENTER-LEFT;
     -fx-text-fill: #000000;
 }
@@ -96,11 +93,13 @@
 .table-row-cell:selected .text {
     -fx-fill: white;
 }
+
 .chart {
     -fx-padding: 10px;
     -fx-background-color: transparent;
     -fx-legend-visible: false;
 }
+
 .chart-plot-background {
     -fx-background-color: transparent;
 }
@@ -113,9 +112,11 @@
 .linear-grad {
     -fx-background-color: linear-gradient(to bottom left, #6F4CBB, #431FA0);
 }
-.text{
+
+.text {
     -fx-text-fill: #454545;
 }
+
 .nav-form {
     -fx-background-color: linear-gradient(to bottom right, #bb1a3a, #722327);
 }
@@ -124,23 +125,27 @@
     -fx-background-color: transparent;
     -fx-cursor: hand;
     -fx-alignment: center-left;
-    -fx-text-fill: #fff;
+    -fx-text-fill: #FFFFFF;
     -fx-font-size: 14px;
     -fx-font-family: Arial;
 }
+
 .anchor {
-    -fx-background-color: #fff;
+    -fx-background-color: #FFFFFF;
     -fx-background-radius: 8px;
 }
+
 .shadow {
-    -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.7),5,0,0,0);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.7), 5, 0, 0, 0);
 }
-.text-field1{
+
+.text-field1 {
     -fx-border-color: #bb1a3a;
     -fx-text-fill: #454545;
     -fx-font-size: 15px;
 }
-.search{
+
+.search {
     -fx-background-radius: 50px;
     -fx-border-radius: 50px;
     -fx-start-margin: 10px;
@@ -149,48 +154,31 @@
     -fx-text-fill: #454545;
     -fx-font-size: 15px;
 }
-.user{
+
+.user {
     -fx-background-color: linear-gradient(to bottom right, #181EFF, #000084);
 }
-.text-field2{
+
+.text-field2 {
     -fx-background-radius: 0;
     -fx-border-radius: 0;
-    -fx-border-color: #black;
+    -fx-border-color: black;
 }
-.button6{
 
-}
-.button7 {
-
-}
-.search-user{
+.search-user {
     -fx-background-radius: 20px;
     -fx-border-radius: 20px;
     -fx-start-margin: 10px;
-    -fx-border-color: #fff;
+    -fx-border-color: #FFFFFF;
     -fx-padding: 5px 15px;
     -fx-text-fill: #454545;
     -fx-font-size: 15px;
 }
-.table-view .cell #statusColumn {
-    -fx-alignment: CENTER;
-}
-.table-view .cell #idColumn {
-    -fx-alignment: CENTER;
-}
-.table-view .cell #imageColumn {
-    -fx-alignment: CENTER;
-}
-.table-view .cell #priceColumn {
-    -fx-alignment: CENTER;
-}
+
+.table-view .cell #statusColumn,
+.table-view .cell #idColumn,
+.table-view .cell #imageColumn,
+.table-view .cell #priceColumn,
 .table-view .cell #quantityColumn {
     -fx-alignment: CENTER;
 }
-
-
-
-
-
-
-
