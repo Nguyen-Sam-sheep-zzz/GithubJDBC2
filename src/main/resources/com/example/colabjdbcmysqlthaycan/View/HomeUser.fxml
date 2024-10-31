@@ -99,13 +99,13 @@
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Button>
-                        <TextField layoutX="167.0" layoutY="459.0" prefHeight="35.0" prefWidth="75.0" style="-fx-border-color: gray;" styleClass="text-field2" stylesheets="@../CSS/login.css" />
-                        <Button layoutX="133.0" layoutY="459.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #fff; -fx-border-color: gray;" stylesheets="@../CSS/login.css" text="-">
+                        <TextField fx:id="quantityTextField" layoutX="167.0" layoutY="459.0" prefHeight="35.0" prefWidth="75.0" style="-fx-border-color: gray;" styleClass="text-field2" stylesheets="@../CSS/login.css" text="0" />
+                        <Button layoutX="133.0" layoutY="459.0" mnemonicParsing="false" onAction="#reduceQuantity" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #fff; -fx-border-color: gray;" stylesheets="@../CSS/login.css" text="-">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Button>
-                        <Button layoutX="241.0" layoutY="459.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #fff; -fx-border-color: gray;" text="+">
+                        <Button layoutX="241.0" layoutY="459.0" mnemonicParsing="false" onAction="#addQuantity" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #fff; -fx-border-color: gray;" text="+">
                            <font>
                               <Font size="15.0" />
                            </font>

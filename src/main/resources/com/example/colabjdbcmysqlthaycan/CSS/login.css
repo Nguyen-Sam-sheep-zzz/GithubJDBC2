@@ -163,6 +163,9 @@
     -fx-background-radius: 0;
     -fx-border-radius: 0;
     -fx-border-color: black;
+    -fx-text-fill: #454545;
+    -fx-alignment: center;
+    -fx-font-size: 15;
 }
 
 .search-user {
