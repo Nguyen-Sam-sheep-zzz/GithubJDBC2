@@ -120,7 +120,7 @@
                         <String fx:value="anchor" />
                      </styleClass>
                      <children>
-                        <GridPane layoutX="3.0" layoutY="5.0" prefHeight="525.0" prefWidth="650.0">
+                        <GridPane fx:id="gridPaneProductsUser" layoutX="3.0" layoutY="5.0" prefHeight="525.0" prefWidth="650.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
