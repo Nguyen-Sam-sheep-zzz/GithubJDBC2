@@ -82,7 +82,7 @@ public class HomeUserController {
     public void getAllProduct() {
         List<ProductDisplay> products = getProductsUser();
         int column = 0;
-        int row = 0;
+        int row = 1;
         try {
             for (ProductDisplay product : products) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/colabjdbcmysqlthaycan/View/Product.fxml"));
