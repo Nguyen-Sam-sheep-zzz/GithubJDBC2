@@ -107,7 +107,7 @@
                                         <Font size="15.0" />
                                     </font>
                                 </Button>
-                                <TextArea fx:id="descriptionProductTextArea" layoutX="38.0" layoutY="242.0" prefHeight="90.0" prefWidth="225.0" styleClass="text-field1" stylesheets="@../CSS/login.css" />
+                                <TextArea fx:id="descriptionProductTextArea" layoutX="38.0" layoutY="242.0" prefHeight="90.0" prefWidth="225.0" styleClass="text-field1" stylesheets="@../CSS/login.css" wrapText="true" />
                                 <ImageView fx:id="imageProductImageView" fitHeight="105.0" fitWidth="125.0" layoutX="88.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
                                 <Button layoutX="87.0" layoutY="119.0" mnemonicParsing="false" onAction="#importImage" prefHeight="30.0" prefWidth="125.0" styleClass="button3" stylesheets="@../CSS/login.css" text="Import" textFill="WHITE">
                                     <font>

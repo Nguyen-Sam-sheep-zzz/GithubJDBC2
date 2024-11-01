@@ -237,21 +237,7 @@ public class HomeAdminController {
     public ObservableList<ProductDisplay> getProductDisplayList() {
         ObservableList<ProductDisplay> productDisplayList = FXCollections.observableArrayList();
         Connection connection = connectDB.connectionDB();
-        String query = "SELECT \n" +
-                "    p.idProduct, \n" +
-                "    p.nameProduct, \n" +
-                "    p.productDescription, \n" +
-                "    p.price, \n" +
-                "    p.status, \n" +
-                "    p.quantity,\n" +
-                "    i.idImage, \n" +
-                "    i.link\n" +
-                "FROM \n" +
-                "    Products p\n" +
-                "JOIN \n" +
-                "    ImageProducts ip ON p.idProduct = ip.idProduct\n" +
-                "JOIN \n" +
-                "    Images i ON ip.idImage = i.idImage;";
+        String query = "SELECT \n" + "    p.idProduct, \n" + "    p.nameProduct, \n" + "    p.productDescription, \n" + "    p.price, \n" + "    p.status, \n" + "    p.quantity,\n" + "    i.idImage, \n" + "    i.link\n" + "FROM \n" + "    Products p\n" + "JOIN \n" + "    ImageProducts ip ON p.idProduct = ip.idProduct\n" + "JOIN \n" + "    Images i ON ip.idImage = i.idImage;";
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -275,9 +261,7 @@ public class HomeAdminController {
     public void importImage(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Image File");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
-        );
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
         File file = fileChooser.showOpenDialog(new Stage());
         if (file != null) {
             Image image = new Image(file.toURI().toString());
@@ -416,11 +400,7 @@ public class HomeAdminController {
     public void handleSearchProduct() {
         ObservableList<ProductDisplay> searchProduct = FXCollections.observableArrayList();
         String searchQuery = searchProductTextField.getText().trim();
-        String query = "SELECT p.idProduct, p.nameProduct, p.productDescription, p.price, p.status, p.quantity, i.idImage, i.link " +
-                "FROM Products p " +
-                "JOIN ImageProducts ip ON p.idProduct = ip.idProduct " +
-                "JOIN Images i ON ip.idImage = i.idImage " +
-                "WHERE p.nameProduct LIKE ? OR p.price LIKE ?";
+        String query = "SELECT p.idProduct, p.nameProduct, p.productDescription, p.price, p.status, p.quantity, i.idImage, i.link " + "FROM Products p " + "JOIN ImageProducts ip ON p.idProduct = ip.idProduct " + "JOIN Images i ON ip.idImage = i.idImage " + "WHERE p.nameProduct LIKE ? OR p.price LIKE ?";
         try {
             PreparedStatement ps = connectDB.connectionDB().prepareStatement(query);
             ps.setString(1, "%" + searchQuery + "%");
