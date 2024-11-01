@@ -3,14 +3,14 @@ package com.example.colabjdbcmysqlthaycan.Controller;
 import com.example.colabjdbcmysqlthaycan.Application.LoginApplication;
 import com.example.colabjdbcmysqlthaycan.Class.ProductDisplay;
 import com.example.colabjdbcmysqlthaycan.ConnectDB;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -22,6 +22,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.image.ImageView;
 
 public class HomeUserController {
     ConnectDB connectDB = new ConnectDB();
@@ -30,17 +31,26 @@ public class HomeUserController {
     @FXML
     private GridPane gridPaneProductsUser;
     @FXML
+    private Label nameProductLabel;
+    @FXML
+    private Label priceProductLabel;
+    @FXML
+    private Label descriptionProductLabel;
+    @FXML
+    private Label statusProductLabel;
+    @FXML
+    private ImageView imageProductImageView;
+    @FXML
     private TextField searchProductUser;
     @FXML
-    private TextField quantityTextField;
-
+    private TextField quantityProductTextField;
 
     public void initialize() {
-        getAllProduct();
         searchProductUser.textProperty().addListener((observable, oldValue, newValue) -> {
             handleSearchProduct();
         });
-        quantityTextField.setText("0");
+        quantityProductTextField.setText("0");
+        getAllProduct();
     }
 
     public void loadToLoginScreenFromHomeUser() throws IOException {
@@ -102,16 +112,27 @@ public class HomeUserController {
                 ProductUserController controller = loader.getController();
                 controller.setProductItem(product);
 
+                productPane.setOnMouseClicked(event -> getItemProducts(product));
                 gridPaneProductsUser.add(productPane, column++, row);
 
                 if (column == 4) {
                     column = 0;
                     row++;
                 }
+
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void getItemProducts(ProductDisplay productDisplay) {
+        nameProductLabel.setText(productDisplay.getName());
+        priceProductLabel.setText(String.valueOf(productDisplay.getPrice()));
+        descriptionProductLabel.setText(productDisplay.getDescription());
+        statusProductLabel.setText(productDisplay.getStatus());
+        Image image = new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + productDisplay.getImageLink()).toExternalForm());
+        imageProductImageView.setImage(image);
     }
 
     public void handleSearchProduct() {
@@ -172,19 +193,17 @@ public class HomeUserController {
 
     @FXML
     private void reduceQuantity() {
-        int currentQuantity = Integer.parseInt(quantityTextField.getText());
+        int currentQuantity = Integer.parseInt(quantityProductTextField.getText());
         if (currentQuantity > 0) {
             currentQuantity--;
-            quantityTextField.setText(String.valueOf(currentQuantity));
+            quantityProductTextField.setText(String.valueOf(currentQuantity));
         }
     }
 
     @FXML
     private void addQuantity() {
-        int currentQuantity = Integer.parseInt(quantityTextField.getText());
+        int currentQuantity = Integer.parseInt(quantityProductTextField.getText());
         currentQuantity++;
-        quantityTextField.setText(String.valueOf(currentQuantity));
+        quantityProductTextField.setText(String.valueOf(currentQuantity));
     }
 }
-
-
