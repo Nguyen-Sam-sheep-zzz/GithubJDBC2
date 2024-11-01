@@ -93,7 +93,7 @@ public class HomeUserController {
 
                 gridPaneProductsUser.add(productPane, column++, row);
 
-                if (column == 3) {
+                if (column == 4) {
                     column = 0;
                     row++;
                 }

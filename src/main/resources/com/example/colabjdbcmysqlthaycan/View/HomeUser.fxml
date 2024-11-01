@@ -19,21 +19,21 @@
     <children>
         <BorderPane prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #fff;">
             <left>
-                <AnchorPane styleClass="user" stylesheets="@../CSS/login.css" BorderPane.alignment="CENTER">
+                <AnchorPane prefHeight="600.0" prefWidth="60.0" styleClass="user" stylesheets="@../CSS/login.css" BorderPane.alignment="CENTER">
                     <children>
-                        <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="34.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="26.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../img/account.png" />
                             </image>
                         </ImageView>
-                        <Label layoutX="64.0" layoutY="114.0" text="User" textFill="WHITE">
+                        <Label layoutX="57.0" layoutY="120.0" text="User" textFill="WHITE">
                             <font>
                                 <Font size="20.0" />
                             </font>
                         </Label>
-                        <Button layoutX="46.0" layoutY="184.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="Product" />
-                        <Button layoutX="46.0" layoutY="238.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="Purchase" />
-                        <Button layoutX="46.0" layoutY="296.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="Bill" />
+                        <Button layoutX="46.0" layoutY="184.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="90.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="Product" />
+                        <Button layoutX="46.0" layoutY="238.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="90.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="Purchase" />
+                        <Button layoutX="46.0" layoutY="296.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="90.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="Bill" />
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../img/laptop3.png" />
@@ -62,7 +62,7 @@
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" BorderPane.alignment="CENTER">
                     <children>
                         <BorderPane />
-                        <AnchorPane layoutX="19.0" layoutY="12.0" prefHeight="575.0" prefWidth="300.0" stylesheets="@../CSS/login.css">
+                        <AnchorPane layoutX="6.0" layoutY="13.0" prefHeight="575.0" prefWidth="300.0" stylesheets="@../CSS/login.css">
                             <styleClass>
                                 <String fx:value="anchor" />
                                 <String fx:value="shadow" />
@@ -116,15 +116,15 @@
                                 <Label layoutX="25.0" layoutY="349.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #fff;" />
                             </children>
                         </AnchorPane>
-                        <TextField layoutX="348.0" layoutY="7.0" prefHeight="33.0" prefWidth="328.0" promptText="Search" styleClass="search-user" stylesheets="@../CSS/login.css" />
-                        <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="647.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                        <TextField layoutX="334.0" layoutY="10.0" prefHeight="33.0" prefWidth="328.0" promptText="Search" styleClass="search-user" stylesheets="@../CSS/login.css" />
+                        <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="639.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../img/search-search.png" />
                             </image>
                         </ImageView>
-                        <HBox layoutX="343.0" layoutY="59.0" prefHeight="529.0" prefWidth="659.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+                        <HBox layoutX="320.0" layoutY="59.0" prefHeight="530.0" prefWidth="711.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
                             <children>
-                                <ScrollPane prefHeight="529.0" prefWidth="659.0">
+                                <ScrollPane prefHeight="530.0" prefWidth="730.0">
                                     <content>
                                         <GridPane fx:id="gridPaneProductsUser" hgap="10" prefHeight="19.0" prefWidth="0.0" vgap="10">
                                             <rowConstraints>
@@ -135,6 +135,12 @@
                                             </padding>
                                         </GridPane>
                                     </content>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets bottom="10.0" />
+                           </padding>
                                 </ScrollPane>
                             </children>
                         </HBox>
