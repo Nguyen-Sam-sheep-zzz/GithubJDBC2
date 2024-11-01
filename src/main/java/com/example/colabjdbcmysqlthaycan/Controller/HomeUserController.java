@@ -31,6 +31,8 @@ public class HomeUserController {
     private GridPane gridPaneProductsUser;
     @FXML
     private TextField searchProductUser;
+    @FXML
+    private TextField quantityTextField;
 
 
     public void initialize() {
@@ -38,6 +40,7 @@ public class HomeUserController {
         searchProductUser.textProperty().addListener((observable, oldValue, newValue) -> {
             handleSearchProduct();
         });
+        quantityTextField.setText("0");
     }
 
     public void loadToLoginScreenFromHomeUser() throws IOException {
@@ -164,6 +167,21 @@ public class HomeUserController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    @FXML
+    private void reduceQuantity() {
+        int currentQuantity = Integer.parseInt(quantityTextField.getText());
+        if (currentQuantity > 0) {
+            currentQuantity--;
+            quantityTextField.setText(String.valueOf(currentQuantity));
+        }
+    }
+
+    @FXML
+    private void addQuantity() {
+        int currentQuantity = Integer.parseInt(quantityTextField.getText());
+        currentQuantity++;
+        quantityTextField.setText(String.valueOf(currentQuantity));
     }
 }
 
