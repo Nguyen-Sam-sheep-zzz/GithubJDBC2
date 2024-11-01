@@ -8,6 +8,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -19,6 +22,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.image.ImageView;
 
 public class HomeUserController {
     ConnectDB connectDB = new ConnectDB();
@@ -26,9 +30,26 @@ public class HomeUserController {
     private Button buttonSingOut;
     @FXML
     private GridPane gridPaneProductsUser;
-
+    @FXML
+    private Label nameProductLabel;
+    @FXML
+    private Label priceProductLabel;
+    @FXML
+    private Label descriptionProductLabel;
+    @FXML
+    private Label statusProductLabel;
+    @FXML
+    private ImageView imageProductImageView;
+    @FXML
+    private TextField searchProductUser;
+    @FXML
+    private TextField quantityProductTextField;
 
     public void initialize() {
+        searchProductUser.textProperty().addListener((observable, oldValue, newValue) -> {
+            handleSearchProduct();
+        });
+        quantityProductTextField.setText("0");
         getAllProduct();
     }
 
@@ -91,6 +112,73 @@ public class HomeUserController {
                 ProductUserController controller = loader.getController();
                 controller.setProductItem(product);
 
+                productPane.setOnMouseClicked(event -> getItemProducts(product));
+                gridPaneProductsUser.add(productPane, column++, row);
+
+                if (column == 4) {
+                    column = 0;
+                    row++;
+                }
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getItemProducts(ProductDisplay productDisplay) {
+        nameProductLabel.setText(productDisplay.getName());
+        priceProductLabel.setText(String.valueOf(productDisplay.getPrice()));
+        descriptionProductLabel.setText(productDisplay.getDescription());
+        statusProductLabel.setText(productDisplay.getStatus());
+        Image image = new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + productDisplay.getImageLink()).toExternalForm());
+        imageProductImageView.setImage(image);
+    }
+
+    public void handleSearchProduct() {
+        String searchQuery = searchProductUser.getText().trim();
+        List<ProductDisplay> searchResults = new ArrayList<>();
+        String query = "SELECT p.idProduct, p.nameProduct, p.productDescription, p.price, p.status, p.quantity, i.idImage, i.link " +
+                "FROM Products p " +
+                "JOIN ImageProducts ip ON p.idProduct = ip.idProduct " +
+                "JOIN Images i ON ip.idImage = i.idImage " +
+                "WHERE p.nameProduct LIKE ? OR p.price LIKE ?";
+
+        try (Connection connection = connectDB.connectionDB();
+             PreparedStatement ps = connection.prepareStatement(query)) {
+
+            ps.setString(1, "%" + searchQuery + "%");
+            ps.setString(2, "%" + searchQuery + "%");
+            ResultSet resultSet = ps.executeQuery();
+
+            while (resultSet.next()) {
+                String id = resultSet.getString("idProduct");
+                String name = resultSet.getString("nameProduct");
+                String description = resultSet.getString("productDescription");
+                double price = resultSet.getDouble("price");
+                int quantity = resultSet.getInt("quantity");
+                String status = resultSet.getString("status");
+                String imageLink = resultSet.getString("link");
+                searchResults.add(new ProductDisplay(id, imageLink, name, description, price, quantity, status));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        updateGridPane(searchResults);
+    }
+
+    private void updateGridPane(List<ProductDisplay> products) {
+        gridPaneProductsUser.getChildren().clear();
+        int column = 0;
+        int row = 1;
+        try {
+            for (ProductDisplay product : products) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/colabjdbcmysqlthaycan/View/Product.fxml"));
+                AnchorPane productPane = loader.load();
+
+                ProductUserController controller = loader.getController();
+                controller.setProductItem(product);
+
                 gridPaneProductsUser.add(productPane, column++, row);
 
                 if (column == 4) {
@@ -103,4 +191,19 @@ public class HomeUserController {
         }
     }
 
+    @FXML
+    private void reduceQuantity() {
+        int currentQuantity = Integer.parseInt(quantityProductTextField.getText());
+        if (currentQuantity > 0) {
+            currentQuantity--;
+            quantityProductTextField.setText(String.valueOf(currentQuantity));
+        }
+    }
+
+    @FXML
+    private void addQuantity() {
+        int currentQuantity = Integer.parseInt(quantityProductTextField.getText());
+        currentQuantity++;
+        quantityProductTextField.setText(String.valueOf(currentQuantity));
+    }
 }

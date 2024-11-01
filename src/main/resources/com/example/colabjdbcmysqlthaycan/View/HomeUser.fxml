@@ -68,25 +68,30 @@
                                 <String fx:value="shadow" />
                             </styleClass>
                             <children>
-                                <Label layoutX="62.0" layoutY="327.0" />
-                                <Label layoutX="30.0" layoutY="464.0" text="Quantity:">
+                                <Label layoutX="29.0" layoutY="467.0" text="Quantity:">
                                     <font>
                                         <Font name="System Bold" size="15.0" />
                                     </font>
                                 </Label>
-                                <Label layoutX="26.0" layoutY="212.0" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #fff;" stylesheets="@../CSS/login.css" />
-                                <Label layoutX="26.0" layoutY="281.0" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #fff;" />
-                                <Label layoutX="27.0" layoutY="328.0" prefHeight="21.0" prefWidth="92.0" text="Description:">
+                                <Label fx:id="nameProductLabel" layoutX="38.0" layoutY="192.0" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #fff;" stylesheets="@../CSS/login.css">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                                <Label fx:id="priceProductLabel" layoutX="38.0" layoutY="250.0" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #fff;">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                                <Label layoutX="27.0" layoutY="288.0" prefHeight="21.0" prefWidth="92.0" text="Description:">
                                     <font>
                                         <Font name="System Bold" size="15.0" />
                                     </font>
                                 </Label>
-                                <Label layoutX="27.0" layoutY="256.0" prefHeight="21.0" prefWidth="99.0" text="Price:">
+                                <Label layoutX="28.0" layoutY="229.0" prefHeight="21.0" prefWidth="99.0" text="Price:">
                                     <font>
                                         <Font name="System Bold" size="15.0" />
                                     </font>
                                 </Label>
-                                <Label layoutX="27.0" layoutY="188.0" text="Name:">
+                                <Label layoutX="27.0" layoutY="172.0" text="Name:">
                                     <font>
                                         <Font name="System Bold" size="15.0" />
                                     </font>
@@ -101,23 +106,36 @@
                                         <Font name="System Bold" size="15.0" />
                                     </font>
                                 </Button>
-                                <TextField layoutX="167.0" layoutY="459.0" prefHeight="35.0" prefWidth="75.0" style="-fx-border-color: gray;" styleClass="text-field2" stylesheets="@../CSS/login.css" />
-                                <Button layoutX="133.0" layoutY="459.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #fff; -fx-border-color: gray;" stylesheets="@../CSS/login.css" text="-">
+                                <TextField fx:id="quantityProductTextField" layoutX="167.0" layoutY="461.0" prefHeight="35.0" prefWidth="75.0" style="-fx-border-color: gray; -fx-alignment: center;" styleClass="text-field2" stylesheets="@../CSS/login.css">
+                           <font>
+                              <Font size="14.0" />
+                           </font></TextField>
+                                <Button layoutX="133.0" layoutY="461.0" mnemonicParsing="false" onAction="#reduceQuantity" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #fff; -fx-border-color: gray;" stylesheets="@../CSS/login.css" text="-">
                                     <font>
                                         <Font size="15.0" />
                                     </font>
                                 </Button>
-                                <Button layoutX="241.0" layoutY="459.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #fff; -fx-border-color: gray;" text="+">
+                                <Button fx:id="addQuantity" layoutX="241.0" layoutY="461.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #fff; -fx-border-color: gray;" text="+">
                                     <font>
                                         <Font size="15.0" />
                                     </font>
                                 </Button>
-                                <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="75.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
-                                <Label layoutX="25.0" layoutY="349.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #fff;" />
+                                <ImageView fx:id="imageProductImageView" fitHeight="150.0" fitWidth="150.0" layoutX="75.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" />
+                                <Label fx:id="descriptionProductLabel" layoutX="38.0" layoutY="310.0" prefHeight="69.0" prefWidth="250.0" style="-fx-background-color: #fff;" wrapText="true" />
+                        <Label layoutX="30.0" layoutY="384.0" prefHeight="21.0" prefWidth="92.0" text="Status:">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="statusProductLabel" layoutX="38.0" layoutY="409.0" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #fff;">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
                             </children>
                         </AnchorPane>
-                        <TextField layoutX="334.0" layoutY="10.0" prefHeight="33.0" prefWidth="328.0" promptText="Search" styleClass="search-user" stylesheets="@../CSS/login.css" />
-                        <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="639.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                        <TextField fx:id="searchProductUser" layoutX="334.0" layoutY="12.0" prefHeight="33.0" prefWidth="328.0" promptText="Search" styleClass="search-user" stylesheets="@../CSS/login.css" />
+                        <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="635.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../img/search-search.png" />
                             </image>

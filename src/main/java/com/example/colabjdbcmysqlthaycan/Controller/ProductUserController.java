@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+
 
 public class ProductUserController {
     @FXML
@@ -14,26 +16,23 @@ public class ProductUserController {
     @FXML
     private Label priceProductUserLabel;
     @FXML
-    private Label idProductUserLabel;
+    private Label stastusProductUserLabel;
     @FXML
-    private Label descriptionProductUserLabel;
-    @FXML
-    private Label allQuantityProductUserLabel;
+    private AnchorPane productUserAnchorPane;
+
+
     public void initialize() {
-        descriptionProductUserLabel.setVisible(false);
-        allQuantityProductUserLabel.setVisible(false);
-        idProductUserLabel.setVisible(false);
+        stastusProductUserLabel.setVisible(false);
     }
 
     public void setProductItem(ProductDisplay productDisplay) {
-
         nameProductUserLabel.setText(productDisplay.getName());
         priceProductUserLabel.setText(String.valueOf(productDisplay.getPrice()));
-        idProductUserLabel.setText(productDisplay.getId());
-        descriptionProductUserLabel.setText(productDisplay.getDescription());
-        allQuantityProductUserLabel.setText(String.valueOf(productDisplay.getQuantity()));
-
+        stastusProductUserLabel.setText(productDisplay.getStatus());
         Image image = new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + productDisplay.getImageLink()).toExternalForm());
         imageViewUser.setImage(image);
+        if (productDisplay.getStatus().equals("unavailable")) {
+            productUserAnchorPane.setStyle("-fx-border-color: red; " + "-fx-border-width: 2px; " + "-fx-border-radius: 10px; " + "-fx-background-color: #fff;");
+        }
     }
 }

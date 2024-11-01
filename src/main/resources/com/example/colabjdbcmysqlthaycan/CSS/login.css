@@ -163,6 +163,7 @@
     -fx-background-radius: 0;
     -fx-border-radius: 0;
     -fx-border-color: black;
+    -fx-text-fill: #454545;
 }
 
 .search-user {
@@ -185,3 +186,16 @@
 .button9{
     -fx-background-color: #181EFF;
 }
+
+.image-view-border {
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+.anchor-pane-border {
+    -fx-border-color: red;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
+
