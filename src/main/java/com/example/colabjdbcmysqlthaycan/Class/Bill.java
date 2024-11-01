@@ -3,13 +3,14 @@ package com.example.colabjdbcmysqlthaycan.Class;
 import java.sql.Date;
 
 public class Bill {
-    private int idBill;          
-    private int idOrder;         
-    private int idUser;          
-    private Date issueDate;      
-    private double totalAmount; 
+    private int idBill;
+    private int idOrder;
+    private int idUser;
+    private Date issueDate;
+    private double totalAmount;
 
-    public Bill() {}
+    public Bill() {
+    }
 
     public Bill(int idBill, int idOrder, int idUser, Date issueDate, double totalAmount) {
         this.idBill = idBill;

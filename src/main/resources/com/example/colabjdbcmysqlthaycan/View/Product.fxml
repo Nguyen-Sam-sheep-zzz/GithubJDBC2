@@ -7,27 +7,36 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="190.0" prefWidth="160.0" style="-fx-border-color: #454545; -fx-background-color: #fff;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.colabjdbcmysqlthaycan.Controller.ProductUserController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="190.0"
+            prefWidth="160.0" style="-fx-border-color: #454545; -fx-background-color: #fff;"
+            xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.colabjdbcmysqlthaycan.Controller.ProductUserController">
     <children>
-        <Label fx:id="nameProductUserLabel" layoutX="4.0" layoutY="115.0" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #fff; -fx-alignment: center;" styleClass="button2">
+        <Label fx:id="nameProductUserLabel" layoutX="4.0" layoutY="115.0" prefHeight="26.0" prefWidth="150.0"
+               style="-fx-background-color: #fff; -fx-alignment: center;" styleClass="button2">
             <font>
-                <Font size="15.0" />
-            </font></Label>
-        <Label fx:id="priceProductUserLabel" layoutX="5.0" layoutY="155.0" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #fff; -fx-alignment: center;" styleClass="button2" textFill="#ff2c00">
+                <Font size="15.0"/>
+            </font>
+        </Label>
+        <Label fx:id="priceProductUserLabel" layoutX="5.0" layoutY="155.0" prefHeight="26.0" prefWidth="150.0"
+               style="-fx-background-color: #fff; -fx-alignment: center;" styleClass="button2" textFill="#ff2c00">
             <font>
-                <Font size="15.0" />
-            </font></Label>
-        <Label fx:id="allQuantityProductUserLabel" text="Label" textFill="WHITE" />
-        <Label fx:id="idProductUserLabel" layoutX="14.0" layoutY="14.0" text="Label" textFill="WHITE" />
-        <Label fx:id="descriptionProductUserLabel" layoutX="86.0" layoutY="14.0" text="Label" textFill="WHITE" />
+                <Font size="15.0"/>
+            </font>
+        </Label>
+        <Label fx:id="allQuantityProductUserLabel" text="Label" textFill="WHITE"/>
+        <Label fx:id="idProductUserLabel" layoutX="14.0" layoutY="14.0" text="Label" textFill="WHITE"/>
+        <Label fx:id="descriptionProductUserLabel" layoutX="86.0" layoutY="14.0" text="Label" textFill="WHITE"/>
         <HBox layoutX="20.0" layoutY="1.0" prefHeight="120.0" prefWidth="120.0" style="-fx-alignment: center;">
             <children>
-                <ImageView fx:id="imageViewUser" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="imageViewUser" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true"
+                           preserveRatio="true"/>
             </children>
         </HBox>
-        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="132.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="132.0" layoutY="158.0" pickOnBounds="true"
+                   preserveRatio="true">
             <image>
-                <Image url="@../img/coin.png" />
+                <Image url="@../img/coin.png"/>
             </image>
         </ImageView>
     </children>

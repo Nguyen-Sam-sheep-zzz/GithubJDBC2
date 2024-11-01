@@ -19,6 +19,7 @@ public class ProductUserController {
     private Label descriptionProductUserLabel;
     @FXML
     private Label allQuantityProductUserLabel;
+
     public void initialize() {
         descriptionProductUserLabel.setVisible(false);
         allQuantityProductUserLabel.setVisible(false);

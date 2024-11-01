@@ -113,6 +113,7 @@ public class HomeUserController {
             e.printStackTrace();
         }
     }
+
     public void handleSearchProduct() {
         String searchQuery = searchProductUser.getText().trim();
         List<ProductDisplay> searchResults = new ArrayList<>();
@@ -168,6 +169,7 @@ public class HomeUserController {
             e.printStackTrace();
         }
     }
+
     @FXML
     private void reduceQuantity() {
         int currentQuantity = Integer.parseInt(quantityTextField.getText());
