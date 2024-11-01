@@ -179,6 +179,7 @@ public class HomeUserController {
                 ProductUserController controller = loader.getController();
                 controller.setProductItem(product);
 
+                productPane.setOnMouseClicked(event -> getItemProducts(product));
                 gridPaneProductsUser.add(productPane, column++, row);
 
                 if (column == 4) {
