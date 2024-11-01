@@ -116,7 +116,7 @@
                                 <Label layoutX="25.0" layoutY="349.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #fff;" />
                             </children>
                         </AnchorPane>
-                        <TextField layoutX="334.0" layoutY="10.0" prefHeight="33.0" prefWidth="328.0" promptText="Search" styleClass="search-user" stylesheets="@../CSS/login.css" />
+                        <TextField fx:id="searchProductUser" layoutX="334.0" layoutY="10.0" prefHeight="33.0" prefWidth="328.0" promptText="Search" styleClass="search-user" stylesheets="@../CSS/login.css" />
                         <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="639.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../img/search-search.png" />
