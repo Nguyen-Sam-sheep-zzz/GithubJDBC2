@@ -22,6 +22,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import javafx.scene.image.ImageView;
 
 public class HomeUserController {
@@ -103,6 +104,9 @@ public class HomeUserController {
         int row = 1;
         try {
             for (ProductDisplay product : products) {
+                if ("unavailable".equals(product.getStatus())) {
+                    continue;
+                }
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/colabjdbcmysqlthaycan/View/Product.fxml"));
                 AnchorPane productPane = loader.load();
 
@@ -116,7 +120,6 @@ public class HomeUserController {
                     column = 0;
                     row++;
                 }
-
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -170,12 +173,16 @@ public class HomeUserController {
         int row = 1;
         try {
             for (ProductDisplay product : products) {
+                if ("unavailable".equals(product.getStatus())) {
+                    continue;
+                }
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/colabjdbcmysqlthaycan/View/Product.fxml"));
                 AnchorPane productPane = loader.load();
 
                 ProductUserController controller = loader.getController();
                 controller.setProductItem(product);
 
+                productPane.setOnMouseClicked(event -> getItemProducts(product));
                 gridPaneProductsUser.add(productPane, column++, row);
 
                 if (column == 4) {
