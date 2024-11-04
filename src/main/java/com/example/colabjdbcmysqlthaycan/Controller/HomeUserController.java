@@ -2,6 +2,7 @@ package com.example.colabjdbcmysqlthaycan.Controller;
 
 import com.example.colabjdbcmysqlthaycan.Application.LoginApplication;
 import com.example.colabjdbcmysqlthaycan.Class.ProductDisplay;
+import com.example.colabjdbcmysqlthaycan.Class.Session;
 import com.example.colabjdbcmysqlthaycan.ConnectDB;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -55,13 +56,13 @@ public class HomeUserController {
     }
 
     public void loadToLoginScreenFromHomeUser() throws IOException {
+        Session.clearSession();
         Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/Login.fxml"));
         Stage stage = (Stage) buttonSingOut.getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setTitle("Login");
         stage.setScene(scene);
         stage.show();
-
     }
 
     public List<ProductDisplay> getProductsUser() {

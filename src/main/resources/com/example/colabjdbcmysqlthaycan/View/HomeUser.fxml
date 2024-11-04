@@ -49,8 +49,8 @@
                                 <Image url="@../img/bill.png" />
                             </image>
                         </ImageView>
-                        <Button fx:id="buttonSingOut" layoutX="21.0" layoutY="543.0" mnemonicParsing="false" onAction="#loadToLoginScreenFromHomeUser" prefHeight="36.0" prefWidth="134.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="           Sign Out" />
-                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="37.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true">
+                        <Button fx:id="buttonSingOut" layoutX="21.0" layoutY="543.0" mnemonicParsing="false" onAction="#loadToLoginScreenFromHomeUser" prefHeight="36.0" prefWidth="134.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="          Sign Out" />
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="28.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../img/signOut.png" />
                             </image>
@@ -70,28 +70,28 @@
                             <children>
                                 <ImageView fx:id="imageProductImageView" fitHeight="150.0" fitWidth="150.0" layoutX="75.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" />
                                 <Label fx:id="nameProductLabel" layoutX="38.0" layoutY="192.0" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #fff;" stylesheets="@../CSS/login.css">
-                           <font>
-                              <Font size="14.0" />
-                           </font></Label>
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font></Label>
                                 <Label fx:id="priceProductLabel" layoutX="38.0" layoutY="250.0" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #fff;">
-                           <font>
-                              <Font size="14.0" />
-                           </font></Label>
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font></Label>
                                 <Label fx:id="descriptionProductLabel" layoutX="38.0" layoutY="310.0" prefHeight="69.0" prefWidth="250.0" style="-fx-background-color: #fff;" wrapText="true" />
-                        <Label fx:id="statusProductLabel" layoutX="38.0" layoutY="404.0" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #fff;">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
+                                <Label fx:id="statusProductLabel" layoutX="38.0" layoutY="404.0" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #fff;">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </Label>
                                 <Button layoutX="133.0" layoutY="461.0" mnemonicParsing="false" onAction="#reduceQuantity" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #fff; -fx-border-color: gray;" stylesheets="@../CSS/login.css" text="-">
                                     <font>
                                         <Font size="15.0" />
                                     </font>
                                 </Button>
                                 <TextField fx:id="quantityProductTextField" layoutX="167.0" layoutY="461.0" prefHeight="35.0" prefWidth="75.0" style="-fx-border-color: gray; -fx-alignment: center;" styleClass="text-field2" stylesheets="@../CSS/login.css">
-                           <font>
-                              <Font size="14.0" />
-                           </font></TextField>
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font></TextField>
                                 <Button layoutX="241.0" layoutY="461.0" mnemonicParsing="false" onAction="#addQuantity" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #fff; -fx-border-color: gray;" text="+">
                                     <font>
                                         <Font size="15.0" />
@@ -127,11 +127,11 @@
                                         <Font name="System Bold" size="15.0" />
                                     </font>
                                 </Label>
-                        <Label layoutX="30.0" layoutY="384.0" prefHeight="21.0" prefWidth="92.0" text="Status:">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </Label>
+                                <Label layoutX="30.0" layoutY="384.0" prefHeight="21.0" prefWidth="92.0" text="Status:">
+                                    <font>
+                                        <Font name="System Bold" size="15.0" />
+                                    </font>
+                                </Label>
                             </children>
                         </AnchorPane>
                         <TextField fx:id="searchProductUser" layoutX="334.0" layoutY="12.0" prefHeight="33.0" prefWidth="328.0" promptText="Search" styleClass="search-user" stylesheets="@../CSS/login.css" />
@@ -153,16 +153,15 @@
                                             </padding>
                                         </GridPane>
                                     </content>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <padding>
-                              <Insets bottom="10.0" />
-                           </padding>
+                                    <HBox.margin>
+                                        <Insets />
+                                    </HBox.margin>
+                                    <padding>
+                                        <Insets bottom="10.0" />
+                                    </padding>
                                 </ScrollPane>
                             </children>
                         </HBox>
-
                     </children>
                 </AnchorPane>
             </center>

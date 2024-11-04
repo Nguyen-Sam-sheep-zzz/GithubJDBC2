@@ -1,6 +1,7 @@
 package com.example.colabjdbcmysqlthaycan.Controller;
 
 import com.example.colabjdbcmysqlthaycan.Application.LoginApplication;
+import com.example.colabjdbcmysqlthaycan.Class.Session;
 import com.example.colabjdbcmysqlthaycan.ConnectDB;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -85,8 +86,11 @@ public class LoginController {
         if (loginInfo != null) {
             String role = loginInfo[0];
             String status = loginInfo[1];
-            if ("active".equalsIgnoreCase(status)) {
-                showAlert("Login successful", "Welcome: " + role);
+            String name = loginInfo[2];
+            String id = loginInfo[3];
+            if ("active".equals(status)) {
+                Session.setLoggedInCustomer(id);
+                showAlert("Login successful", "Welcome: " + role + " " + name);
                 loadNextScreen(role);
             } else {
                 loginMessageLabel.setText("Account is not active.");
@@ -133,7 +137,9 @@ public class LoginController {
             if (resultSet.next()) {
                 String role = resultSet.getString("role");
                 String status = resultSet.getString("status");
-                return new String[]{role, status};
+                String name = resultSet.getString("name");
+                String id = resultSet.getString("name");
+                return new String[]{role, status, name, id};
             } else {
                 return null;
             }
