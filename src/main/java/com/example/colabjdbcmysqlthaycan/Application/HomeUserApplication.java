@@ -13,7 +13,7 @@ public class HomeUserApplication extends Application {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(HomeAdminApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/HomeUser.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
-            stage.setTitle("Home User");
+            stage.setTitle("Home user");
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
