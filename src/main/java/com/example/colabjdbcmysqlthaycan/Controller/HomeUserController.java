@@ -52,7 +52,6 @@ public class HomeUserController {
         quantityProductTextField.setText("0");
         getAllProduct();
     }
-
     public void loadToLoginScreenFromHomeUser() throws IOException {
         Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/Login.fxml"));
         Stage stage = (Stage) buttonSingOut.getScene().getWindow();
@@ -60,9 +59,7 @@ public class HomeUserController {
         stage.setTitle("Login");
         stage.setScene(scene);
         stage.show();
-
     }
-
     public List<ProductDisplay> getProductsUser() {
         List<ProductDisplay> products = new ArrayList<>();
         PreparedStatement preparedStatement;

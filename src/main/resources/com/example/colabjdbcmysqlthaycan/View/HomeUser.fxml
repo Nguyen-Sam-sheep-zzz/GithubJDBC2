@@ -115,7 +115,7 @@
                                         <Font size="15.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="addQuantity" layoutX="241.0" layoutY="461.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #fff; -fx-border-color: gray;" text="+">
+                                <Button layoutX="241.0" layoutY="461.0" mnemonicParsing="false" onAction="#addQuantity" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #fff; -fx-border-color: gray;" text="+">
                                     <font>
                                         <Font size="15.0" />
                                     </font>
