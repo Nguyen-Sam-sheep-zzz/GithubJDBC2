@@ -62,6 +62,39 @@
                                 <String fx:value="shadow" />
                             </styleClass>
                             <children>
+                                <ImageView fx:id="imageProductImageView" fitHeight="105.0" fitWidth="125.0" layoutX="88.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
+                                <Button layoutX="87.0" layoutY="119.0" mnemonicParsing="false" onAction="#importImage" prefHeight="30.0" prefWidth="125.0" styleClass="button3" stylesheets="@../CSS/login.css" text="Import" textFill="WHITE">
+                                    <font>
+                                        <Font size="15.0" />
+                                    </font>
+                                </Button>
+                                <TextField fx:id="nameProductTextField" layoutX="38.0" layoutY="180.0" prefHeight="25.0" prefWidth="225.0" styleClass="text-field1" stylesheets="@../CSS/login.css" />
+                                <TextArea fx:id="descriptionProductTextArea" layoutX="38.0" layoutY="242.0" prefHeight="90.0" prefWidth="225.0" styleClass="text-field1" stylesheets="@../CSS/login.css" wrapText="true" />
+                                <ComboBox fx:id="statusProductComboBox" layoutX="38.0" layoutY="357.0" prefHeight="27.0" prefWidth="225.0" style="-fx-background-color: #fff; -fx-border-radius: 5px; -fx-border-color: #bb1a3a;">
+                                    <items>
+                                        <FXCollections fx:factory="observableArrayList">
+                                            <String fx:value="available" />
+                                            <String fx:value="unavailable" />
+                                        </FXCollections>
+                                    </items>
+                                </ComboBox>
+                                <TextField fx:id="priceProductTextField" layoutX="38.0" layoutY="412.0" prefHeight="25.0" prefWidth="225.0" promptText=" 0.0$" styleClass="text-field1" />
+                                <TextField fx:id="quantityProductTextField" layoutX="38.0" layoutY="472.0" prefHeight="25.0" prefWidth="225.0" styleClass="text-field1" stylesheets="@../CSS/login.css" />
+                                <Button layoutX="14.0" layoutY="525.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="30.0" prefWidth="75.0" styleClass="button3" stylesheets="@../CSS/login.css" text="Add" textFill="WHITE">
+                                    <font>
+                                        <Font size="15.0" />
+                                    </font>
+                                </Button>
+                                <Button layoutX="114.0" layoutY="524.0" mnemonicParsing="false" onAction="#handleUpdateProduct" prefHeight="30.0" prefWidth="75.0" styleClass="button3" stylesheets="@../CSS/login.css" text="Update" textFill="WHITE">
+                                    <font>
+                                        <Font size="15.0" />
+                                    </font>
+                                </Button>
+                                <Button layoutX="212.0" layoutY="524.0" mnemonicParsing="false" onAction="#clearHomeAdmin" prefHeight="30.0" prefWidth="75.0" styleClass="button3" stylesheets="@../CSS/login.css" text="Clear" textFill="WHITE">
+                                    <font>
+                                        <Font size="15.0" />
+                                    </font>
+                                </Button>
                                 <Label layoutX="33.0" layoutY="154.0" prefHeight="25.0" prefWidth="185.0" text="Laptop Name:">
                                     <font>
                                         <Font size="15.0" />
@@ -72,49 +105,16 @@
                                         <Font size="15.0" />
                                     </font>
                                 </Label>
-                                <TextField fx:id="nameProductTextField" layoutX="38.0" layoutY="180.0" prefHeight="25.0" prefWidth="225.0" styleClass="text-field1" stylesheets="@../CSS/login.css" />
                                 <Label layoutX="33.0" layoutY="331.0" prefHeight="25.0" prefWidth="185.0" text="Laptop Status:">
                                     <font>
                                         <Font size="15.0" />
                                     </font>
                                 </Label>
-                                <ComboBox fx:id="statusProductComboBox" layoutX="38.0" layoutY="357.0" prefHeight="27.0" prefWidth="225.0" style="-fx-background-color: #fff; -fx-border-radius: 5px; -fx-border-color: #bb1a3a;">
-                                    <items>
-                                        <FXCollections fx:factory="observableArrayList">
-                                            <String fx:value="available" />
-                                            <String fx:value="unavailable" />
-                                        </FXCollections>
-                                    </items>
-                                </ComboBox>
                                 <Label layoutX="33.0" layoutY="385.0" prefHeight="25.0" prefWidth="185.0" text="Laptop Price:">
                                     <font>
                                         <Font size="15.0" />
                                     </font>
                                 </Label>
-                                <TextField fx:id="priceProductTextField" layoutX="38.0" layoutY="412.0" prefHeight="25.0" prefWidth="225.0" promptText=" 0.0$" styleClass="text-field1" />
-                                <Button layoutX="14.0" layoutY="525.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="30.0" prefWidth="75.0" styleClass="button3" stylesheets="@../CSS/login.css" text="Add" textFill="WHITE">
-                                    <font>
-                                        <Font size="15.0" />
-                                    </font>
-                                </Button>
-                                <Button layoutX="212.0" layoutY="524.0" mnemonicParsing="false" onAction="#clearHomeAdmin" prefHeight="30.0" prefWidth="75.0" styleClass="button3" stylesheets="@../CSS/login.css" text="Clear" textFill="WHITE">
-                                    <font>
-                                        <Font size="15.0" />
-                                    </font>
-                                </Button>
-                                <Button layoutX="114.0" layoutY="524.0" mnemonicParsing="false" onAction="#handleUpdateProduct" prefHeight="30.0" prefWidth="75.0" styleClass="button3" stylesheets="@../CSS/login.css" text="Update" textFill="WHITE">
-                                    <font>
-                                        <Font size="15.0" />
-                                    </font>
-                                </Button>
-                                <TextArea fx:id="descriptionProductTextArea" layoutX="38.0" layoutY="242.0" prefHeight="90.0" prefWidth="225.0" styleClass="text-field1" stylesheets="@../CSS/login.css" wrapText="true" />
-                                <ImageView fx:id="imageProductImageView" fitHeight="105.0" fitWidth="125.0" layoutX="88.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
-                                <Button layoutX="87.0" layoutY="119.0" mnemonicParsing="false" onAction="#importImage" prefHeight="30.0" prefWidth="125.0" styleClass="button3" stylesheets="@../CSS/login.css" text="Import" textFill="WHITE">
-                                    <font>
-                                        <Font size="15.0" />
-                                    </font>
-                                </Button>
-                                <TextField fx:id="quantityProductTextField" layoutX="38.0" layoutY="472.0" prefHeight="25.0" prefWidth="225.0" styleClass="text-field1" stylesheets="@../CSS/login.css" />
                                 <Label layoutX="34.0" layoutY="446.0" prefHeight="25.0" prefWidth="185.0" text="Laptop quantity:">
                                     <font>
                                         <Font size="15.0" />

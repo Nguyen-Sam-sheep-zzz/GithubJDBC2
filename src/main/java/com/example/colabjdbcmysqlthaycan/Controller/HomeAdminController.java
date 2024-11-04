@@ -161,6 +161,10 @@ public class HomeAdminController {
             showAlert("ERROR", "Image cannot be left blank");
             return;
         }
+        if (Integer.parseInt(quantityProductTextField.getText()) < 0) {
+            showAlert("ERROR", "The product cannot be smaller than zero.");
+            return;
+        }
         String id = idProductTextField.getText();
         String name = nameProductTextField.getText();
         String description = descriptionProductTextArea.getText();
@@ -297,6 +301,10 @@ public class HomeAdminController {
             }
             if (imageProductImageView.getImage() == null) {
                 showAlert("ERROR", "Image cannot be left blank");
+                return;
+            }
+            if (Integer.parseInt(quantityProductTextField.getText()) < 0) {
+                showAlert("ERROR", "The product cannot be smaller than zero.");
                 return;
             }
             psProduct.setString(1, nameProductTextField.getText());

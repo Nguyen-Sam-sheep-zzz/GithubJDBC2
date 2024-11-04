@@ -31,7 +31,7 @@ public class ProductUserController {
         stastusProductUserLabel.setText(productDisplay.getStatus());
         Image image = new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + productDisplay.getImageLink()).toExternalForm());
         imageViewUser.setImage(image);
-        if (productDisplay.getStatus().equals("unavailable")) {
+        if (productDisplay.getQuantity() == 0) {
             productUserAnchorPane.setStyle("-fx-border-color: red; " + "-fx-border-width: 2px; " + "-fx-border-radius: 10px; " + "-fx-background-color: #fff;");
         }
     }
