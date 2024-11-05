@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -21,6 +22,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,14 +49,21 @@ public class HomeUserController {
     private TextField searchProductUser;
     @FXML
     private TextField quantityProductTextField;
+    @FXML
+    private Button homeCart;
+    @FXML
+    private Label idProductLabel;
+
 
     public void initialize() {
+
         searchProductUser.textProperty().addListener((observable, oldValue, newValue) -> {
             handleSearchProduct();
         });
-        quantityProductTextField.setText("0");
+        quantityProductTextField.setText("1");
         getAllProduct();
     }
+
     public void loadToLoginScreenFromHomeUser() throws IOException {
         Session.clearSession();
         Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/Login.fxml"));
@@ -63,6 +73,16 @@ public class HomeUserController {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void loadToCartScreenFromHomeUser() throws IOException {
+        Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/Cart.fxml"));
+        Stage stage = (Stage) homeCart.getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle("Cart");
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public List<ProductDisplay> getProductsUser() {
         List<ProductDisplay> products = new ArrayList<>();
         PreparedStatement preparedStatement;
@@ -129,6 +149,7 @@ public class HomeUserController {
     }
 
     public void getItemProducts(ProductDisplay productDisplay) {
+        idProductLabel.setText(productDisplay.getId());
         nameProductLabel.setText(productDisplay.getName());
         priceProductLabel.setText(String.valueOf(productDisplay.getPrice()));
         descriptionProductLabel.setText(productDisplay.getDescription());
@@ -200,7 +221,7 @@ public class HomeUserController {
     @FXML
     private void reduceQuantity() {
         int currentQuantity = Integer.parseInt(quantityProductTextField.getText());
-        if (currentQuantity > 0) {
+        if (currentQuantity > 1) {
             currentQuantity--;
             quantityProductTextField.setText(String.valueOf(currentQuantity));
         }
@@ -211,5 +232,88 @@ public class HomeUserController {
         int currentQuantity = Integer.parseInt(quantityProductTextField.getText());
         currentQuantity++;
         quantityProductTextField.setText(String.valueOf(currentQuantity));
+    }
+
+    public void addToOrderAndProductOrder(String idUser, String orderDate, String paymentStatus, String idProduct, int quantity) {
+        Connection connection = connectDB.connectionDB();
+        PreparedStatement preparedStatement;
+        String addToOrder = "insert into `Order` (idUser, orderDate, paymentStatus) VALUES (?, ?, ?)";
+
+        try {
+            preparedStatement = connection.prepareStatement(addToOrder,PreparedStatement.RETURN_GENERATED_KEYS);
+
+            preparedStatement.setInt(1, Integer.parseInt(idUser));
+            preparedStatement.setString(2, orderDate);
+            preparedStatement.setString(3, paymentStatus);
+
+            int row = preparedStatement.executeUpdate();
+            if (row > 0) {
+                try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        String idOrder = String.valueOf(generatedKeys.getInt(1));
+                        String addToProductOrder = "insert into ProductOrder (idProduct, idOrder, quantity) values (?, ?, ?)";
+                        try (PreparedStatement preparedStatementPO = connection.prepareStatement(addToProductOrder)) {
+                            preparedStatementPO.setInt(1, Integer.parseInt(idProduct));
+                            preparedStatementPO.setInt(2, Integer.parseInt(idOrder));
+                            preparedStatementPO.setInt(3, quantity);
+
+                            preparedStatementPO.executeUpdate();
+
+                        }
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+//    public void addToProductOrder(String idProduct, String idOrder, int quantity) {
+//        Connection connection = connectDB.connectionDB();
+//        PreparedStatement preparedStatement;
+//        String addToOrder = "INSERT INTO ProductOrder (idProduct, idOrder, quantity) VALUES (?, ?, ?)";
+//
+//        try {
+//            preparedStatement = connection.prepareStatement(addToOrder);
+//
+//            preparedStatement.setString(1, idProduct);
+//            preparedStatement.setString(2, idOrder);
+//            preparedStatement.setInt(3, quantity);
+//
+//            preparedStatement.executeUpdate();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+//    public void addToCart(String idUser, String orderDate, String paymentStatus, String idProduct, String idOrder, int quantity) {
+//        addToOrder(idUser, orderDate, paymentStatus);
+//        addToProductOrder(idProduct, idOrder, quantity);
+//    }
+
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("ERROR");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    public void handleAddToCart() {
+        if (idProductLabel.getText().isEmpty() || quantityProductTextField.getText().isEmpty()) {
+            showAlert("Please select a product");
+            return;
+        }
+        String idUser = Session.getLoggedInCustomerId();
+
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String orderDate = currentDate.format(formatter);
+
+        String paymentStatus = "Pending";
+
+        String idProduct = idProductLabel.getText();
+        int quantity = Integer.parseInt(quantityProductTextField.getText());
+        addToOrderAndProductOrder(idUser, orderDate, paymentStatus, idProduct, quantity);
     }
 }

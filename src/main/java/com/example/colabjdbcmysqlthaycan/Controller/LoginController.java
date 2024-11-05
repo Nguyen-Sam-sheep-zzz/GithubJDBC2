@@ -87,9 +87,9 @@ public class LoginController {
             String name = loginInfo[2];
             String id = loginInfo[3];
             if ("active".equals(status)) {
-                Session.setLoggedInCustomer(id);
                 showAlert("Login successful", "Welcome: " + role + " " + name);
                 loadNextScreen(role);
+                Session.setLoggedInCustomer(id);
             } else {
                 loginMessageLabel.setText("Account is not active.");
             }
@@ -136,7 +136,7 @@ public class LoginController {
                 String role = resultSet.getString("role");
                 String status = resultSet.getString("status");
                 String name = resultSet.getString("name");
-                String id = resultSet.getString("name");
+                String id = resultSet.getString("idUser");
                 return new String[]{role, status, name, id};
             } else {
                 return null;

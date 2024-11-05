@@ -18,8 +18,10 @@ public class CartController {
     private Button buttonSingOut;
     @FXML
     private GridPane gridPaneProductsUser;
+    @FXML
+    private Button homeUserButton;
 
-    public void loadToLoginScreenFromHomeUser() throws IOException {
+    public void loadToLoginScreenFromCart() throws IOException {
         Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/Login.fxml"));
         Stage stage = (Stage) buttonSingOut.getScene().getWindow();
         Scene scene = new Scene(root);
@@ -27,4 +29,13 @@ public class CartController {
         stage.setScene(scene);
         stage.show();
     }
+    public void loadToHomeUserScreenFromCart() throws IOException {
+        Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/HomeUser.fxml"));
+        Stage stage = (Stage) homeUserButton.getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle("Home user");
+        stage.setScene(scene);
+        stage.show();
+    }
+
 }

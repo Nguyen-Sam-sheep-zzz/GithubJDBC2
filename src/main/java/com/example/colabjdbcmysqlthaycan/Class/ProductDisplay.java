@@ -20,8 +20,8 @@ public class ProductDisplay {
         this.id = id;
         this.imageLink = imageLink;
         this.imageView = new ImageView(new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + imageLink).toExternalForm()));
-        this.imageView.setFitWidth(50);
-        this.imageView.setFitHeight(37);
+        this.imageView.setFitWidth(60);
+        this.imageView.setFitHeight(47);
 
         this.name = name;
         this.description = description;
