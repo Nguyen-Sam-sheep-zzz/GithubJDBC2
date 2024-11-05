@@ -22,10 +22,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-
 
 public class LoginController {
     @FXML
@@ -200,7 +198,6 @@ public class LoginController {
         String username = registerUsername.getText();
         String password = registerPassword.getText();
         String uFullName = registerFullName.getText();
-
 
         if (username.isEmpty() || password.isEmpty() || uFullName.isEmpty()) {
             showAlert("Registration failed", "Please fill in the registration information completely");

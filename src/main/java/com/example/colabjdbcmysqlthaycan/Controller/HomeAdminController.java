@@ -402,7 +402,6 @@ public class HomeAdminController {
         stage.setTitle("Login");
         stage.setScene(scene);
         stage.show();
-
     }
 
     public void handleSearchProduct() {

@@ -158,7 +158,7 @@ public class HomeUserController {
             while (resultSet.next()) {
                 String id = resultSet.getString("idProduct");
                 String name = resultSet.getString("nameProduct");
-                String description = resultSet.getString("productDescription");
+                String description = resultSet.getString("prodctDescription");
                 double price = resultSet.getDouble("price");
                 int quantity = resultSet.getInt("quantity");
                 String status = resultSet.getString("status");
