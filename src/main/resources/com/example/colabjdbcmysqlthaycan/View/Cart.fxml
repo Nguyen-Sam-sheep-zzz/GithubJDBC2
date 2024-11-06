@@ -62,11 +62,11 @@
                         <BorderPane />
                   <AnchorPane layoutX="70.0" layoutY="13.0" prefHeight="100.0" prefWidth="900.0" style="-fx-background-color: #fff; -fx-border-color: #454545;">
                      <children>
-                        <CheckBox layoutX="32.0" layoutY="41.0" mnemonicParsing="false" />
-                        <Label layoutX="85.0" layoutY="42.0" text="Product" />
-                        <Label layoutX="404.0" layoutY="42.0" text="Price" />
-                        <Label layoutX="569.0" layoutY="43.0" text="Quantity" />
-                        <Label layoutX="705.0" layoutY="43.0" text="Amount" />
+                        <CheckBox layoutX="28.0" layoutY="41.0" mnemonicParsing="false" />
+                        <Label layoutX="82.0" layoutY="42.0" text="Product" />
+                        <Label layoutX="361.0" layoutY="44.0" text="Price" />
+                        <Label layoutX="507.0" layoutY="44.0" text="Quantity" />
+                        <Label layoutX="673.0" layoutY="44.0" text="Amount" />
                         <Label layoutX="820.0" layoutY="44.0" text="Operation" />
                      </children>
                   </AnchorPane>
@@ -84,7 +84,7 @@
                      </children></HBox>
                   <AnchorPane layoutX="71.0" layoutY="492.0" prefHeight="100.0" prefWidth="900.0" style="-fx-background-color: #fff; -fx-border-color: #454545;">
                      <children>
-                        <CheckBox layoutX="32.0" layoutY="41.0" mnemonicParsing="false" />
+                        <CheckBox layoutX="27.0" layoutY="41.0" mnemonicParsing="false" />
                         <Label layoutX="85.0" layoutY="39.0" text="Chọn tất cả (0)">
                            <font>
                               <Font size="15.0" />
