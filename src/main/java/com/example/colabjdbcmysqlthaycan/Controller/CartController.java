@@ -23,8 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CartController {
-    ConnectDB connectDB = new ConnectDB();
 
+    ConnectDB connectDB = new ConnectDB();
     @FXML
     private Button buttonSingOut;
     @FXML
@@ -37,9 +37,6 @@ public class CartController {
     public void initialize() {
         getAllProductCart();
     }
-
-
-
 
     public void loadToLoginScreenFromCart() throws IOException {
         Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/Login.fxml"));
@@ -80,12 +77,10 @@ public class CartController {
         return productsCart;
     }
 
-
     public void getAllProductCart() {
         List<ProductDisplay> products = getProductsCart();
         int column = 0;
         int row = 1;
-
         try {
             for (ProductDisplay productCart : products) {
                 FXMLLoader loaderCart = new FXMLLoader(getClass().getResource("/com/example/colabjdbcmysqlthaycan/View/ProductCart.fxml"));
@@ -112,6 +107,4 @@ public class CartController {
         stage.setScene(scene);
         stage.show();
     }
-
-
 }

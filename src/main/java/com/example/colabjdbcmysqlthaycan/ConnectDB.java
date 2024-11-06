@@ -10,7 +10,6 @@ public class ConnectDB {
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(urlConnection, "root", "123456");
-            System.out.println("Successful! It's Sam.");
         } catch (SQLException e) {
 
         }

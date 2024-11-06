@@ -26,11 +26,11 @@
          </font>
       </Button>
       <Label fx:id="productAmount" layoutX="670.0" layoutY="52.0" prefHeight="25.0" prefWidth="125.0" textFill="#ee586a" />
-      <Button layoutX="811.0" layoutY="49.0" mnemonicParsing="false" style="-fx-background-color: #fff;" text="Delete">
+      <Button fx:id="deleteProductCart" layoutX="811.0" layoutY="49.0" mnemonicParsing="false" onAction="#handleDeleteProductInCart" style="-fx-background-color: #fff;" text="Delete">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Label fx:id="idOrder" layoutX="20.0" layoutY="17.0" text="Label" textFill="WHITE" />
+      <Label fx:id="idOrder" layoutX="20.0" layoutY="17.0" textFill="#f7f1f1" />
    </children>
 </AnchorPane>
