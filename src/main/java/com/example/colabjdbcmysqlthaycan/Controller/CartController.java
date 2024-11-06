@@ -61,27 +61,25 @@ public class CartController {
                 "JOIN `order` o ON po.idOrder = o.idOrder " +
                 "WHERE o.idUser = ?";
 
-
         try (Connection connection = connectDB.connectionDB();
-             PreparedStatement preparedStatement = connection.prepareStatement(query);
-             ResultSet resultSet = preparedStatement.executeQuery()) {
-            preparedStatement.setString(1,id);
-            preparedStatement.executeUpdate();
-
-
-            while (resultSet.next()) {
-                String name = resultSet.getString("nameProduct");
-                double price = resultSet.getDouble("price");
-                String imageLink = resultSet.getString("link");
-                int quantity = resultSet.getInt("quantity");
-                int idOrder = resultSet.getInt("idOrder");
-                productsCart.add(new ProductDisplay(imageLink, name, price, quantity,idOrder));
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, id);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    String name = resultSet.getString("nameProduct");
+                    double price = resultSet.getDouble("price");
+                    String imageLink = resultSet.getString("link");
+                    int quantity = resultSet.getInt("quantity");
+                    int idOrder = resultSet.getInt("idOrder");
+                    productsCart.add(new ProductDisplay(imageLink, name, price, quantity, idOrder));
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return productsCart;
     }
+
 
     public void getAllProductCart() {
         List<ProductDisplay> products = getProductsCart();
