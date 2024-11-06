@@ -8,8 +8,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-
-
 public class ProductCartController {
     ConnectDB connectDB = new ConnectDB();
     @FXML
@@ -27,6 +25,7 @@ public class ProductCartController {
     public void initialize() {
         productQuantityTextField.setText("0");
     }
+
     public void setProductItemCart(ProductDisplay productDisplay) {
         this.productDisplay = productDisplay;
         productName.setText(productDisplay.getName());
@@ -37,6 +36,7 @@ public class ProductCartController {
         productAmount.setText(String.valueOf(productDisplay.getAmount()));
         updateProductAmount();
     }
+
     @FXML
     private void reduce() {
         int currentQuantity = Integer.parseInt(productQuantityTextField.getText());
@@ -48,6 +48,7 @@ public class ProductCartController {
         }
 
     }
+
     @FXML
     private void more() {
         int currentQuantity = Integer.parseInt(productQuantityTextField.getText());
@@ -56,6 +57,7 @@ public class ProductCartController {
         productDisplay.setQuantity(currentQuantity);
         updateProductAmount();
     }
+
     private void updateProductAmount() {
         productAmount.setText(String.valueOf(productDisplay.getAmount()));
     }

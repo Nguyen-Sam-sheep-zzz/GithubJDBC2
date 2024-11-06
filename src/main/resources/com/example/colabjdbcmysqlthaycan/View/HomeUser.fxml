@@ -31,10 +31,10 @@
                                 <Font size="20.0" />
                             </font>
                         </Label>
-                        <Button layoutX="46.0" layoutY="184.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="90.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="Product" />
-                        <Button layoutX="46.0" layoutY="238.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="90.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="Purchase" />
-                        <Button layoutX="46.0" layoutY="296.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="90.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="Bill" />
-                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
+                        <Button layoutX="16.0" layoutY="184.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="         Product" />
+                        <Button fx:id="homeCart" layoutX="10.0" layoutY="238.0" mnemonicParsing="false" onAction="#loadToCartScreenFromHomeUser" prefHeight="35.0" prefWidth="126.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="           Cart" />
+                        <Button fx:id="homeBill" layoutX="19.0" layoutY="296.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="117.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="         Bill" />
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../img/laptop3.png" />
                             </image>
@@ -97,7 +97,7 @@
                                         <Font size="15.0" />
                                     </font>
                                 </Button>
-                                <Button layoutX="37.0" layoutY="516.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="103.0" styleClass="button9" stylesheets="@../CSS/login.css" text="Add to cart" textFill="WHITE">
+                                <Button layoutX="37.0" layoutY="516.0" mnemonicParsing="false" onAction="#handleAddToCart" prefHeight="40.0" prefWidth="103.0" styleClass="button9" stylesheets="@../CSS/login.css" text="Add to cart" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold" size="15.0" />
                                     </font>
@@ -162,6 +162,11 @@
                                 </ScrollPane>
                             </children>
                         </HBox>
+                  <Label fx:id="idProductLabel" layoutX="676.0" layoutY="9.0" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #fff;" stylesheets="@../CSS/login.css">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
                     </children>
                 </AnchorPane>
             </center>

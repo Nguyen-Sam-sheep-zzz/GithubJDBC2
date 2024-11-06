@@ -31,12 +31,17 @@ public class CartController {
     private GridPane gridPaneProductsUser;
     @FXML
     private CheckBox checkBoxAll;
+    @FXML
+    private Button homeUserButton;
 
     public void initialize() {
         getAllProductCart();
     }
 
-    public void loadToLoginScreenFromHomeUser() throws IOException {
+
+
+
+    public void loadToLoginScreenFromCart() throws IOException {
         Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/Login.fxml"));
         Stage stage = (Stage) buttonSingOut.getScene().getWindow();
         Scene scene = new Scene(root);
@@ -100,4 +105,15 @@ public class CartController {
             e.printStackTrace();
         }
     }
+
+    public void loadToHomeUserScreenFromCart() throws IOException {
+        Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/HomeUser.fxml"));
+        Stage stage = (Stage) homeUserButton.getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle("Home user");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
 }
