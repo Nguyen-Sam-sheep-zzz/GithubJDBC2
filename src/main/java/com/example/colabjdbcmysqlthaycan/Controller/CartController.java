@@ -39,8 +39,6 @@ public class CartController {
     }
 
 
-
-
     public void loadToLoginScreenFromCart() throws IOException {
         Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/Login.fxml"));
         Stage stage = (Stage) buttonSingOut.getScene().getWindow();
@@ -65,8 +63,8 @@ public class CartController {
         try (Connection connection = connectDB.connectionDB();
              PreparedStatement preparedStatement = connection.prepareStatement(query);
              ResultSet resultSet = preparedStatement.executeQuery()) {
-            preparedStatement.setString(1,id);
-            preparedStatement.executeUpdate();
+             preparedStatement.setString(1, id);
+             preparedStatement.executeUpdate();
 
 
             while (resultSet.next()) {
@@ -75,7 +73,7 @@ public class CartController {
                 String imageLink = resultSet.getString("link");
                 int quantity = resultSet.getInt("quantity");
                 int idOrder = resultSet.getInt("idOrder");
-                productsCart.add(new ProductDisplay(imageLink, name, price, quantity,idOrder));
+                productsCart.add(new ProductDisplay(imageLink, name, price, quantity, idOrder));
             }
         } catch (SQLException e) {
             e.printStackTrace();
