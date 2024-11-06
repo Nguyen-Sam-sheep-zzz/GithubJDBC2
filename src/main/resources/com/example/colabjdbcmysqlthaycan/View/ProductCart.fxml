@@ -14,13 +14,13 @@
       <ImageView fx:id="imageProduct" fitHeight="75.0" fitWidth="75.0" layoutX="66.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="productName" layoutX="150.0" layoutY="25.0" prefHeight="75.0" prefWidth="175.0" wrapText="true" />
       <Label fx:id="productPrice" layoutX="356.0" layoutY="49.0" prefHeight="25.0" prefWidth="125.0" />
-      <Button layoutX="497.0" layoutY="45.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #fff; -fx-border-color: #E8E8E8;" styleClass="button9" stylesheets="@../CSS/login.css" text="-">
+      <Button layoutX="497.0" layoutY="45.0" mnemonicParsing="false" onAction="#reduce" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #fff; -fx-border-color: #E8E8E8;" styleClass="button9" stylesheets="@../CSS/login.css" text="-">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <TextField fx:id="productPriceTextField" layoutX="536.0" layoutY="45.0" prefHeight="40.0" prefWidth="75.0" style="-fx-background-color: #fff; -fx-border-color: #E8E8E8;" />
-      <Button layoutX="610.0" layoutY="45.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #fff; -fx-border-color: #E8E8E8;" styleClass="button9" stylesheets="@../CSS/login.css" text="+">
+      <TextField fx:id="productQuantityTextField" layoutX="536.0" layoutY="45.0" prefHeight="40.0" prefWidth="75.0" style="-fx-background-color: #fff; -fx-border-color: #E8E8E8;" />
+      <Button layoutX="610.0" layoutY="45.0" mnemonicParsing="false" onAction="#more" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #fff; -fx-border-color: #E8E8E8;" styleClass="button9" stylesheets="@../CSS/login.css" text="+">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -31,5 +31,6 @@
             <Font size="15.0" />
          </font>
       </Button>
+      <Label fx:id="idOrder" layoutX="20.0" layoutY="17.0" text="Label" textFill="WHITE" />
    </children>
 </AnchorPane>
