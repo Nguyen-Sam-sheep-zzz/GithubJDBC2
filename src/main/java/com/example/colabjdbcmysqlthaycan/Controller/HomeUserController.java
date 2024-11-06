@@ -258,7 +258,6 @@ public class HomeUserController {
                             preparedStatementPO.setInt(3, quantity);
 
                             preparedStatementPO.executeUpdate();
-
                         }
                     }
                 }
@@ -291,9 +290,9 @@ public class HomeUserController {
 //        addToProductOrder(idProduct, idOrder, quantity);
 //    }
 
-    private void showAlert(String message) {
+    private void showAlert(String tiltle, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("ERROR");
+        alert.setTitle(tiltle);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
@@ -301,7 +300,7 @@ public class HomeUserController {
 
     public void handleAddToCart() {
         if (idProductLabel.getText().isEmpty() || quantityProductTextField.getText().isEmpty()) {
-            showAlert("Please select a product");
+            showAlert("ERROR","Please select a product");
             return;
         }
         String idUser = Session.getLoggedInCustomerId();
@@ -315,5 +314,6 @@ public class HomeUserController {
         String idProduct = idProductLabel.getText();
         int quantity = Integer.parseInt(quantityProductTextField.getText());
         addToOrderAndProductOrder(idUser, orderDate, paymentStatus, idProduct, quantity);
+        showAlert("Success","Product successfully added to cart");
     }
 }

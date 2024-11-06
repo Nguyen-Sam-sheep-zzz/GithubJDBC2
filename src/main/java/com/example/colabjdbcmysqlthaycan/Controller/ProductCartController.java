@@ -1,12 +1,25 @@
 package com.example.colabjdbcmysqlthaycan.Controller;
 
+import com.example.colabjdbcmysqlthaycan.Application.LoginApplication;
 import com.example.colabjdbcmysqlthaycan.Class.ProductDisplay;
 import com.example.colabjdbcmysqlthaycan.ConnectDB;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Optional;
 
 public class ProductCartController {
     ConnectDB connectDB = new ConnectDB();
@@ -20,6 +33,11 @@ public class ProductCartController {
     private TextField productQuantityTextField;
     @FXML
     private Label productAmount;
+    @FXML
+    private Label idOrder;
+    @FXML
+    private Button deleteProductCart;
+
     private ProductDisplay productDisplay;
 
     public void initialize() {
@@ -34,12 +52,17 @@ public class ProductCartController {
         imageProduct.setImage(image);
         productQuantityTextField.setText(String.valueOf(productDisplay.getQuantity()));
         productAmount.setText(String.valueOf(productDisplay.getAmount()));
+        idOrder.setText(String.valueOf(productDisplay.getIdOrder()));
         updateProductAmount();
     }
 
     @FXML
-    private void reduce() {
+    private void reduce() throws IOException {
         int currentQuantity = Integer.parseInt(productQuantityTextField.getText());
+        if (currentQuantity == 1) {
+            confirmDelete();
+            loadToCartUserScreen();
+        }
         if (currentQuantity > 0) {
             currentQuantity--;
             productQuantityTextField.setText(String.valueOf(currentQuantity));
@@ -60,5 +83,73 @@ public class ProductCartController {
 
     private void updateProductAmount() {
         productAmount.setText(String.valueOf(productDisplay.getAmount()));
+    }
+
+    public void deleteProductOrder(String idProductOrder) {
+        Connection connection = connectDB.connectionDB();
+        PreparedStatement preparedStatement;
+        String deleteProductOrder = "DELETE FROM ProductOrder WHERE idOrder = ?";
+        try {
+            preparedStatement = connection.prepareStatement(deleteProductOrder);
+            preparedStatement.setInt(1, Integer.parseInt(idProductOrder));
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteOrder(String idProductOrder) {
+        Connection connection = connectDB.connectionDB();
+        PreparedStatement preparedStatement;
+        String deleteProductOrder = "DELETE FROM `Order` WHERE idOrder = ?";
+        try {
+            preparedStatement = connection.prepareStatement(deleteProductOrder);
+            preparedStatement.setInt(1, Integer.parseInt(idProductOrder));
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteProductInCart(String idProductOrder) {
+        deleteProductOrder(idProductOrder);
+        deleteOrder(idProductOrder);
+    }
+
+    public void handleDeleteProductInCart() throws IOException {
+        deleteProductInCart(idOrder.getText());
+        showAlert("Success", "Delete successful");
+        loadToCartUserScreen();
+
+    }
+
+    private void showAlert(String tiltle, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(tiltle);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    public void loadToCartUserScreen() throws IOException {
+        Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/Cart.fxml"));
+        Stage stage = (Stage) deleteProductCart.getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle("Cart user");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void confirmDelete() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirm deletion");
+        alert.setHeaderText("Are you sure you want to delete this item?");
+        alert.setContentText("Select OK to delete or Cancel to keep.");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            deleteProductInCart(idOrder.getText());
+        }
     }
 }
