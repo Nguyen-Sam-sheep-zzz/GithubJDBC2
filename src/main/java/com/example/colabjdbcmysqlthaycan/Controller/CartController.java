@@ -50,13 +50,12 @@ public class CartController {
     public List<ProductDisplay> getProductsCart() {
         List<ProductDisplay> productsCart = new ArrayList<>();
         String id = Session.getLoggedInCustomerId();
-        String query = "SELECT po.quantity, p.nameProduct, p.price, i.link, o.idOrder " +
+        String query = "SELECT p.nameProduct, p.price, i.link, c.idCart, c.idProduct,c.quantity " +
                 "FROM products p " +
                 "JOIN ImageProducts ip ON p.idProduct = ip.idProduct " +
                 "JOIN Images i ON ip.idImage = i.idImage " +
-                "JOIN productorder po ON p.idProduct = po.idProduct " +
-                "JOIN `order` o ON po.idOrder = o.idOrder " +
-                "WHERE o.idUser = ?";
+                "JOIN cart c ON c.idProduct = ip.idProduct " +
+                "WHERE c.idUser = ?";
 
         try (Connection connection = connectDB.connectionDB();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -67,8 +66,8 @@ public class CartController {
                     double price = resultSet.getDouble("price");
                     String imageLink = resultSet.getString("link");
                     int quantity = resultSet.getInt("quantity");
-                    int idOrder = resultSet.getInt("idOrder");
-                    productsCart.add(new ProductDisplay(imageLink, name, price, quantity, idOrder));
+                    int idCart = resultSet.getInt("idCart");
+                    productsCart.add(new ProductDisplay(imageLink, name, price, quantity, idCart));
                 }
             }
         } catch (SQLException e) {

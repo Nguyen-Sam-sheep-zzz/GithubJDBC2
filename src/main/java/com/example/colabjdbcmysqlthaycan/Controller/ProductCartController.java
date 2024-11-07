@@ -34,7 +34,7 @@ public class ProductCartController {
     @FXML
     private Label productAmount;
     @FXML
-    private Label idOrder;
+    private Label idCart;
     @FXML
     private Button deleteProductCart;
 
@@ -52,7 +52,7 @@ public class ProductCartController {
         imageProduct.setImage(image);
         productQuantityTextField.setText(String.valueOf(productDisplay.getQuantity()));
         productAmount.setText(String.valueOf(productDisplay.getAmount()));
-        idOrder.setText(String.valueOf(productDisplay.getIdOrder()));
+        idCart.setText(String.valueOf(productDisplay.getIdCart()));
         updateProductAmount();
     }
 
@@ -119,7 +119,7 @@ public class ProductCartController {
     }
 
     public void handleDeleteProductInCart() throws IOException {
-        deleteProductInCart(idOrder.getText());
+        deleteProductInCart(idCart.getText());
         showAlert("Success", "Delete successful");
         loadToCartUserScreen();
 
@@ -149,7 +149,7 @@ public class ProductCartController {
         alert.setContentText("Select OK to delete or Cancel to keep.");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            deleteProductInCart(idOrder.getText());
+            deleteProductInCart(idCart.getText());
         }
     }
 }
