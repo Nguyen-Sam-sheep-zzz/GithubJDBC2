@@ -31,6 +31,6 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Label fx:id="idOrder" layoutX="20.0" layoutY="17.0" textFill="#f7f1f1" />
+      <Label fx:id="idCart" layoutX="20.0" layoutY="17.0" textFill="#f7f1f1" />
    </children>
 </AnchorPane>
