@@ -347,7 +347,7 @@ public class HomeUserController {
         int idProduct = Integer.parseInt(idProductLabel.getText());
         String idProductString = idProductLabel.getText();
         int quantity = Integer.parseInt(quantityProductTextField.getText());
-        int[] checkID = selectIdUserIdProductFromCart(idUserString,idProductString,quantity);
+        int[] checkID = selectIdUserIdProductFromCart(idUserString,idProductString);
         if (checkID != null) {
             int idUserCheck = checkID[0];
             int idProductCheck = checkID[1];
@@ -365,17 +365,16 @@ public class HomeUserController {
         showAlert("Success", "Product successfully added to cart");
     }
 
-    public int[] selectIdUserIdProductFromCart(String idUserCheck, String idProductCheck, int quantityCheck ) {
+    public int[] selectIdUserIdProductFromCart(String idUserCheck, String idProductCheck) {
         Connection connection = connectDB.connectionDB();
         PreparedStatement preparedStatement;
         String id = "SELECT idUser, idProduct, quantity \n" +
                 "FROM Cart \n" +
-                "WHERE idUser = ? AND idProduct = ? AND quantity = ?;\n";
+                "WHERE idUser = ? AND idProduct = ?; \n";
         try {
             preparedStatement = connection.prepareStatement(id);
             preparedStatement.setInt(1, Integer.parseInt(idUserCheck));
             preparedStatement.setInt(2, Integer.parseInt(idProductCheck));
-            preparedStatement.setInt(3,quantityCheck);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 int idUser = resultSet.getInt("idUser");
