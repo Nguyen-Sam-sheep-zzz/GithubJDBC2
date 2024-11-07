@@ -149,7 +149,6 @@ public class ProductCartController {
         confirmDeleteProductInCart();
         showAlert("Success", "Delete successful");
         loadToCartUserScreen();
-
     }
 
     private void showAlert(String tiltle, String message) {

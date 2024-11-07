@@ -4,6 +4,7 @@ import com.example.colabjdbcmysqlthaycan.Application.LoginApplication;
 import com.example.colabjdbcmysqlthaycan.Class.ProductDisplay;
 import com.example.colabjdbcmysqlthaycan.Class.Session;
 import com.example.colabjdbcmysqlthaycan.ConnectDB;
+import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -346,7 +347,7 @@ public class HomeUserController {
         int idProduct = Integer.parseInt(idProductLabel.getText());
         String idProductString = idProductLabel.getText();
         int quantity = Integer.parseInt(quantityProductTextField.getText());
-        int[] checkID = selectIdUserIdProductFromCart();
+        int[] checkID = selectIdUserIdProductFromCart(idUserString,idProductString,quantity);
         if (checkID != null) {
             int idUserCheck = checkID[0];
             int idProductCheck = checkID[1];
@@ -364,12 +365,17 @@ public class HomeUserController {
         showAlert("Success", "Product successfully added to cart");
     }
 
-    public int[] selectIdUserIdProductFromCart() {
+    public int[] selectIdUserIdProductFromCart(String idUserCheck, String idProductCheck, int quantityCheck ) {
         Connection connection = connectDB.connectionDB();
         PreparedStatement preparedStatement;
-        String id = "SELECT idUser, idProduct, quantity FROM Cart";
+        String id = "SELECT idUser, idProduct, quantity \n" +
+                "FROM Cart \n" +
+                "WHERE idUser = ? AND idProduct = ? AND quantity = ?;\n";
         try {
             preparedStatement = connection.prepareStatement(id);
+            preparedStatement.setInt(1, Integer.parseInt(idUserCheck));
+            preparedStatement.setInt(2, Integer.parseInt(idProductCheck));
+            preparedStatement.setInt(3,quantityCheck);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 int idUser = resultSet.getInt("idUser");
