@@ -147,7 +147,6 @@ public class ProductCartController {
 
     public void handleDeleteProductInCart() throws IOException {
         confirmDeleteProductInCart();
-        showAlert("Success", "Delete successful");
         loadToCartUserScreen();
     }
 
