@@ -141,7 +141,6 @@ public class LoginController {
             } else {
                 return null;
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
