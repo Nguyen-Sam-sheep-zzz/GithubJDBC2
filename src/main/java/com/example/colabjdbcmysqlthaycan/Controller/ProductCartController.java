@@ -60,7 +60,7 @@ public class ProductCartController {
     private void reduce() throws IOException {
         int currentQuantity = Integer.parseInt(productQuantityTextField.getText());
         if (currentQuantity == 1) {
-            confirmDelete();
+            confirmDeleteProductInCart();
             loadToCartUserScreen();
         }
         if (currentQuantity > 0) {
@@ -113,13 +113,22 @@ public class ProductCartController {
         }
     }
 
-    public void deleteProductInCart(String idProductOrder) {
-        deleteProductOrder(idProductOrder);
-        deleteOrder(idProductOrder);
+    public void deleteProductInCart(String idCart) {
+        Connection connection = connectDB.connectionDB();
+        PreparedStatement preparedStatement;
+        String deleteProductCart = "DELETE FROM cart WHERE idCart = ?";
+
+        try {
+            preparedStatement = connection.prepareStatement(deleteProductCart);
+            preparedStatement.setInt(1, Integer.parseInt(idCart));
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void handleDeleteProductInCart() throws IOException {
-        deleteProductInCart(idCart.getText());
+        confirmDeleteProductInCart();
         showAlert("Success", "Delete successful");
         loadToCartUserScreen();
 
@@ -142,7 +151,7 @@ public class ProductCartController {
         stage.show();
     }
 
-    public void confirmDelete() {
+    public void confirmDeleteProductInCart() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirm deletion");
         alert.setHeaderText("Are you sure you want to delete this item?");
