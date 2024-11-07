@@ -15,18 +15,19 @@ public class ProductDisplay {
     private ImageView imageViewStatus;
     private String idImage;
     private int quantity;
+    private int idOrder;
 
-    public ProductDisplay(String id, String imageLink, String name, String description, double price,int quantity ,String status, String idImage) {
+    public ProductDisplay(String id, String imageLink, String name, String description, double price, int quantity, String status, String idImage) {
         this.id = id;
         this.imageLink = imageLink;
         this.imageView = new ImageView(new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + imageLink).toExternalForm()));
-        this.imageView.setFitWidth(50);
-        this.imageView.setFitHeight(37);
+        this.imageView.setFitWidth(60);
+        this.imageView.setFitHeight(47);
 
         this.name = name;
         this.description = description;
         this.price = price;
-        this.quantity =quantity;
+        this.quantity = quantity;
         this.status = status;
         if ("available".equals(status)) {
             this.imageViewStatus = new ImageView(new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/DauV.png").toExternalForm()));
@@ -36,6 +37,53 @@ public class ProductDisplay {
         this.imageViewStatus.setFitWidth(20);
         this.imageViewStatus.setFitHeight(20);
         this.idImage = idImage;
+    }
+
+    public ProductDisplay(String id, String imageLink, String name, String description, double price, int quantity, String status) {
+        this.id = id;
+        this.imageLink = imageLink;
+        this.imageView = new ImageView(new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + imageLink).toExternalForm()));
+        this.imageView.setFitWidth(50);
+        this.imageView.setFitHeight(37);
+
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.quantity = quantity;
+        this.status = status;
+
+    }
+
+    public ProductDisplay(String imageLink, String name, double price, int quantity) {
+        this.imageLink = imageLink;
+        this.imageView = new ImageView(new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + imageLink).toExternalForm()));
+        this.imageView.setFitWidth(50);
+        this.imageView.setFitHeight(37);
+
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    public ProductDisplay(String imageLink, String name, double price, int quantity, int idOrder) {
+        this.imageLink = imageLink;
+        this.imageView = new ImageView(new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + imageLink).toExternalForm()));
+        this.imageView.setFitWidth(50);
+        this.imageView.setFitHeight(37);
+
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.idOrder = idOrder;
+
+    }
+
+    public int getIdOrder() {
+        return idOrder;
+    }
+
+    public void setIdOrder(int idOrder) {
+        this.idOrder = idOrder;
     }
 
     public String getIdImage() {
@@ -116,6 +164,10 @@ public class ProductDisplay {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public double getAmount() {
+        return quantity * price;
     }
 }
 
