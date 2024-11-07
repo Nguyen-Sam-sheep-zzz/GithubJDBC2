@@ -62,17 +62,32 @@
                         <BorderPane />
                         <AnchorPane layoutX="70.0" layoutY="13.0" prefHeight="100.0" prefWidth="900.0" style="-fx-background-color: #fff; -fx-border-color: #454545;">
                             <children>
-                                <CheckBox layoutX="32.0" layoutY="41.0" mnemonicParsing="false" />
-                                <Label layoutX="85.0" layoutY="42.0" text="Product" />
-                                <Label layoutX="404.0" layoutY="42.0" text="Price" />
-                                <Label layoutX="569.0" layoutY="43.0" text="Quantity" />
-                                <Label layoutX="705.0" layoutY="43.0" text="Amount" />
-                                <Label layoutX="820.0" layoutY="44.0" text="Operation" />
+                                <CheckBox layoutX="29.0" layoutY="41.0" mnemonicParsing="false" />
+                                <Label layoutX="149.0" layoutY="41.0" text="Product">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font></Label>
+                                <Label layoutX="397.0" layoutY="41.0" text="Price">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font></Label>
+                                <Label layoutX="554.0" layoutY="40.0" text="Quantity">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font></Label>
+                                <Label layoutX="698.0" layoutY="39.0" text="Amount">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font></Label>
+                                <Label layoutX="808.0" layoutY="38.0" text="Operation">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font></Label>
                             </children>
                         </AnchorPane>
-                        <HBox layoutX="71.0" layoutY="130.0" prefHeight="350.0" prefWidth="900.0">
+                        <HBox layoutX="71.0" layoutY="113.0" prefHeight="382.0" prefWidth="900.0">
                             <children>
-                                <ScrollPane prefHeight="438.0" prefWidth="923.0">
+                                <ScrollPane prefHeight="369.0" prefWidth="900.0">
                                     <content>
                                         <GridPane fx:id="gridPaneProductsUser" prefHeight="0.0" prefWidth="0.0">
                                             <columnConstraints>
@@ -82,17 +97,23 @@
                                     </content>
                                 </ScrollPane>
                             </children></HBox>
-                        <AnchorPane layoutX="71.0" layoutY="492.0" prefHeight="100.0" prefWidth="900.0" style="-fx-background-color: #fff; -fx-border-color: #454545;">
+                        <AnchorPane layoutX="72.0" layoutY="493.0" prefHeight="100.0" prefWidth="900.0" style="-fx-background-color: #fff; -fx-border-color: #454545;">
                             <children>
-                                <CheckBox layoutX="32.0" layoutY="41.0" mnemonicParsing="false" />
-                                <Label layoutX="85.0" layoutY="39.0" text="Chọn tất cả (0)">
+                                <CheckBox layoutX="29.0" layoutY="41.0" mnemonicParsing="false" />
+                                <Label layoutX="88.0" layoutY="41.0" text="Chọn tất cả (0)">
                                     <font>
                                         <Font size="15.0" />
                                     </font>
                                 </Label>
-                                <Label layoutX="223.0" layoutY="42.0" text="Delete" />
-                                <Label layoutX="593.0" layoutY="36.0" prefHeight="25.0" prefWidth="125.0" text="amount" textFill="#ee586a" />
-                                <Button layoutX="731.0" layoutY="36.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" stylesheets="@../CSS/login.css" text="Buy" />
+                                <Label layoutX="223.0" layoutY="42.0" prefHeight="22.0" prefWidth="52.0" text="Delete">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font></Label>
+                                <Label layoutX="593.0" layoutY="41.0" prefHeight="25.0" prefWidth="125.0" text="Amount" textFill="#ee586a">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                                <Button layoutX="765.0" layoutY="42.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" stylesheets="@../CSS/login.css" text="Buy" />
                             </children>
                         </AnchorPane>
 
