@@ -240,7 +240,7 @@ public class HomeUserController {
         String addToOrder = "insert into `Order` (idUser, orderDate, paymentStatus) VALUES (?, ?, ?)";
 
         try {
-            preparedStatement = connection.prepareStatement(addToOrder,PreparedStatement.RETURN_GENERATED_KEYS);
+            preparedStatement = connection.prepareStatement(addToOrder, PreparedStatement.RETURN_GENERATED_KEYS);
 
             preparedStatement.setInt(1, Integer.parseInt(idUser));
             preparedStatement.setString(2, orderDate);
@@ -298,9 +298,9 @@ public class HomeUserController {
         alert.showAndWait();
     }
 
-    public void handleAddToCart() {
+    public void handleAddToOrder() {
         if (idProductLabel.getText().isEmpty() || quantityProductTextField.getText().isEmpty()) {
-            showAlert("ERROR","Please select a product");
+            showAlert("ERROR", "Please select a product");
             return;
         }
         String idUser = Session.getLoggedInCustomerId();
@@ -314,6 +314,37 @@ public class HomeUserController {
         String idProduct = idProductLabel.getText();
         int quantity = Integer.parseInt(quantityProductTextField.getText());
         addToOrderAndProductOrder(idUser, orderDate, paymentStatus, idProduct, quantity);
-        showAlert("Success","Product successfully added to cart");
+        showAlert("Success", "Product successfully added to cart");
+    }
+
+    public void addToCart(String idUser, String idProduct, int quantity) {
+        Connection connection = connectDB.connectionDB();
+        PreparedStatement preparedStatement;
+        String addToCart = "insert into Cart (idUser, idProduct, quantity) VALUES (?, ?, ?)";
+
+        try {
+            preparedStatement = connection.prepareStatement(addToCart);
+
+            preparedStatement.setInt(1, Integer.parseInt(idUser));
+            preparedStatement.setInt(2, Integer.parseInt(idProduct));
+            preparedStatement.setInt(3, quantity);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void handleAddToCart() {
+        if (idProductLabel.getText().isEmpty() || quantityProductTextField.getText().isEmpty()) {
+            showAlert("ERROR", "Please select a product");
+            return;
+        }
+        String idUser = Session.getLoggedInCustomerId();
+        String idProduct = idProductLabel.getText();
+        int quantity = Integer.parseInt(quantityProductTextField.getText());
+        addToCart(idUser,idProduct,quantity);
+        showAlert("Success", "Product successfully added to cart");
     }
 }
