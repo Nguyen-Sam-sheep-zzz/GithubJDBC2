@@ -68,17 +68,35 @@ public class ProductCartController {
             productQuantityTextField.setText(String.valueOf(currentQuantity));
             productDisplay.setQuantity(currentQuantity);
             updateProductAmount();
+            String query = "update cart set quantity = quantity - 1 where idCart = ?";
+            try{
+                PreparedStatement ps = connectDB.connectionDB().prepareStatement(query);
+                ps.setInt(1, productDisplay.getIdCart());
+                ps.executeUpdate();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
+
 
     }
 
     @FXML
-    private void more() {
+    private void more()  {
         int currentQuantity = Integer.parseInt(productQuantityTextField.getText());
         currentQuantity++;
         productQuantityTextField.setText(String.valueOf(currentQuantity));
         productDisplay.setQuantity(currentQuantity);
         updateProductAmount();
+        String query = "update cart set quantity = quantity + 1 where idCart = ?";
+        try {
+            PreparedStatement ps = connectDB.connectionDB().prepareStatement(query);
+            int id = Integer.parseInt(idCart.getText());
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private void updateProductAmount() {
