@@ -16,6 +16,9 @@ public class ProductDisplay {
     private String idImage;
     private int quantity;
     private int idCart;
+    private int idOrder;
+    private String paymentStatus;
+    private double amount;
 
     public ProductDisplay(String id, String imageLink, String name, String description, double price, int quantity, String status, String idImage) {
         this.id = id;
@@ -76,6 +79,35 @@ public class ProductDisplay {
         this.quantity = quantity;
         this.idCart = idCart;
 
+    }
+
+    public ProductDisplay(String imageLink, String name, int quantity, int idOrder, String paymentStatus,double price) {
+        this.imageLink = imageLink;
+        this.imageView = new ImageView(new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + imageLink).toExternalForm()));
+        this.imageView.setFitWidth(75);
+        this.imageView.setFitHeight(75);
+
+        this.name = name;
+        this.quantity = quantity;
+        this.idOrder = idOrder;
+        this.paymentStatus = paymentStatus;
+        this.price = price;
+    }
+
+    public String getpaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setpaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+
+    public int getIdOrder() {
+        return idOrder;
+    }
+
+    public void setIdOrder(int idOrder) {
+        this.idOrder = idOrder;
     }
 
     public int getIdCart() {
