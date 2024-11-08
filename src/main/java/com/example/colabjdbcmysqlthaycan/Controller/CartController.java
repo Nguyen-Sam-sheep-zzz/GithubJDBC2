@@ -33,7 +33,8 @@ public class CartController {
     private CheckBox checkBoxAll;
     @FXML
     private Button homeUserButton;
-
+    @FXML
+    private Button homeOrder;
     public void initialize() {
         getAllProductCart();
     }
@@ -103,6 +104,14 @@ public class CartController {
         Stage stage = (Stage) homeUserButton.getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setTitle("Home user");
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void loadToOrderScreenFromCart() throws IOException {
+        Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/Order.fxml"));
+        Stage stage = (Stage) homeOrder.getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle("Order");
         stage.setScene(scene);
         stage.show();
     }

@@ -55,6 +55,12 @@
                                 <Image url="@../img/signOut.png" />
                             </image>
                         </ImageView>
+                  <Button fx:id="homeOrder" layoutX="19.0" layoutY="343.0" mnemonicParsing="false" onAction="#loadToOrderScreenFromHomeUser" prefHeight="35.0" prefWidth="117.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="         Purchase" />
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="348.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/order-history.png" />
+                     </image>
+                  </ImageView>
                     </children>
                 </AnchorPane>
             </left>

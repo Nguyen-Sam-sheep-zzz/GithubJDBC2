@@ -9,7 +9,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.colabjdbcmysqlthaycan.Controller.OrderController">
@@ -28,8 +30,8 @@
                                 <Font size="20.0" />
                             </font>
                         </Label>
-                        <Button fx:id="homeUserButton" layoutX="18.0" layoutY="184.0" mnemonicParsing="false" onAction="#loadToHomeUserScreenFromCart" prefHeight="35.0" prefWidth="118.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="        Product" />
-                        <Button layoutX="18.0" layoutY="238.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="118.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="        Cart" />
+                        <Button fx:id="homeUserButton" layoutX="18.0" layoutY="184.0" mnemonicParsing="false" onAction="#loadToHomeUserScreenFromOrder" prefHeight="35.0" prefWidth="118.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="        Product" />
+                        <Button fx:id="homeCart" layoutX="18.0" layoutY="238.0" mnemonicParsing="false" onAction="#loadToCartScreenFromHomeOrder" prefHeight="35.0" prefWidth="118.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="        Cart" />
                         <Button layoutX="16.0" layoutY="296.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="         Bill" />
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -46,12 +48,18 @@
                                 <Image url="@../img/bill.png" />
                             </image>
                         </ImageView>
-                        <Button fx:id="buttonSingOut" layoutX="17.0" layoutY="543.0" mnemonicParsing="false" onAction="#loadToLoginScreenFromCart" prefHeight="36.0" prefWidth="134.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="           Sign Out" />
+                        <Button fx:id="buttonSingOut" layoutX="17.0" layoutY="543.0" mnemonicParsing="false" onAction="#loadToLoginScreenFromOrder" prefHeight="36.0" prefWidth="134.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="           Sign Out" />
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="32.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../img/signOut.png" />
                             </image>
                         </ImageView>
+                  <Button layoutX="17.0" layoutY="341.0" mnemonicParsing="false"  prefHeight="35.0" prefWidth="117.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="         Purchase" />
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="21.0" layoutY="346.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/order-history.png" />
+                     </image>
+                  </ImageView>
                     </children>
                 </AnchorPane>
             </left>
@@ -66,12 +74,16 @@
                         <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #d5d5d5;" BorderPane.alignment="CENTER">
                            <children>
                               <ScrollPane prefHeight="400.0" prefWidth="950.0">
-                                <content>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                                </content>
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
+                                 <content>
+                                    <GridPane fx:id="gridPaneOrder">
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                    </GridPane>
+                                 </content>
                               </ScrollPane>
                            </children>
                            <BorderPane.margin>
