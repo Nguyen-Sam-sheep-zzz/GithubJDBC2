@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.colabjdbcmysqlthaycan.Controller.HomeAdminController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.colabjdbcmysqlthaycan.Controller.OrderAdminController">
     <children>
         <BorderPane prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #fff;">
             <left>
@@ -28,7 +28,7 @@
                                 <Font size="20.0" />
                             </font>
                         </Label>
-                        <Button layoutX="46.0" layoutY="197.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="Product" />
+                        <Button layoutX="46.0" layoutY="197.0" mnemonicParsing="false" onAction="#loadToProductScreenFromOrderAdmin" prefHeight="35.0" prefWidth="130.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="Product" />
                         <Button layoutX="46.0" layoutY="265.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="Bill" />
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -40,12 +40,13 @@
                                 <Image url="@../img/bill.png" />
                             </image>
                         </ImageView>
-                        <Button fx:id="buttonSingOut" layoutX="24.0" layoutY="544.0" mnemonicParsing="false" onAction="#loadToLoginScreenFromHomeAdmin" prefHeight="35.0" prefWidth="120.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="           Sign Out" />
+                        <Button fx:id="buttonSignOut" layoutX="24.0" layoutY="544.0" mnemonicParsing="false" onAction="#loadToLoginScreenFromOrderAdmin" prefHeight="35.0" prefWidth="120.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="           Sign Out" />
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="37.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../img/signOut.png" />
                             </image>
                         </ImageView>
+                  <Button layoutX="46.0" layoutY="315.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="Order" />
                     </children>
                 </AnchorPane>
             </left>
@@ -60,14 +61,16 @@
                             </styleClass>
                             <children>
                                 <TextField layoutX="24.0" layoutY="23.0" prefHeight="30.0" prefWidth="226.0" promptText="  Search" style="-fx-background-radius: 50; -fx-border-radius: 50;" styleClass="text-field1" />
-                                <TableView fx:id="productTableView" layoutX="24.0" layoutY="79.0" prefHeight="475.0" prefWidth="950.0" style="-fx-border-color: #bb1a3a;" stylesheets="@../CSS/login.css">
+                                <TableView fx:id="tableViewOrder" layoutX="24.0" layoutY="79.0" prefHeight="475.0" prefWidth="950.0" style="-fx-border-color: #bb1a3a;" stylesheets="@../CSS/login.css">
                                     <columns>
-                                        <TableColumn prefWidth="50.0" text="ID" />
-                                        <TableColumn prefWidth="154.0" text="Image" />
-                                        <TableColumn prefWidth="182.00003051757812" text="Name" />
-                                        <TableColumn minWidth="4.0" prefWidth="119.333251953125" text="Price" />
-                                        <TableColumn minWidth="0.0" prefWidth="104.0" text="Quantity" />
-                                        <TableColumn maxWidth="141.33331298828125" minWidth="6.6666259765625" prefWidth="130.0" text="Status" />
+                                        <TableColumn fx:id="idColumn" prefWidth="50.0" text="ID" />
+                                        <TableColumn fx:id="imageColumn" prefWidth="100.0" text="Image" />
+                                        <TableColumn fx:id="nameColumn" prefWidth="150.0" text="Name" />
+                                        <TableColumn fx:id="priceColumn" minWidth="4.0" prefWidth="100.0" text="Price" />
+                                        <TableColumn fx:id="quantityColumn" minWidth="0.0" prefWidth="100.0" text="Quantity" />
+                              <TableColumn fx:id="amountColumn" minWidth="0.0" prefWidth="100.0" text="Amount" />
+                                        <TableColumn fx:id="statusColumn" maxWidth="260.0" minWidth="6.6666259765625" prefWidth="150.0" text="Status" />
+                              <TableColumn fx:id="actionColumn" maxWidth="249.33343505859375" minWidth="6.6666259765625" prefWidth="200.0" text="Action" />
                                     </columns>
                                 </TableView>
                                 <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="219.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
