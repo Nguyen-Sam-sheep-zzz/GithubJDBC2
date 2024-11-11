@@ -94,6 +94,19 @@ public class ProductDisplay {
         this.price = price;
     }
 
+    public ProductDisplay(int idOrder, String link, String nameProduct, double price, int quantity, String paymentStatus) {
+        this.imageLink = link;
+        this.imageView = new ImageView(new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + imageLink).toExternalForm()));
+        this.imageView.setFitWidth(75);
+        this.imageView.setFitHeight(75);
+
+        this.name = nameProduct;
+        this.quantity = quantity;
+        this.idOrder = idOrder;
+        this.paymentStatus = paymentStatus;
+        this.price = price;
+    }
+
     public String getpaymentStatus() {
         return paymentStatus;
     }

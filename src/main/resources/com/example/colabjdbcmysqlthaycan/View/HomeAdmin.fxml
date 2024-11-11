@@ -49,6 +49,7 @@
                                 <Image url="@../img/signOut.png" />
                             </image>
                         </ImageView>
+                  <Button layoutX="46.0" layoutY="322.0" mnemonicParsing="false" onAction="#loadToOrderAdminScreenFromHomeAdmin" prefHeight="35.0" prefWidth="130.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="Order" />
                     </children>
                 </AnchorPane>
             </left>
