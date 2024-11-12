@@ -53,6 +53,8 @@ public class HomeUserController {
     private Button homeCart;
     @FXML
     private Label idProductLabel;
+    @FXML
+    private Button homeOrder;
 
 
     public void initialize() {
@@ -79,6 +81,14 @@ public class HomeUserController {
         Stage stage = (Stage) homeCart.getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setTitle("Cart");
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void loadToOrderScreenFromHomeUser() throws IOException {
+        Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/Order.fxml"));
+        Stage stage = (Stage) homeOrder.getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle("Order");
         stage.setScene(scene);
         stage.show();
     }

@@ -57,6 +57,10 @@ public class HomeAdminController {
     @FXML
     private Button buttonSingOut;
     @FXML
+    private Button buttonBill;
+    @FXML
+    private Button buttonOrder;
+    @FXML
     private TableView<ProductDisplay> productTableView;
     @FXML
     private TableColumn<ProductDisplay, String> imageColumn;
@@ -403,6 +407,22 @@ public class HomeAdminController {
         stage.setScene(scene);
         stage.show();
     }
+    public void loadToOrderAdminScreenFromHomeAdmin() throws IOException {
+        Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/OrderAdmin.fxml"));
+        Stage stage = (Stage) buttonOrder.getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle("Order");
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void loadToBillScreenFromOrderAdmin() throws IOException {
+        Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/BillAdmin.fxml"));
+        Stage stage = (Stage) buttonBill.getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle("Bill");
+        stage.setScene(scene);
+        stage.show();
+    }
 
     public void handleSearchProduct() {
         ObservableList<ProductDisplay> searchProduct = FXCollections.observableArrayList();
@@ -429,4 +449,6 @@ public class HomeAdminController {
         }
         productTableView.setItems(searchProduct);
     }
+
+
 }

@@ -56,6 +56,8 @@ public class CartController {
     private List<ProductDisplay> selectProducts = new ArrayList<>();
 
     private List<CheckBox> productFullCheckBox = new ArrayList<>();
+    @FXML
+    private Button homeOrder;
 
     public void initialize() {
         selectAllProductCartUserCheckBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
@@ -262,5 +264,14 @@ public class CartController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public void loadToOrderScreenFromCart() throws IOException {
+        Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/Order.fxml"));
+        Stage stage = (Stage) homeOrder.getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle("Order");
+        stage.setScene(scene);
+        stage.show();
     }
 }
