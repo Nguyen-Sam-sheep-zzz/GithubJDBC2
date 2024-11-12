@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="900.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.colabjdbcmysqlthaycan.Controller.ProductCartController">
    <children>
-      <CheckBox layoutX="27.0" layoutY="54.0" mnemonicParsing="false" style="-fx-background-color: #fff;" />
+      <CheckBox fx:id="productCartCheckBox" layoutX="27.0" layoutY="54.0" mnemonicParsing="false" onAction="#handleProductSelection" style="-fx-background-color: #fff;" />
       <ImageView fx:id="imageProduct" fitHeight="75.0" fitWidth="75.0" layoutX="79.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="productName" layoutX="170.0" layoutY="25.0" prefHeight="75.0" prefWidth="175.0" wrapText="true" />
       <Label fx:id="productPrice" alignment="CENTER" layoutX="349.0" layoutY="49.0" prefHeight="25.0" prefWidth="125.0" />
@@ -31,6 +31,6 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Label fx:id="idCart" layoutX="20.0" layoutY="17.0" textFill="#f7f1f1" />
+      <Label fx:id="idProductCart" layoutX="20.0" layoutY="17.0" textFill="#f7f1f1" />
    </children>
 </AnchorPane>

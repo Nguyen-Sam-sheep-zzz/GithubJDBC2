@@ -4,7 +4,6 @@ import com.example.colabjdbcmysqlthaycan.Application.LoginApplication;
 import com.example.colabjdbcmysqlthaycan.Class.ProductDisplay;
 import com.example.colabjdbcmysqlthaycan.Class.Session;
 import com.example.colabjdbcmysqlthaycan.ConnectDB;
-import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -59,7 +58,7 @@ public class HomeUserController {
 
 
     public void initialize() {
-
+        idProductLabel.setVisible(false );
         searchProductUser.textProperty().addListener((observable, oldValue, newValue) -> {
             handleSearchProduct();
         });

@@ -10,15 +10,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Optional;
 
 public class ProductCartController {
@@ -34,26 +31,44 @@ public class ProductCartController {
     @FXML
     private Label productAmount;
     @FXML
-    private Label idCart;
+    private Label idProductCart;
     @FXML
     private Button deleteProductCart;
+    @FXML
+    private CheckBox productCartCheckBox;
 
     private ProductDisplay productDisplay;
+
+    private CartController cartController;
 
     public void initialize() {
         productQuantityTextField.setText("0");
     }
 
-    public void setProductItemCart(ProductDisplay productDisplay) {
+    public CheckBox getProductCartCheckBox() {
+        return productCartCheckBox;
+    }
+
+    public void setProductItemCart(ProductDisplay productDisplay, CartController cartController) {
         this.productDisplay = productDisplay;
+        this.cartController = cartController;
         productName.setText(productDisplay.getName());
         productPrice.setText(String.valueOf(productDisplay.getPrice()));
         Image image = new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + productDisplay.getImageLink()).toExternalForm());
         imageProduct.setImage(image);
         productQuantityTextField.setText(String.valueOf(productDisplay.getQuantity()));
         productAmount.setText(String.valueOf(productDisplay.getAmount()));
-        idCart.setText(String.valueOf(productDisplay.getIdCart()));
-        updateProductAmount();
+        idProductCart.setText(String.valueOf(productDisplay.getIdCart()));
+        productCartCheckBox.setSelected(productDisplay.getCheckBox());
+    }
+
+    public void handleProductSelection() {
+        if (productCartCheckBox.isSelected()) {
+            cartController.addSelectProduct(productDisplay);
+        } else {
+            cartController.removeSelectedProduct(productDisplay);
+            cartController.getSelectAllProductCartUserCheckBox().setSelected(false);
+        }
     }
 
     @FXML
@@ -62,6 +77,7 @@ public class ProductCartController {
         if (currentQuantity == 1) {
             confirmDeleteProductInCart();
             loadToCartUserScreen();
+            return;
         }
         if (currentQuantity > 0) {
             currentQuantity--;
@@ -69,20 +85,19 @@ public class ProductCartController {
             productDisplay.setQuantity(currentQuantity);
             updateProductAmount();
             String query = "update cart set quantity = quantity - 1 where idCart = ?";
-            try{
+            try {
                 PreparedStatement ps = connectDB.connectionDB().prepareStatement(query);
                 ps.setInt(1, productDisplay.getIdCart());
                 ps.executeUpdate();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
+            cartController.updateTotalPrice();
         }
-
-
     }
 
     @FXML
-    private void more()  {
+    private void more() {
         int currentQuantity = Integer.parseInt(productQuantityTextField.getText());
         currentQuantity++;
         productQuantityTextField.setText(String.valueOf(currentQuantity));
@@ -91,12 +106,13 @@ public class ProductCartController {
         String query = "update cart set quantity = quantity + 1 where idCart = ?";
         try {
             PreparedStatement ps = connectDB.connectionDB().prepareStatement(query);
-            int id = Integer.parseInt(idCart.getText());
+            int id = Integer.parseInt(idProductCart.getText());
             ps.setInt(1, id);
             ps.executeUpdate();
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
+        cartController.updateTotalPrice();
     }
 
     private void updateProductAmount() {
@@ -150,14 +166,6 @@ public class ProductCartController {
         loadToCartUserScreen();
     }
 
-    private void showAlert(String tiltle, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(tiltle);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-
     public void loadToCartUserScreen() throws IOException {
         Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/Cart.fxml"));
         Stage stage = (Stage) deleteProductCart.getScene().getWindow();
@@ -167,6 +175,7 @@ public class ProductCartController {
         stage.show();
     }
 
+
     public void confirmDeleteProductInCart() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirm deletion");
@@ -174,7 +183,7 @@ public class ProductCartController {
         alert.setContentText("Select OK to delete or Cancel to keep.");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            deleteProductInCart(idCart.getText());
+            deleteProductInCart(idProductCart.getText());
         }
     }
 }
