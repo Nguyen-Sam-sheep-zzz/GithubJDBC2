@@ -31,6 +31,10 @@ public class OrderAdminController {
     @FXML
     private Button buttonSignOut;
     @FXML
+    private Button buttonProduct;
+    @FXML
+    private Button buttonBill;
+    @FXML
     private TableView<ProductDisplay> tableViewOrder;
     @FXML
     private TableColumn<ProductDisplay, Integer> idColumn;
@@ -103,9 +107,17 @@ public class OrderAdminController {
 
     public void loadToProductScreenFromOrderAdmin() throws IOException {
         Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/HomeAdmin.fxml"));
-        Stage stage = (Stage) buttonSignOut.getScene().getWindow();
+        Stage stage = (Stage) buttonProduct.getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setTitle("Home Admin");
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void loadToBillScreenFromOrderAdmin() throws IOException {
+        Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/HomeAdmin.fxml"));
+        Stage stage = (Stage) buttonBill.getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle("Bill");
         stage.setScene(scene);
         stage.show();
     }
