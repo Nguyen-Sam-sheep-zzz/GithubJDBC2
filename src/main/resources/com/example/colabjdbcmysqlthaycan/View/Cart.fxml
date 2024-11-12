@@ -47,8 +47,8 @@
                                 <Image url="@../img/bill.png" />
                             </image>
                         </ImageView>
-                        <Button fx:id="buttonSingOut" layoutX="17.0" layoutY="543.0" mnemonicParsing="false" onAction="#loadToLoginScreenFromCart" prefHeight="36.0" prefWidth="134.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="           Sign Out" />
-                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="32.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true">
+                        <Button fx:id="buttonSingOut" layoutX="13.0" layoutY="543.0" mnemonicParsing="false" onAction="#loadToLoginScreenFromCart" prefHeight="36.0" prefWidth="134.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="           Sign Out" />
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="27.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../img/signOut.png" />
                             </image>
@@ -60,9 +60,9 @@
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <children>
                         <BorderPane />
-                        <AnchorPane layoutX="70.0" layoutY="13.0" prefHeight="100.0" prefWidth="900.0" style="-fx-background-color: #fff; -fx-border-color: #454545;">
+                        <AnchorPane layoutX="71.0" layoutY="13.0" prefHeight="100.0" prefWidth="900.0" style="-fx-background-color: #fff; -fx-border-color: #454545;">
                             <children>
-                                <CheckBox layoutX="29.0" layoutY="41.0" mnemonicParsing="false" />
+                                <CheckBox fx:id="selectAllProductCartUserCheckBox1" layoutX="29.0" layoutY="41.0" mnemonicParsing="false" onAction="#handleSelectAllProducts" />
                                 <Label layoutX="149.0" layoutY="41.0" text="Product">
                            <font>
                               <Font name="System Bold" size="14.0" />
@@ -85,7 +85,7 @@
                            </font></Label>
                             </children>
                         </AnchorPane>
-                        <HBox layoutX="71.0" layoutY="113.0" prefHeight="382.0" prefWidth="900.0">
+                        <HBox layoutX="71.0" layoutY="113.0" prefHeight="387.0" prefWidth="900.0">
                             <children>
                                 <ScrollPane prefHeight="369.0" prefWidth="900.0">
                                     <content>
@@ -97,23 +97,28 @@
                                     </content>
                                 </ScrollPane>
                             </children></HBox>
-                        <AnchorPane layoutX="72.0" layoutY="493.0" prefHeight="100.0" prefWidth="900.0" style="-fx-background-color: #fff; -fx-border-color: #454545;">
+                        <AnchorPane layoutX="71.0" layoutY="500.0" prefHeight="100.0" prefWidth="900.0" style="-fx-background-color: #fff; -fx-border-color: #454545;">
                             <children>
-                                <CheckBox layoutX="29.0" layoutY="41.0" mnemonicParsing="false" />
-                                <Label layoutX="88.0" layoutY="41.0" text="Chọn tất cả (0)">
+                                <CheckBox fx:id="selectAllProductCartUserCheckBox" layoutX="29.0" layoutY="41.0" mnemonicParsing="false" onAction="#handleSelectAllProducts" />
+                                <Label fx:id="selectAllProductUserCartLabel" layoutX="88.0" layoutY="39.0" text="Chọn tất cả (0)">
                                     <font>
                                         <Font size="15.0" />
                                     </font>
                                 </Label>
-                                <Label layoutX="223.0" layoutY="42.0" prefHeight="22.0" prefWidth="52.0" text="Delete">
+                                <Label fx:id="deleteAllProductHomeUser" layoutX="212.0" layoutY="40.0" onMouseClicked="#handleDeleteAllProduct" prefHeight="22.0" prefWidth="72.0" text="Delete All">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font></Label>
-                                <Label layoutX="593.0" layoutY="41.0" prefHeight="25.0" prefWidth="125.0" text="Amount" textFill="#ee586a">
+                                <Label layoutX="535.0" layoutY="37.0" prefHeight="26.0" prefWidth="62.0" text="Amount :" textFill="#ee586a">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                                <Button layoutX="765.0" layoutY="42.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" stylesheets="@../CSS/login.css" text="Buy" />
+                                <Button layoutX="777.0" layoutY="37.0" mnemonicParsing="false" onAction="#handleAddToOrder" prefHeight="25.0" prefWidth="60.0" stylesheets="@../CSS/login.css" text="Buy" />
+                        <Label fx:id="totalPriceLabel" layoutX="597.0" layoutY="37.0" prefHeight="26.0" prefWidth="122.0" textFill="#ee586a">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
                             </children>
                         </AnchorPane>
 

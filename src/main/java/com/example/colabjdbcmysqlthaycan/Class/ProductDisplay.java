@@ -16,6 +16,7 @@ public class ProductDisplay {
     private String idImage;
     private int quantity;
     private int idCart;
+    private boolean checkBox;
 
     public ProductDisplay(String id, String imageLink, String name, String description, double price, int quantity, String status, String idImage) {
         this.id = id;
@@ -54,6 +55,14 @@ public class ProductDisplay {
 
     }
 
+    public boolean getCheckBox() {
+        return checkBox;
+    }
+
+    public void setCheckBox(boolean checkBox) {
+        this.checkBox = checkBox;
+    }
+
     public ProductDisplay(String imageLink, String name, double price, int quantity) {
         this.imageLink = imageLink;
         this.imageView = new ImageView(new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + imageLink).toExternalForm()));
@@ -65,17 +74,18 @@ public class ProductDisplay {
         this.quantity = quantity;
     }
 
-    public ProductDisplay(String imageLink, String name, double price, int quantity, int idCart) {
+    public ProductDisplay(String id, String imageLink, String name, double price, int quantity, int idCart, boolean checkBox) {
         this.imageLink = imageLink;
         this.imageView = new ImageView(new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + imageLink).toExternalForm()));
         this.imageView.setFitWidth(50);
         this.imageView.setFitHeight(37);
 
+        this.id = id;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.idCart = idCart;
-
+        this.checkBox = checkBox;
     }
 
     public int getIdCart() {
