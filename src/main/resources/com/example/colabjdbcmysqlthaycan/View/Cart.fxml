@@ -111,7 +111,7 @@
                                         <Font size="15.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="deleteAllProductHomeUser" layoutX="212.0" layoutY="40.0" onMouseClicked="#handleDeleteAllProduct" prefHeight="22.0" prefWidth="72.0" text="Delete All">
+                                <Label fx:id="deleteAllProductHomeUser" layoutX="212.0" layoutY="40.0" onMouseClicked="#handleDeleteProducts" prefHeight="22.0" prefWidth="72.0" text="Delete All">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font></Label>

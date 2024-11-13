@@ -8,10 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -25,6 +22,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class CartController {
 
@@ -128,10 +126,21 @@ public class CartController {
         return productsCart;
     }
 
+    private boolean selectAllProduct = true;
+
     public void handleSelectAllProducts() {
         for (CheckBox productCheckBox : productFullCheckBox) {
-            productCheckBox.fire();
+            if (selectAllProduct) {
+                if (!productCheckBox.isSelected()) {
+                    productCheckBox.fire();
+                }
+            } else {
+                if (productCheckBox.isSelected()) {
+                    productCheckBox.fire();
+                }
+            }
         }
+        selectAllProduct = !selectAllProduct;
         updateTotalPrice();
     }
 
@@ -232,21 +241,20 @@ public class CartController {
         }
     }
 
-    public void handleDeleteAllProduct() throws IOException {
-        Connection connection = connectDB.connectionDB();
-        PreparedStatement preparedStatement;
-        String deleteProductCart = "DELETE FROM cart WHERE idUser = ?";
-
-        try {
-            preparedStatement = connection.prepareStatement(deleteProductCart);
-            preparedStatement.setInt(1, Integer.parseInt(Session.getLoggedInCustomerId()));
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+    public void handleDeleteProducts() throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirm deletion");
+        alert.setHeaderText("Are you sure you want to delete " + selectProducts.size() + " products?");
+        alert.setContentText("Select OK to delete or Cancel to keep.");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            for (ProductDisplay productDisplay : selectProducts) {
+                deleteProductInCart(String.valueOf(productDisplay.getIdCart()));
+            }
         }
         loadToCartUserScreen();
-        showAlert("Deleted successfully", "removed all products from cart");
     }
+
 
     public void loadToCartUserScreen() throws IOException {
         Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/Cart.fxml"));
