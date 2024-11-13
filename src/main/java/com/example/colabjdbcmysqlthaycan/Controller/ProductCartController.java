@@ -43,6 +43,9 @@ public class ProductCartController {
 
     public void initialize() {
         productQuantityTextField.setText("0");
+        productQuantityTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            updateTextField(Integer.parseInt(newValue));
+        });
     }
 
     public CheckBox getProductCartCheckBox() {
@@ -186,4 +189,15 @@ public class ProductCartController {
             deleteProductInCart(idProductCart.getText());
         }
     }
+    public void updateTextField(int newquantity){
+        String query = "update cart set quantity =  ?";
+        try{
+            PreparedStatement ps = connectDB.connectionDB().prepareStatement(query);
+            ps.setInt(1, newquantity);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

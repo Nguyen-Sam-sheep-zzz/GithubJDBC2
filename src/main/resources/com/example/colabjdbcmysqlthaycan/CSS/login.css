@@ -204,5 +204,9 @@
     -fx-background-color: #bb1a3a;
     -fx-text-fill: #fff;
 }
-
+.search1 {
+    -fx-padding: 0px 50px;
+    -fx-border-color: #454545;
+    -fx-text-fill: #454545;
+}
 

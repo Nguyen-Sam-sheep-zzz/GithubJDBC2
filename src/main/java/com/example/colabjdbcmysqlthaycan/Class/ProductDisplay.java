@@ -4,6 +4,8 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.sql.Date;
+
 
 public class ProductDisplay {
     private String imageLink;
@@ -23,6 +25,7 @@ public class ProductDisplay {
     private double amount;
     private Button confirmButton;
     private Button cancelButton;
+    private Date orderDate;
 
 
     public ProductDisplay(String id, String imageLink, String name, String description, double price, int quantity, String status, String idImage) {
@@ -95,7 +98,7 @@ public class ProductDisplay {
         this.checkBox = checkBox;
     }
 
-    public ProductDisplay(String imageLink, String name, int quantity, int idOrder, PaymentStatus paymentStatus,double price) {
+    public ProductDisplay(String imageLink, String name, int quantity, int idOrder, PaymentStatus paymentStatus,double price,Date orderDate) {
         this.imageLink = imageLink;
         this.imageView = new ImageView(new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + imageLink).toExternalForm()));
         this.imageView.setFitWidth(75);
@@ -106,6 +109,7 @@ public class ProductDisplay {
         this.idOrder = idOrder;
         this.paymentStatus = paymentStatus;
         this.price = price;
+        this.orderDate = orderDate;
     }
 
     public ProductDisplay(int idOrder, String imageLink, String nameProduct, double price, int quantity, PaymentStatus paymentStatus) {
@@ -121,6 +125,14 @@ public class ProductDisplay {
         this.price = price;
         this.confirmButton = new Button("confirm");
         this.cancelButton = new Button("cancel");
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
     }
 
     public boolean isCheckBox() {
