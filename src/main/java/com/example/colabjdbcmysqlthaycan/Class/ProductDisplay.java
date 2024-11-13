@@ -1,5 +1,6 @@
 package com.example.colabjdbcmysqlthaycan.Class;
 
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -18,8 +19,11 @@ public class ProductDisplay {
     private int idCart;
     private boolean checkBox;
     private int idOrder;
-    private String paymentStatus;
+    private PaymentStatus paymentStatus;
     private double amount;
+    private Button confirmButton;
+    private Button cancelButton;
+
 
     public ProductDisplay(String id, String imageLink, String name, String description, double price, int quantity, String status, String idImage) {
         this.id = id;
@@ -91,7 +95,7 @@ public class ProductDisplay {
         this.checkBox = checkBox;
     }
 
-    public ProductDisplay(String imageLink, String name, int quantity, int idOrder, String paymentStatus,double price) {
+    public ProductDisplay(String imageLink, String name, int quantity, int idOrder, PaymentStatus paymentStatus,double price) {
         this.imageLink = imageLink;
         this.imageView = new ImageView(new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + imageLink).toExternalForm()));
         this.imageView.setFitWidth(75);
@@ -104,27 +108,57 @@ public class ProductDisplay {
         this.price = price;
     }
 
-    public ProductDisplay(int idOrder, String link, String nameProduct, double price, int quantity, String paymentStatus) {
-        this.imageLink = link;
+    public ProductDisplay(int idOrder, String imageLink, String nameProduct, double price, int quantity, PaymentStatus paymentStatus) {
+        this.imageLink = imageLink;
         this.imageView = new ImageView(new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + imageLink).toExternalForm()));
-        this.imageView.setFitWidth(75);
-        this.imageView.setFitHeight(75);
+        this.imageView.setFitWidth(50);
+        this.imageView.setFitHeight(37);
 
         this.name = nameProduct;
         this.quantity = quantity;
         this.idOrder = idOrder;
         this.paymentStatus = paymentStatus;
         this.price = price;
+        this.confirmButton = new Button("confirm");
+        this.cancelButton = new Button("cancel");
     }
 
-    public String getpaymentStatus() {
-        return paymentStatus;
+    public boolean isCheckBox() {
+        return checkBox;
     }
 
-    public void setpaymentStatus(String paymentStatus) {
+    public void setPaymentStatus(PaymentStatus paymentStatus) {
         this.paymentStatus = paymentStatus;
     }
 
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public Button getConfirmButton() {
+        return confirmButton;
+    }
+
+    public void setConfirmButton(Button confirmButton) {
+        this.confirmButton = confirmButton;
+    }
+
+    public Button getCancelButton() {
+        return cancelButton;
+    }
+
+    public void setCancelButton(Button cancelButton) {
+        this.cancelButton = cancelButton;
+    }
+
+    public enum PaymentStatus {
+        Pending,
+        Paid,
+        Cancelled
+    }
+        public PaymentStatus getPaymentStatus() {
+            return paymentStatus;
+    }
     public int getIdOrder() {
         return idOrder;
     }

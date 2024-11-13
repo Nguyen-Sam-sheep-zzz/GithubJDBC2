@@ -29,7 +29,7 @@ public class ProductOrderController {
         quantityLabel.setText(String.valueOf(productDisplay.getQuantity()));
         amountLabel.setText(String.valueOf(productDisplay.getAmount()));
         priceLabel.setText(String.valueOf(productDisplay.getPrice()));
-        deliveryStatusLabel.setText(productDisplay.getpaymentStatus());
+        deliveryStatusLabel.setText(String.valueOf(productDisplay.getPaymentStatus()));
         Image image = new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + productDisplay.getImageLink()).toExternalForm());
         imageOrder.setImage(image);
     }

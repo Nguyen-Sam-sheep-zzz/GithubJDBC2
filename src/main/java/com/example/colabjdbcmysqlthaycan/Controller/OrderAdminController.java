@@ -5,19 +5,20 @@ import com.example.colabjdbcmysqlthaycan.Class.ProductDisplay;
 import com.example.colabjdbcmysqlthaycan.Class.Session;
 import com.example.colabjdbcmysqlthaycan.ConnectDB;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.TableCell;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import javafx.scene.control.Button;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -49,53 +50,136 @@ public class OrderAdminController {
     @FXML
     private TableColumn<ProductDisplay, Double> amountColumn;
     @FXML
-    private TableColumn<ProductDisplay, String> statusColumn;
+    private TableColumn<ProductDisplay, String> paymentStatusColumn;
     @FXML
     private TableColumn<ProductDisplay, ProductDisplay> actionColumn;
 
     @FXML
     public void initialize() {
         tableViewOrder.setItems(getProductDisplayList());
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        imageColumn.setCellValueFactory(new PropertyValueFactory<>("image"));
+
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("idOrder"));
+        imageColumn.setCellValueFactory(new PropertyValueFactory<>("imageLink"));
+
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
-        amountColumn.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getAmount()).asObject());
+        amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        paymentStatusColumn.setCellValueFactory(new PropertyValueFactory<>("paymentStatus"));
+        actionColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue()));
 
+        actionColumn.setCellFactory(col -> new TableCell<ProductDisplay, ProductDisplay>() {
+            @Override
+            protected void updateItem(ProductDisplay item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setGraphic(null);
+                } else {
+                    if (item.getPaymentStatus() == ProductDisplay.PaymentStatus.Paid) {
+                        ImageView checkImageView = new ImageView(new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/DauV.png").toExternalForm()));
+                        checkImageView.setFitWidth(20);
+                        checkImageView.setFitHeight(20);
+                        setGraphic(checkImageView);
+
+                    } else if (item.getPaymentStatus() == ProductDisplay.PaymentStatus.Cancelled) {
+                        ImageView cancelImageView = new ImageView(new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/DauX.png").toExternalForm()));
+                        cancelImageView.setFitWidth(20);
+                        cancelImageView.setFitHeight(20);
+                        setGraphic(cancelImageView);
+
+                    } else {
+                        Button confirmButton = new Button("Confirm");
+                        Button cancelButton = new Button("Cancel");
+
+                        confirmButton.setOnAction(event -> {
+                            confirmOrder(item);
+                            tableViewOrder.setItems(getProductDisplayList()); // Refresh the table
+                        });
+
+                        cancelButton.setOnAction(event -> {
+                            cancelOrder(item);
+                            tableViewOrder.setItems(getProductDisplayList()); // Refresh the table
+                        });
+                        confirmButton.setPrefWidth(95);
+                        setGraphic(confirmButton);
+                        cancelButton.setPrefWidth(95);
+                        setGraphic(cancelButton);
+
+                        HBox hbox = new HBox(confirmButton, cancelButton);
+                        hbox.setSpacing(10);
+                        setGraphic(hbox);
+                    }
+                }
+            }
+        });
+        imageColumn.setCellFactory(col -> new TableCell<ProductDisplay, String>() {
+            @Override
+            protected void updateItem(String imageLink, boolean empty) {
+                super.updateItem(imageLink, empty);
+                if (empty || imageLink == null) {
+                    setGraphic(null);
+                } else {
+                    ImageView imageView = new ImageView(new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + imageLink).toExternalForm()));
+                    imageView.setFitWidth(50);
+                    imageView.setFitHeight(37);
+                    setGraphic(imageView);
+                }
+            }
+        });
+
+}
+    private void confirmOrder(ProductDisplay product) {
+        String query = "UPDATE `Order` SET paymentStatus = 'Paid' WHERE idOrder = ?";
+        try (
+             PreparedStatement preparedStatement = connectDB.connectionDB().prepareStatement(query)) {
+            preparedStatement.setInt(1, product.getIdOrder());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        tableViewOrder.setItems(getProductDisplayList());
     }
 
+    public void cancelOrder(ProductDisplay productDisplay) {
+        String query = "UPDATE `Order` SET paymentStatus = 'Cancelled' WHERE idOrder = ?";
+        try {
+            PreparedStatement preparedStatement = connectDB.connectionDB().prepareStatement(query);
+            preparedStatement.setInt(1, productDisplay.getIdOrder());
+            preparedStatement.executeUpdate();
+            tableViewOrder.setItems(getProductDisplayList());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     public ObservableList<ProductDisplay> getProductDisplayList() {
         ObservableList<ProductDisplay> orderDisplayList = FXCollections.observableArrayList();
-        String id = Session.getLoggedInCustomerId();
         String query = "SELECT o.idOrder, o.paymentStatus, po.quantity, p.nameProduct, i.link, p.price " +
                 "FROM `Order` o " +
                 "JOIN ProductOrder po ON o.idOrder = po.idOrder " +
                 "JOIN Products p ON po.idProduct = p.idProduct " +
                 "JOIN ImageProducts ip ON p.idProduct = ip.idProduct " +
-                "JOIN Images i ON ip.idImage = i.idImage " +
-                "WHERE o.idUser = ?";
+                "JOIN Images i ON ip.idImage = i.idImage ";
 
         try (Connection connection = connectDB.connectionDB();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setString(1, id);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 int idOrder = resultSet.getInt("idOrder");
-                String paymentStatus = resultSet.getString("paymentStatus");
+                ProductDisplay.PaymentStatus paymentStatus = ProductDisplay.PaymentStatus.valueOf(resultSet.getString("paymentStatus"));
                 int quantity = resultSet.getInt("quantity");
                 String nameProduct = resultSet.getString("nameProduct");
-                String link = resultSet.getString("link");
+                String imageLink = resultSet.getString("link");
                 double price = resultSet.getDouble("price");
-                orderDisplayList.add(new ProductDisplay(idOrder, link, nameProduct, price, quantity, paymentStatus));
+                orderDisplayList.add(new ProductDisplay(idOrder, imageLink, nameProduct, price, quantity, paymentStatus));
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return orderDisplayList;
     }
+
     public void loadToLoginScreenFromOrderAdmin() throws IOException {
         Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/Login.fxml"));
         Stage stage = (Stage) buttonSignOut.getScene().getWindow();
@@ -113,6 +197,7 @@ public class OrderAdminController {
         stage.setScene(scene);
         stage.show();
     }
+
     public void loadToBillScreenFromOrderAdmin() throws IOException {
         Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/HomeAdmin.fxml"));
         Stage stage = (Stage) buttonBill.getScene().getWindow();

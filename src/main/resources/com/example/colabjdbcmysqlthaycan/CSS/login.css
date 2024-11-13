@@ -180,7 +180,10 @@
 .table-view .cell #idColumn,
 .table-view .cell #imageColumn,
 .table-view .cell #priceColumn,
-.table-view .cell #quantityColumn {
+.table-view .cell #quantityColumn,
+.table-view .cell #amountColumn,
+.table-view .cell #paymentStatusColumn,
+.table-view .cell #actionColumn{
     -fx-alignment: CENTER;
 }
 .button9{
@@ -196,6 +199,10 @@
     -fx-border-color: red;
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
+}
+.table-view .button {
+    -fx-background-color: #bb1a3a;
+    -fx-text-fill: #fff;
 }
 
 

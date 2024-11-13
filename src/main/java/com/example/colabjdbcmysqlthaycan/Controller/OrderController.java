@@ -57,7 +57,7 @@ public class OrderController {
                     int quantity = resultSet.getInt("quantity");
                     int idOrder = resultSet.getInt("idOrder");
                     double price = resultSet.getDouble("price");
-                    String paymentStatus = resultSet.getString("paymentStatus");
+                    ProductDisplay.PaymentStatus paymentStatus = ProductDisplay.PaymentStatus.valueOf(resultSet.getString("paymentStatus"));
                     productsCart.add(new ProductDisplay(imageLink, name,  quantity, idOrder, paymentStatus,price));
                 }
             }
