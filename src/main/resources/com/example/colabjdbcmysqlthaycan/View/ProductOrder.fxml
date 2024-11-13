@@ -17,10 +17,19 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Label fx:id="quantityLabel" layoutX="99.0" layoutY="50.0" prefHeight="37.0" prefWidth="125.0" />
-      <Label fx:id="amountLabel" layoutX="682.0" layoutY="31.0" prefHeight="37.0" prefWidth="125.0" textFill="#ee4d2d" />
+      <Label fx:id="quantityLabel" layoutX="99.0" layoutY="50.0" prefHeight="37.0" prefWidth="125.0">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Label fx:id="amountLabel" layoutX="696.0" layoutY="31.0" prefHeight="37.0" prefWidth="125.0" textFill="#ee4d2d">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
       <Label fx:id="idOrderLabel" layoutY="4.0" textFill="WHITE" />
-      <Label fx:id="deliveryStatusLabel" layoutX="797.0" layoutY="31.0" prefHeight="37.0" prefWidth="125.0" />
+      <Label fx:id="deliveryStatusLabel" layoutX="845.0" layoutY="31.0" prefHeight="37.0" prefWidth="100.0">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
       <Label fx:id="priceLabel" layoutX="10.0" layoutY="14.0" textFill="WHITE" />
    </children>
 </AnchorPane>
