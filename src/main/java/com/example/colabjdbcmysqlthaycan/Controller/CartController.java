@@ -37,11 +37,6 @@ public class CartController {
     private Label totalPriceLabel;
     @FXML
     private Label deleteAllProductHomeUser;
-
-    public CheckBox getSelectAllProductCartUserCheckBox() {
-        return selectAllProductCartUserCheckBox;
-    }
-
     @FXML
     protected CheckBox selectAllProductCartUserCheckBox;
     @FXML
@@ -67,7 +62,9 @@ public class CartController {
 
         getAllProductCart();
     }
-
+    public CheckBox getSelectAllProductCartUserCheckBox() {
+        return selectAllProductCartUserCheckBox;
+    }
     public void loadToLoginScreenFromCart() throws IOException {
         Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/Login.fxml"));
         Stage stage = (Stage) buttonSingOut.getScene().getWindow();
@@ -210,6 +207,10 @@ public class CartController {
     }
 
     public void handleAddToOrder() throws IOException {
+        if (selectProducts.isEmpty()) {
+            showAlert("ERROR", "Please select a product");
+            return;
+        }
         for (ProductDisplay productDisplay : selectProducts) {
             String idUser = Session.getLoggedInCustomerId();
 
@@ -223,8 +224,8 @@ public class CartController {
             addToOrderAndProductOrder(idUser, orderDate, paymentStatus, idProduct, quantity);
             deleteProductInCart(String.valueOf(productDisplay.getIdCart()));
         }
-        loadToCartUserScreen();
         showAlert("Success", "Order successful");
+        loadToOrderScreenFromCart();
     }
 
     public void deleteProductInCart(String idCart) {

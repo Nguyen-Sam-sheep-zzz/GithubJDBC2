@@ -56,6 +56,9 @@ public class ProductCartController {
         productPrice.setText(String.valueOf(productDisplay.getPrice()));
         Image image = new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + productDisplay.getImageLink()).toExternalForm());
         imageProduct.setImage(image);
+//        productQuantityTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+//
+//        });
         productQuantityTextField.setText(String.valueOf(productDisplay.getQuantity()));
         productAmount.setText(String.valueOf(productDisplay.getAmount()));
         idProductCart.setText(String.valueOf(productDisplay.getIdCart()));
@@ -184,6 +187,16 @@ public class ProductCartController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             deleteProductInCart(idProductCart.getText());
+        }
+    }
+    public void updateTextField(int newquantity){
+        String query = "update cart set quantity =  ?";
+        try{
+            PreparedStatement ps = connectDB.connectionDB().prepareStatement(query);
+            ps.setInt(1, newquantity);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 }
