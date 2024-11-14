@@ -43,11 +43,11 @@ public class BillAdminController {
     @FXML
     private TableView<ProductDisplay> tableViewBill;
     @FXML
-    private TableColumn<ProductDisplay, Integer> idColumn;
+    private TableColumn<ProductDisplay, Integer> idBillColumn;
     @FXML
     private TableColumn<ProductDisplay, String> imageColumn;
     @FXML
-    private TableColumn<ProductDisplay, String> nameColumn;
+    private TableColumn<ProductDisplay, String> nameProductColumn;
     @FXML
     private TableColumn<ProductDisplay, Double> priceColumn;
     @FXML
@@ -58,6 +58,10 @@ public class BillAdminController {
     private TableColumn<ProductDisplay, Date> orderDateColumn;
     @FXML
     private TableColumn<ProductDisplay, Date> deliveryDateColumn;
+    @FXML
+    private TableColumn<ProductDisplay, Integer> idUserColumn;
+    @FXML
+    private TableColumn<ProductDisplay, String> nameUserColumn;
 
     @FXML
     private Button buttonProduct;
@@ -68,14 +72,16 @@ public class BillAdminController {
 
     @FXML
     public void initialize() {
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("idBill"));
+        idBillColumn.setCellValueFactory(new PropertyValueFactory<>("idBill"));
         imageColumn.setCellValueFactory(new PropertyValueFactory<>("imageLink"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        nameProductColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
         orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("orderDate"));
         deliveryDateColumn.setCellValueFactory(new PropertyValueFactory<>("issueDate"));
+        idUserColumn.setCellValueFactory(new PropertyValueFactory<>("idUser"));
+        nameUserColumn.setCellValueFactory(new PropertyValueFactory<>("nameUser"));
 
         tableViewBill.setItems(getBillDisplayList());
 
@@ -99,9 +105,11 @@ public class BillAdminController {
         ObservableList<ProductDisplay> orderDisplayList = FXCollections.observableArrayList();
         String sql = """
             SELECT 
-                b.idBill, b.issueDate, po.quantity, p.nameProduct, i.link, p.price, o.orderDate
+                b.idBill,b.idUser,u.name, b.issueDate, po.quantity, p.nameProduct, i.link, p.price, o.orderDate
             FROM 
                 Bill b
+            JOIN 
+                User u ON u.idUser = b.idUser
             JOIN 
                 `Order` o ON b.idOrder = o.idOrder
             JOIN 
@@ -120,6 +128,8 @@ public class BillAdminController {
 
             while (resultSet.next()) {
                 int idBill = resultSet.getInt("idBill");
+                int idUser = resultSet.getInt("idUser");
+                String namUser = resultSet.getString("name");
                 Date issueDate = resultSet.getDate("issueDate");
                 int quantity = resultSet.getInt("quantity");
                 String nameProduct = resultSet.getString("nameProduct");
@@ -127,7 +137,7 @@ public class BillAdminController {
                 double price = resultSet.getDouble("price");
                 Date orderDate = resultSet.getDate("orderDate");
 
-                orderDisplayList.add(new ProductDisplay(idBill, issueDate, quantity, nameProduct, link, price, orderDate));
+                orderDisplayList.add(new ProductDisplay(idBill, issueDate, quantity, nameProduct, link, price, orderDate,idUser,namUser));
             }
 
         } catch (SQLException e) {

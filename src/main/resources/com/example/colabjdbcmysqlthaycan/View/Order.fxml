@@ -32,7 +32,7 @@
                         </Label>
                         <Button fx:id="homeUserButton" layoutX="18.0" layoutY="184.0" mnemonicParsing="false" onAction="#loadToHomeUserScreenFromOrder" prefHeight="35.0" prefWidth="118.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="        Product" />
                         <Button fx:id="homeCart" layoutX="18.0" layoutY="238.0" mnemonicParsing="false" onAction="#loadToCartScreenFromHomeOrder" prefHeight="35.0" prefWidth="118.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="        Cart" />
-                        <Button layoutX="16.0" layoutY="348.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="         Bill" />
+                        <Button fx:id="buttonBill" layoutX="16.0" layoutY="348.0" mnemonicParsing="false" onAction="#loadToBillScreenFromOrder" prefHeight="35.0" prefWidth="120.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="         Bill" />
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../img/laptop3.png" />

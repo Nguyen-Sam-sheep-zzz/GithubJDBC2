@@ -33,6 +33,8 @@ public class OrderController {
     @FXML
     private Button homeCart;
     @FXML
+    private Button buttonBill;
+    @FXML
     private TextField searchProductTextField;
     public void initialize() {
         getAllProductCart();
@@ -178,6 +180,14 @@ public class OrderController {
         Stage stage = (Stage) homeCart.getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setTitle("Cart");
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void loadToBillScreenFromOrder() throws IOException {
+        Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/BillUser.fxml"));
+        Stage stage = (Stage) buttonBill.getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle("Home Bill");
         stage.setScene(scene);
         stage.show();
     }
