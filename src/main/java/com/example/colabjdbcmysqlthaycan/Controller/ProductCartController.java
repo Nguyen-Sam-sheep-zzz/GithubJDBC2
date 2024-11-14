@@ -65,7 +65,6 @@ public class ProductCartController {
             } catch (NumberFormatException e) {
                 productQuantityTextField.setText(oldValue);
             }
-
         });
         productQuantityTextField.setText(String.valueOf(productDisplay.getQuantity()));
         productAmount.setText(String.valueOf(productDisplay.getAmount()));
