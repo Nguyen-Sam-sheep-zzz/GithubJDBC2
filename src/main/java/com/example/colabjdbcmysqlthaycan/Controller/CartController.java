@@ -36,6 +36,8 @@ public class CartController {
     @FXML
     private Label totalPriceLabel;
     @FXML
+    private Button buttonBill;
+    @FXML
     private Label deleteAllProductHomeUser;
     @FXML
     protected CheckBox selectAllProductCartUserCheckBox;
@@ -169,6 +171,14 @@ public class CartController {
         Stage stage = (Stage) homeUserButton.getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setTitle("Home user");
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void loadToBillScreenFromCart() throws IOException {
+        Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/BillUser.fxml"));
+        Stage stage = (Stage) buttonBill.getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle("Home Bill");
         stage.setScene(scene);
         stage.show();
     }

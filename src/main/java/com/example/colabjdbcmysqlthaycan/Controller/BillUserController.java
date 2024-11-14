@@ -131,7 +131,7 @@ public class BillUserController {
     }
 
     public void loadToProductScreenFromBill() throws IOException {
-        Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/HomeAdmin.fxml"));
+        Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/HomeUser.fxml"));
         Stage stage = (Stage) buttonProduct.getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setTitle("Home Admin");
