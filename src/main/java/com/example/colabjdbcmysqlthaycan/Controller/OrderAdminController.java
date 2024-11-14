@@ -228,7 +228,7 @@ public class OrderAdminController {
     }
 
     public void loadToBillScreenFromOrderAdmin() throws IOException {
-        Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/HomeAdmin.fxml"));
+        Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/BillAdmin.fxml"));
         Stage stage = (Stage) buttonBill.getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setTitle("Bill");
