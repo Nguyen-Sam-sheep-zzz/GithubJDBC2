@@ -43,9 +43,6 @@ public class ProductCartController {
 
     public void initialize() {
         productQuantityTextField.setText("0");
-        productQuantityTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            updateTextField(Integer.parseInt(newValue));
-        });
     }
 
     public CheckBox getProductCartCheckBox() {
@@ -59,16 +56,24 @@ public class ProductCartController {
         productPrice.setText(String.valueOf(productDisplay.getPrice()));
         Image image = new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + productDisplay.getImageLink()).toExternalForm());
         imageProduct.setImage(image);
-//        productQuantityTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-//
-//        });
+        productQuantityTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                updateTextField(newValue, String.valueOf(productDisplay.getIdCart()));
+                int newQuantity = Integer.parseInt(newValue);
+                productAmount.setText(String.valueOf(newQuantity * productDisplay.getPrice()));
+                productDisplay.setQuantity(newQuantity);
+            } catch (NumberFormatException e) {
+                productQuantityTextField.setText(oldValue);
+            }
+
+        });
         productQuantityTextField.setText(String.valueOf(productDisplay.getQuantity()));
         productAmount.setText(String.valueOf(productDisplay.getAmount()));
         idProductCart.setText(String.valueOf(productDisplay.getIdCart()));
         productCartCheckBox.setSelected(productDisplay.getCheckBox());
     }
 
-    public void handleProductSelection() {
+    public void handleProductSelection() throws IOException {
         if (productCartCheckBox.isSelected()) {
             cartController.addSelectProduct(productDisplay);
         } else {
@@ -192,11 +197,13 @@ public class ProductCartController {
             deleteProductInCart(idProductCart.getText());
         }
     }
-    public void updateTextField(int newquantity){
-        String query = "update cart set quantity =  ?";
-        try{
+
+    public void updateTextField(String newquantity, String idCart) {
+        String query = "update cart set quantity =  ? where idCart = ?";
+        try {
             PreparedStatement ps = connectDB.connectionDB().prepareStatement(query);
-            ps.setInt(1, newquantity);
+            ps.setInt(1, Integer.parseInt(newquantity));
+            ps.setInt(2, Integer.parseInt(idCart));
             ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
