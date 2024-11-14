@@ -3,6 +3,7 @@ package com.example.colabjdbcmysqlthaycan.Controller;
 import com.example.colabjdbcmysqlthaycan.Class.ProductDisplay;
 import com.example.colabjdbcmysqlthaycan.Class.ProductOrder;
 import javafx.fxml.FXML;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,6 +23,8 @@ public class ProductOrderController {
     @FXML
     private Label priceLabel;
     @FXML
+    private Label dateLabel;
+    @FXML
     private ImageView imageOrder;
     public void setProductOrder(ProductDisplay productDisplay) {
         idOrderLabel.setText(String.valueOf(productDisplay.getIdOrder()));
@@ -30,6 +33,8 @@ public class ProductOrderController {
         amountLabel.setText(String.valueOf(productDisplay.getAmount()));
         priceLabel.setText(String.valueOf(productDisplay.getPrice()));
         deliveryStatusLabel.setText(String.valueOf(productDisplay.getPaymentStatus()));
+        dateLabel.setText(String.valueOf(productDisplay.getOrderDate()));
+
         Image image = new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + productDisplay.getImageLink()).toExternalForm());
         imageOrder.setImage(image);
     }

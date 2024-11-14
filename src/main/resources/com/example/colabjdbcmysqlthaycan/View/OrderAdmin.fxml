@@ -28,14 +28,14 @@
                                 <Font size="20.0" />
                             </font>
                         </Label>
-                        <Button fx:id="buttonProduct" layoutX="46.0" layoutY="197.0" mnemonicParsing="false" onAction="#loadToProductScreenFromOrderAdmin" prefHeight="35.0" prefWidth="130.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="Product" />
-                        <Button fx:id="buttonBill" layoutX="46.0" layoutY="265.0" mnemonicParsing="false" onAction="#loadToBillScreenFromOrderAdmin" prefHeight="35.0" prefWidth="130.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="Bill" />
+                        <Button fx:id="buttonProduct" layoutX="17.0" layoutY="199.0" mnemonicParsing="false" onAction="#loadToProductScreenFromOrderAdmin" prefHeight="35.0" prefWidth="159.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="        Product" />
+                        <Button fx:id="buttonBill" layoutX="23.0" layoutY="308.0" mnemonicParsing="false" onAction="#loadToBillScreenFromOrderAdmin" prefHeight="35.0" prefWidth="130.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="        Bill" />
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../img/laptop3.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="313.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../img/bill.png" />
                             </image>
@@ -46,8 +46,8 @@
                                 <Image url="@../img/signOut.png" />
                             </image>
                         </ImageView>
-                  <Button layoutX="46.0" layoutY="324.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="Order" />
-                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="328.0" pickOnBounds="true" preserveRatio="true">
+                  <Button layoutX="14.0" layoutY="250.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="162.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="         Order" />
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="19.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/order-history.png" />
                      </image>
@@ -65,8 +65,8 @@
                                 <String fx:value="shadow" />
                             </styleClass>
                             <children>
-                                <TextField layoutX="24.0" layoutY="23.0" prefHeight="30.0" prefWidth="226.0" promptText="  Search" style="-fx-background-radius: 50; -fx-border-radius: 50;" styleClass="text-field1" />
-                                <TableView fx:id="tableViewOrder" layoutX="24.0" layoutY="79.0" prefHeight="475.0" prefWidth="950.0" style="-fx-border-color: #bb1a3a;" stylesheets="@../CSS/login.css">
+                                <TextField fx:id="searchProductTextField" layoutX="24.0" layoutY="23.0" onAction="#handleSearchProduct" prefHeight="30.0" prefWidth="226.0" promptText="  Search" style="-fx-background-radius: 50; -fx-border-radius: 50;" styleClass="text-field1" />
+                                <TableView fx:id="tableViewOrder" layoutX="24.0" layoutY="79.0" prefHeight="475.0" prefWidth="944.0" style="-fx-border-color: #bb1a3a;" stylesheets="@../CSS/login.css">
                                     <columns>
                                         <TableColumn fx:id="idColumn" prefWidth="50.0" text="ID" />
                                         <TableColumn fx:id="imageColumn" prefWidth="100.0" text="Image" />
@@ -75,7 +75,7 @@
                                         <TableColumn fx:id="quantityColumn" minWidth="0.0" prefWidth="100.0" text="Quantity" />
                               <TableColumn fx:id="amountColumn" minWidth="0.0" prefWidth="100.0" text="Amount" />
                                         <TableColumn fx:id="paymentStatusColumn" maxWidth="260.0" minWidth="6.6666259765625" prefWidth="150.0" text="Status" />
-                              <TableColumn fx:id="actionColumn" maxWidth="249.33343505859375" minWidth="6.6666259765625" prefWidth="200.0" text="Action" />
+                              <TableColumn fx:id="actionColumn" maxWidth="200.0" minWidth="0.0" prefWidth="170.0" text="Action" />
                                     </columns>
                                 </TableView>
                                 <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="219.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">

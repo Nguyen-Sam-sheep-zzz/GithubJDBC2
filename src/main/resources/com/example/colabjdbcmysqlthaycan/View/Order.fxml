@@ -9,9 +9,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.colabjdbcmysqlthaycan.Controller.OrderController">
@@ -32,18 +32,18 @@
                         </Label>
                         <Button fx:id="homeUserButton" layoutX="18.0" layoutY="184.0" mnemonicParsing="false" onAction="#loadToHomeUserScreenFromOrder" prefHeight="35.0" prefWidth="118.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="        Product" />
                         <Button fx:id="homeCart" layoutX="18.0" layoutY="238.0" mnemonicParsing="false" onAction="#loadToCartScreenFromHomeOrder" prefHeight="35.0" prefWidth="118.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="        Cart" />
-                        <Button layoutX="16.0" layoutY="296.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="         Bill" />
+                        <Button layoutX="16.0" layoutY="348.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="         Bill" />
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../img/laptop3.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="19.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../img/order.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="301.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="21.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../img/bill.png" />
                             </image>
@@ -54,8 +54,8 @@
                                 <Image url="@../img/signOut.png" />
                             </image>
                         </ImageView>
-                  <Button layoutX="17.0" layoutY="341.0" mnemonicParsing="false"  prefHeight="35.0" prefWidth="117.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="         Purchase" />
-                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="21.0" layoutY="346.0" pickOnBounds="true" preserveRatio="true">
+                  <Button layoutX="17.0" layoutY="293.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="133.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="         Your Order" />
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="21.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/order-history.png" />
                      </image>
@@ -66,22 +66,19 @@
             <center>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <BorderPane layoutX="24.0" layoutY="24.0" prefHeight="550.0" prefWidth="1000.0">
-                     <top>
-                        <TextField prefHeight="50.0" prefWidth="1000.0" BorderPane.alignment="CENTER" />
-                     </top>
+                  <BorderPane layoutX="1.0" layoutY="-1.0" prefHeight="600.0" prefWidth="1040.0">
                      <center>
-                        <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #d5d5d5;" BorderPane.alignment="CENTER">
+                        <HBox prefHeight="500.0" prefWidth="1040.0" style="-fx-border-color: #d5d5d5;" BorderPane.alignment="CENTER">
                            <children>
-                              <ScrollPane prefHeight="400.0" prefWidth="950.0">
+                              <ScrollPane prefHeight="500.0" prefWidth="1085.0">
                                  <HBox.margin>
-                                    <Insets />
+                                    <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                                  </HBox.margin>
                                  <content>
                                     <GridPane fx:id="gridPaneOrder">
-                                      <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
+                                       <columnConstraints>
+                                          <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
                                     </GridPane>
                                  </content>
                               </ScrollPane>
@@ -89,11 +86,59 @@
                            <BorderPane.margin>
                               <Insets />
                            </BorderPane.margin>
-                           <padding>
-                              <Insets bottom="25.0" left="25.0" top="25.0" />
-                           </padding>
                         </HBox>
                      </center>
+                     <top>
+                        <AnchorPane prefHeight="100.0" prefWidth="1140.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <TextField fx:id="searchProductTextField" layoutX="25.0" layoutY="18.0" onAction="#handleSearchProduct" prefHeight="46.0" prefWidth="988.0" promptText="Search" styleClass="search1" stylesheets="@../CSS/login.css">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <padding>
+                                    <Insets right="50.0" />
+                                 </padding>
+                              </TextField>
+                              <AnchorPane layoutY="52.0" prefHeight="50.0" prefWidth="1039.0">
+                                 <children>
+                                    <Label layoutX="93.0" layoutY="33.0" prefHeight="21.0" prefWidth="112.0" text="Name Product">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="384.0" layoutY="32.0" prefHeight="17.0" prefWidth="66.0" text="Quantity">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="557.0" layoutY="31.0" prefHeight="21.0" prefWidth="84.0" text="Order Date">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="746.0" layoutY="31.0" prefHeight="21.0" prefWidth="77.0" text="Total Price">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="900.0" layoutY="30.0" prefHeight="17.0" prefWidth="66.0" text="Action">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="39.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/search-search.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                     </top>
                   </BorderPane>
                </children>
                 </AnchorPane>

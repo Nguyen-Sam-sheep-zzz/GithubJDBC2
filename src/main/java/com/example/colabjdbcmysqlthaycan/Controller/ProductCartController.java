@@ -43,6 +43,9 @@ public class ProductCartController {
 
     public void initialize() {
         productQuantityTextField.setText("0");
+        productQuantityTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            updateTextField(Integer.parseInt(newValue));
+        });
     }
 
     public CheckBox getProductCartCheckBox() {

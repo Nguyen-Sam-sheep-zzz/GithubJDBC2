@@ -36,6 +36,8 @@ public class OrderAdminController {
     @FXML
     private Button buttonBill;
     @FXML
+    private TextField searchProductTextField;
+    @FXML
     private TableView<ProductDisplay> tableViewOrder;
     @FXML
     private TableColumn<ProductDisplay, Integer> idColumn;
@@ -57,17 +59,15 @@ public class OrderAdminController {
     @FXML
     public void initialize() {
         tableViewOrder.setItems(getProductDisplayList());
-
         idColumn.setCellValueFactory(new PropertyValueFactory<>("idOrder"));
         imageColumn.setCellValueFactory(new PropertyValueFactory<>("imageLink"));
-
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
         paymentStatusColumn.setCellValueFactory(new PropertyValueFactory<>("paymentStatus"));
         actionColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue()));
-
+        searchProductTextField.setOnKeyReleased(event -> handleSearchProduct());
         actionColumn.setCellFactory(col -> new TableCell<ProductDisplay, ProductDisplay>() {
             @Override
             protected void updateItem(ProductDisplay item, boolean empty) {
@@ -98,15 +98,16 @@ public class OrderAdminController {
 
                         cancelButton.setOnAction(event -> {
                             cancelOrder(item);
-                            tableViewOrder.setItems(getProductDisplayList()); // Refresh the table
+                            tableViewOrder.setItems(getProductDisplayList());
                         });
-                        confirmButton.setPrefWidth(95);
+                        confirmButton.setPrefWidth(80);
                         setGraphic(confirmButton);
-                        cancelButton.setPrefWidth(95);
+                        cancelButton.setPrefWidth(80);
                         setGraphic(cancelButton);
 
                         HBox hbox = new HBox(confirmButton, cancelButton);
                         hbox.setSpacing(10);
+
                         setGraphic(hbox);
                     }
                 }
@@ -126,7 +127,6 @@ public class OrderAdminController {
                 }
             }
         });
-
 }
     private void confirmOrder(ProductDisplay product) {
         String query = "UPDATE `Order` SET paymentStatus = 'Paid' WHERE idOrder = ?";
@@ -179,6 +179,35 @@ public class OrderAdminController {
         }
         return orderDisplayList;
     }
+    public void handleSearchProduct() {
+        ObservableList<ProductDisplay> searchProduct = FXCollections.observableArrayList();
+        String searchQuery = searchProductTextField.getText().trim();
+        String query = "SELECT o.idOrder, o.paymentStatus, po.quantity, p.nameProduct, i.link, p.price " +
+                "FROM `Order` o " +
+                "JOIN ProductOrder po ON o.idOrder = po.idOrder " +
+                "JOIN Products p ON po.idProduct = p.idProduct " +
+                "JOIN ImageProducts ip ON p.idProduct = ip.idProduct " +
+                "JOIN Images i ON ip.idImage = i.idImage" +
+                " WHERE p.nameProduct LIKE ? OR o.paymentStatus LIKE ?";
+        try {
+            PreparedStatement ps = connectDB.connectionDB().prepareStatement(query);
+            ps.setString(1, "%" + searchQuery + "%");
+            ps.setString(2, "%" + searchQuery + "%");
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                int idOrder = resultSet.getInt("idOrder");
+                ProductDisplay.PaymentStatus paymentStatus = ProductDisplay.PaymentStatus.valueOf(resultSet.getString("paymentStatus"));
+                int quantity = resultSet.getInt("quantity");
+                String nameProduct = resultSet.getString("nameProduct");
+                String imageLink = resultSet.getString("link");
+                double price = resultSet.getDouble("price");
+                searchProduct.add(new ProductDisplay(idOrder, imageLink, nameProduct, price, quantity, paymentStatus));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        tableViewOrder.setItems(searchProduct);
+    }
 
     public void loadToLoginScreenFromOrderAdmin() throws IOException {
         Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/Login.fxml"));
@@ -199,7 +228,7 @@ public class OrderAdminController {
     }
 
     public void loadToBillScreenFromOrderAdmin() throws IOException {
-        Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/HomeAdmin.fxml"));
+        Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/BillAdmin.fxml"));
         Stage stage = (Stage) buttonBill.getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setTitle("Bill");

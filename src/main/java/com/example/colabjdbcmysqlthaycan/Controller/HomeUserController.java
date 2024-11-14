@@ -4,6 +4,7 @@ import com.example.colabjdbcmysqlthaycan.Application.LoginApplication;
 import com.example.colabjdbcmysqlthaycan.Class.ProductDisplay;
 import com.example.colabjdbcmysqlthaycan.Class.Session;
 import com.example.colabjdbcmysqlthaycan.ConnectDB;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -50,11 +51,13 @@ public class HomeUserController {
     @FXML
     private TextField quantityProductTextField;
     @FXML
-    private Button homeCart;
+    private Button buttonCart;
     @FXML
     private Label idProductLabel;
     @FXML
-    private Button homeOrder;
+    private Button buttonOrder;
+    @FXML
+    private Button buttonBill;
 
 
     public void initialize() {
@@ -78,7 +81,7 @@ public class HomeUserController {
 
     public void loadToCartScreenFromHomeUser() throws IOException {
         Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/Cart.fxml"));
-        Stage stage = (Stage) homeCart.getScene().getWindow();
+        Stage stage = (Stage) buttonCart.getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setTitle("Cart");
         stage.setScene(scene);
@@ -86,7 +89,15 @@ public class HomeUserController {
     }
     public void loadToOrderScreenFromHomeUser() throws IOException {
         Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/Order.fxml"));
-        Stage stage = (Stage) homeOrder.getScene().getWindow();
+        Stage stage = (Stage) buttonOrder.getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle("Order");
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void loadToBillScreenFromHomeUser() throws IOException{
+        Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/BillUser.fxml"));
+        Stage stage = (Stage) buttonBill.getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setTitle("Order");
         stage.setScene(scene);
@@ -417,4 +428,6 @@ public class HomeUserController {
             e.printStackTrace();
         }
     }
+
+
 }
