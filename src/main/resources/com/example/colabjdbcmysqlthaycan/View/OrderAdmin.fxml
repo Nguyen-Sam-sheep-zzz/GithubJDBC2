@@ -28,8 +28,8 @@
                                 <Font size="20.0" />
                             </font>
                         </Label>
-                        <Button fx:id="buttonProduct" layoutX="17.0" layoutY="199.0" mnemonicParsing="false" onAction="#loadToProductScreenFromOrderAdmin" prefHeight="35.0" prefWidth="159.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="        Product" />
-                        <Button fx:id="buttonBill" layoutX="23.0" layoutY="308.0" mnemonicParsing="false" onAction="#loadToBillScreenFromOrderAdmin" prefHeight="35.0" prefWidth="130.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="        Bill" />
+                        <Button fx:id="buttonProduct" layoutX="18.0" layoutY="199.0" mnemonicParsing="false" onAction="#loadToProductScreenFromOrderAdmin" prefHeight="35.0" prefWidth="159.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="        Product" />
+                        <Button fx:id="buttonBill" layoutX="20.0" layoutY="309.0" mnemonicParsing="false" onAction="#loadToBillScreenFromOrderAdmin" prefHeight="35.0" prefWidth="130.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="        Bill" />
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../img/laptop3.png" />
@@ -46,7 +46,7 @@
                                 <Image url="@../img/signOut.png" />
                             </image>
                         </ImageView>
-                  <Button layoutX="14.0" layoutY="250.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="162.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="         Order" />
+                  <Button layoutX="14.0" layoutY="251.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="162.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="         Order" />
                   <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="19.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/order-history.png" />

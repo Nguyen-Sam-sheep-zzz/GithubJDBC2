@@ -30,7 +30,7 @@
                             </font>
                         </Label>
                         <Button fx:id="homeUserButton" layoutX="18.0" layoutY="184.0" mnemonicParsing="false" onAction="#loadToHomeUserScreenFromCart" prefHeight="35.0" prefWidth="118.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="        Product" />
-                        <Button layoutX="18.0" layoutY="238.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="118.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="        Cart" />
+                        <Button layoutX="19.0" layoutY="238.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="118.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="        Cart" />
                         <Button layoutY="340.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="             Bill" />
                         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -53,7 +53,7 @@
                                 <Image url="@../img/signOut.png" />
                             </image>
                         </ImageView>
-                  <Button fx:id="homeOrder" layoutX="17.0" layoutY="286.0" mnemonicParsing="false" onAction="#loadToOrderScreenFromCart" prefHeight="35.0" prefWidth="136.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="         Your order" />
+                  <Button fx:id="homeOrder" layoutX="16.0" layoutY="286.0" mnemonicParsing="false" onAction="#loadToOrderScreenFromCart" prefHeight="35.0" prefWidth="136.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="         Your order" />
                   <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/order-history.png" />
