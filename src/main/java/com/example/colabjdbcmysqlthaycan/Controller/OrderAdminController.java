@@ -55,6 +55,10 @@ public class OrderAdminController {
     private TableColumn<ProductDisplay, String> paymentStatusColumn;
     @FXML
     private TableColumn<ProductDisplay, ProductDisplay> actionColumn;
+    @FXML
+    private TableColumn<ProductDisplay, Integer> idUserColumn;
+    @FXML
+    private TableColumn<ProductDisplay, String> nameUserColumn;
 
     @FXML
     public void initialize() {
@@ -67,6 +71,8 @@ public class OrderAdminController {
         amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
         paymentStatusColumn.setCellValueFactory(new PropertyValueFactory<>("paymentStatus"));
         actionColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue()));
+        idUserColumn.setCellValueFactory(new PropertyValueFactory<>("idUser"));
+        nameUserColumn.setCellValueFactory(new PropertyValueFactory<>("nameUser"));
         searchProductTextField.setOnKeyReleased(event -> handleSearchProduct());
         actionColumn.setCellFactory(col -> new TableCell<ProductDisplay, ProductDisplay>() {
             @Override
@@ -153,8 +159,9 @@ public class OrderAdminController {
     }
     public ObservableList<ProductDisplay> getProductDisplayList() {
         ObservableList<ProductDisplay> orderDisplayList = FXCollections.observableArrayList();
-        String query = "SELECT o.idOrder, o.paymentStatus, po.quantity, p.nameProduct, i.link, p.price " +
+        String query = "SELECT o.idOrder,u.idUser,u.name , o.paymentStatus, po.quantity, p.nameProduct, i.link, p.price " +
                 "FROM `Order` o " +
+                "JOIN user u ON o.idUser = u.idUser " +
                 "JOIN ProductOrder po ON o.idOrder = po.idOrder " +
                 "JOIN Products p ON po.idProduct = p.idProduct " +
                 "JOIN ImageProducts ip ON p.idProduct = ip.idProduct " +
@@ -171,7 +178,9 @@ public class OrderAdminController {
                 String nameProduct = resultSet.getString("nameProduct");
                 String imageLink = resultSet.getString("link");
                 double price = resultSet.getDouble("price");
-                orderDisplayList.add(new ProductDisplay(idOrder, imageLink, nameProduct, price, quantity, paymentStatus));
+                int idUser = resultSet.getInt("idUser");
+                String nameUser = resultSet.getString("name");
+                orderDisplayList.add(new ProductDisplay(idOrder, imageLink, nameProduct, price, quantity, paymentStatus,idUser,nameUser));
 
             }
         } catch (SQLException e) {
@@ -182,8 +191,9 @@ public class OrderAdminController {
     public void handleSearchProduct() {
         ObservableList<ProductDisplay> searchProduct = FXCollections.observableArrayList();
         String searchQuery = searchProductTextField.getText().trim();
-        String query = "SELECT o.idOrder, o.paymentStatus, po.quantity, p.nameProduct, i.link, p.price " +
+        String query = "SELECT o.idOrder, u.idUser , u.name , o.paymentStatus, po.quantity, p.nameProduct, i.link, p.price " +
                 "FROM `Order` o " +
+                "JOIN user u on o.idUser = u.idUser " +
                 "JOIN ProductOrder po ON o.idOrder = po.idOrder " +
                 "JOIN Products p ON po.idProduct = p.idProduct " +
                 "JOIN ImageProducts ip ON p.idProduct = ip.idProduct " +
@@ -201,7 +211,9 @@ public class OrderAdminController {
                 String nameProduct = resultSet.getString("nameProduct");
                 String imageLink = resultSet.getString("link");
                 double price = resultSet.getDouble("price");
-                searchProduct.add(new ProductDisplay(idOrder, imageLink, nameProduct, price, quantity, paymentStatus));
+                int idUser = resultSet.getInt("idUser");
+                String nameUser = resultSet.getString("name");
+                searchProduct.add(new ProductDisplay(idOrder, imageLink, nameProduct, price, quantity, paymentStatus,idUser,nameUser));
             }
         } catch (SQLException e) {
             e.printStackTrace();

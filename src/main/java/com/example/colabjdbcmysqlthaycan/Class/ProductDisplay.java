@@ -28,8 +28,10 @@ public class ProductDisplay {
     private Date orderDate;
     private int idBill;
     private Date issueDate;
+    private String nameUser;
+    private int idUser;
 
-    public ProductDisplay(int idBill, Date issueDate, int quantity, String nameProduct, String imageLink, double price, Date orderDate) {
+    public ProductDisplay(int idBill, Date issueDate, int quantity, String nameProduct, String imageLink, double price, Date orderDate,int idUser,String nameUser) {
         this.idBill = idBill;
         this.issueDate = issueDate;
         this.quantity = quantity;
@@ -40,6 +42,8 @@ public class ProductDisplay {
         this.imageView.setFitWidth(60);
         this.imageView.setFitHeight(47);
         this.orderDate = orderDate;
+        this.idUser = idUser;
+        this.nameUser = nameUser;
 
 
     }
@@ -78,6 +82,19 @@ public class ProductDisplay {
         this.quantity = quantity;
         this.status = status;
 
+    }
+
+    public ProductDisplay(int idBill, Date issueDate, int quantity, String nameProduct, String link, double price, Date orderDate) {
+        this.idBill = idBill;
+        this.issueDate = issueDate;
+        this.quantity = quantity;
+        this.name = nameProduct;
+        this.price = price;
+        this.imageLink = link;
+        this.imageView = new ImageView(new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + imageLink).toExternalForm()));
+        this.imageView.setFitWidth(60);
+        this.imageView.setFitHeight(47);
+        this.orderDate = orderDate;
     }
 
 
@@ -129,7 +146,7 @@ public class ProductDisplay {
         this.orderDate = orderDate;
     }
 
-    public ProductDisplay(int idOrder, String imageLink, String nameProduct, double price, int quantity, PaymentStatus paymentStatus) {
+    public ProductDisplay(int idOrder, String imageLink, String nameProduct, double price, int quantity, PaymentStatus paymentStatus,int idUser,String nameUser) {
         this.imageLink = imageLink;
         this.imageView = new ImageView(new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + imageLink).toExternalForm()));
         this.imageView.setFitWidth(50);
@@ -140,8 +157,26 @@ public class ProductDisplay {
         this.idOrder = idOrder;
         this.paymentStatus = paymentStatus;
         this.price = price;
+        this.idUser = idUser;
+        this.nameUser = nameUser;
         this.confirmButton = new Button("confirm");
         this.cancelButton = new Button("cancel");
+    }
+
+    public String getNameUser() {
+        return nameUser;
+    }
+
+    public void setNameUser(String nameUser) {
+        this.nameUser = nameUser;
+    }
+
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
     public int getIdBill() {
