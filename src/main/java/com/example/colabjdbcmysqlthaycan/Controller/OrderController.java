@@ -42,7 +42,6 @@ public class OrderController {
             ObservableList<ProductDisplay> searchResults = handleSearchProduct();
             updateGridPaneOrder(searchResults);
         });
-
         updateGridPaneOrder(handleSearchProduct());
     }
 
@@ -158,6 +157,7 @@ public class OrderController {
             e.printStackTrace();
         }
     }
+
 
     public void loadToLoginScreenFromOrder() throws IOException {
         Parent root = FXMLLoader.load(LoginApplication.class.getResource("/com/example/colabjdbcmysqlthaycan/View/Login.fxml"));

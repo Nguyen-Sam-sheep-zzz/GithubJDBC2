@@ -31,7 +31,10 @@ public class ProductDisplay {
     private String nameUser;
     private int idUser;
 
-    public ProductDisplay(int idBill, Date issueDate, int quantity, String nameProduct, String imageLink, double price, Date orderDate,int idUser,String nameUser) {
+    public ProductDisplay() {
+    }
+
+    public ProductDisplay(int idBill, Date issueDate, int quantity, String nameProduct, String imageLink, double price, Date orderDate, int idUser, String nameUser) {
         this.idBill = idBill;
         this.issueDate = issueDate;
         this.quantity = quantity;
