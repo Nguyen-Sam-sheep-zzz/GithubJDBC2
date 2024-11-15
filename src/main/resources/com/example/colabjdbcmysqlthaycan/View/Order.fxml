@@ -114,7 +114,7 @@
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="557.0" layoutY="31.0" prefHeight="21.0" prefWidth="84.0" text="Order Date">
+                                    <Label layoutX="557.0" layoutY="32.0" prefHeight="21.0" prefWidth="84.0" text="Order Date">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
