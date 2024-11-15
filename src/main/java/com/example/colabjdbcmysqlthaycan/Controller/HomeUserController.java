@@ -173,15 +173,21 @@ public class HomeUserController {
     }
 
     public void getItemProducts(ProductDisplay productDisplay) {
+        if (productDisplay.getQuantity() == 0) {
+            showAlert("ERROR","The product is out of stock, please choose another product.");
+            idProductLabel.setText(null);
+            nameProductLabel.setText(null);
+            priceProductLabel.setText(null);
+            descriptionProductLabel.setText(null);
+            statusProductLabel.setText(null);
+            imageProductImageView.setImage(null);
+            return;
+        }
         idProductLabel.setText(productDisplay.getId());
         nameProductLabel.setText(productDisplay.getName());
         priceProductLabel.setText(String.valueOf(productDisplay.getPrice()));
         descriptionProductLabel.setText(productDisplay.getDescription());
         statusProductLabel.setText(productDisplay.getStatus());
-        if (productDisplay.getQuantity() == 0) {
-            showAlert("ERROR","The product is out of stock, please choose another product.");
-            return;
-        }
         quantityProductLabel.setText(String.valueOf(productDisplay.getQuantity()));
         Image image = new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + productDisplay.getImageLink()).toExternalForm());
         imageProductImageView.setImage(image);
