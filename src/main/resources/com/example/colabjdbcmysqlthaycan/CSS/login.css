@@ -183,7 +183,12 @@
 .table-view .cell #quantityColumn,
 .table-view .cell #amountColumn,
 .table-view .cell #paymentStatusColumn,
-.table-view .cell #actionColumn{
+.table-view .cell #actionColumn,
+.table-view .cell #deliveryDateColumn{
+ -fx-alignment: CENTER;
+}
+
+.table-view .cell #idUserColumn{
     -fx-alignment: CENTER;
 }
 .button9{

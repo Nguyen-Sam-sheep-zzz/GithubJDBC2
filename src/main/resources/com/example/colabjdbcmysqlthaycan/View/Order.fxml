@@ -104,27 +104,32 @@
                               </TextField>
                               <AnchorPane layoutY="52.0" prefHeight="50.0" prefWidth="1039.0">
                                  <children>
-                                    <Label layoutX="93.0" layoutY="33.0" prefHeight="21.0" prefWidth="112.0" text="Name Product">
+                                    <Label layoutX="97.0" layoutY="35.0" prefHeight="21.0" prefWidth="112.0" text="Name Product">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="384.0" layoutY="32.0" prefHeight="17.0" prefWidth="66.0" text="Quantity">
+                                    <Label layoutX="329.0" layoutY="34.0" prefHeight="17.0" prefWidth="66.0" text="Quantity">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="557.0" layoutY="32.0" prefHeight="21.0" prefWidth="84.0" text="Order Date">
+                                    <Label layoutX="463.0" layoutY="35.0" prefHeight="21.0" prefWidth="84.0" text="Order Date">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="746.0" layoutY="31.0" prefHeight="21.0" prefWidth="77.0" text="Total Price">
+                                    <Label layoutX="650.0" layoutY="35.0" prefHeight="21.0" prefWidth="77.0" text="Total Price">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="900.0" layoutY="30.0" prefHeight="17.0" prefWidth="66.0" text="Action">
+                                    <Label layoutX="945.0" layoutY="35.0" prefHeight="17.0" prefWidth="66.0" text="Action">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="828.0" layoutY="35.0" prefHeight="17.0" prefWidth="66.0" text="Status">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
