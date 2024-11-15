@@ -138,6 +138,11 @@
                                         <Font name="System Bold" size="15.0" />
                                     </font>
                                 </Label>
+                        <Label fx:id="quantityProductLabel" layoutX="40.0" layoutY="394.0" prefHeight="21.0" prefWidth="92.0">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
                             </children>
                         </AnchorPane>
                         <TextField fx:id="searchProductUser" layoutX="334.0" layoutY="12.0" prefHeight="33.0" prefWidth="328.0" promptText="Search" styleClass="search-user" stylesheets="@../CSS/login.css" />

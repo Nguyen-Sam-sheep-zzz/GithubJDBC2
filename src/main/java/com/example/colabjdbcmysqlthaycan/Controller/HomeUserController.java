@@ -55,12 +55,15 @@ public class HomeUserController {
     @FXML
     private Label idProductLabel;
     @FXML
+    private Label quantityProductLabel;
+    @FXML
     private Button buttonOrder;
     @FXML
     private Button buttonBill;
 
 
     public void initialize() {
+        quantityProductLabel.setVisible(false);
         idProductLabel.setVisible(false );
         searchProductUser.textProperty().addListener((observable, oldValue, newValue) -> {
             handleSearchProduct();
@@ -175,6 +178,11 @@ public class HomeUserController {
         priceProductLabel.setText(String.valueOf(productDisplay.getPrice()));
         descriptionProductLabel.setText(productDisplay.getDescription());
         statusProductLabel.setText(productDisplay.getStatus());
+        if (productDisplay.getQuantity() == 0) {
+            showAlert("ERROR","The product is out of stock, please choose another product.");
+            return;
+        }
+        quantityProductLabel.setText(String.valueOf(productDisplay.getQuantity()));
         Image image = new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + productDisplay.getImageLink()).toExternalForm());
         imageProductImageView.setImage(image);
     }
