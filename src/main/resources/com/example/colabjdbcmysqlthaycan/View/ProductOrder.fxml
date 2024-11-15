@@ -30,7 +30,7 @@
          <font>
             <Font size="15.0" />
          </font></Label>
-      <Label fx:id="priceLabel" layoutX="10.0" layoutY="14.0" textFill="WHITE" />
+      <Label fx:id="priceLabel" layoutX="365.0" layoutY="59.0" prefHeight="17.0" prefWidth="6.0" textFill="WHITE" />
       <Label fx:id="dateLabel" layoutX="533.0" layoutY="13.0" prefHeight="37.0" prefWidth="125.0">
          <font>
             <Font size="15.0" />
