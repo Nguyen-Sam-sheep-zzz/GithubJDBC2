@@ -27,8 +27,6 @@ public class BillUserController {
     @FXML
     private TableView<ProductDisplay> tableViewBill;
     @FXML
-    private TableColumn<ProductDisplay, Integer> idColumn;
-    @FXML
     private TableColumn<ProductDisplay, String> imageColumn;
     @FXML
     private TableColumn<ProductDisplay, String> nameColumn;
@@ -54,7 +52,6 @@ public class BillUserController {
 
     @FXML
     public void initialize() {
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("idBill"));
         imageColumn.setCellValueFactory(new PropertyValueFactory<>("imageLink"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
@@ -85,7 +82,7 @@ public class BillUserController {
         ObservableList<ProductDisplay> orderDisplayList = FXCollections.observableArrayList();
         String sql = """
             SELECT 
-                b.idBill, b.issueDate, po.quantity, p.nameProduct, i.link, p.price, o.orderDate
+             b.issueDate, po.quantity, p.nameProduct, i.link, p.price, o.orderDate
             FROM 
                 Bill b
             JOIN 
@@ -105,7 +102,6 @@ public class BillUserController {
              ResultSet resultSet = preparedStatement.executeQuery()) {
 
             while (resultSet.next()) {
-                int idBill = resultSet.getInt("idBill");
                 Date issueDate = resultSet.getDate("issueDate");
                 int quantity = resultSet.getInt("quantity");
                 String nameProduct = resultSet.getString("nameProduct");
@@ -113,7 +109,7 @@ public class BillUserController {
                 double price = resultSet.getDouble("price");
                 Date orderDate = resultSet.getDate("orderDate");
 
-                orderDisplayList.add(new ProductDisplay(idBill, issueDate, quantity, nameProduct, link, price, orderDate));
+                orderDisplayList.add(new ProductDisplay(issueDate, quantity, nameProduct, link, price, orderDate));
             }
 
         } catch (SQLException e) {

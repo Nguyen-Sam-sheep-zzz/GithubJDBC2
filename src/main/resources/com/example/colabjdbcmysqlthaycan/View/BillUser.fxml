@@ -26,14 +26,13 @@
                             <children>
                                 <TableView fx:id="tableViewBill" layoutX="24.0" layoutY="24.0" prefHeight="530.0" prefWidth="944.0" style="-fx-border-color: #181EFF;" styleClass="table-view1" stylesheets="@../CSS/login.css">
                                     <columns>
-                                        <TableColumn fx:id="idColumn" prefWidth="46.666656494140625" text="ID" />
                                         <TableColumn fx:id="imageColumn" prefWidth="111.33338928222656" text="Image" />
                                         <TableColumn fx:id="nameColumn" prefWidth="164.66665649414062" text="Name" />
                                         <TableColumn fx:id="orderDateColumn" prefWidth="122.66668701171875" text="Order Date" />
                                         <TableColumn fx:id="deliveryDateColumn" prefWidth="105.333251953125" text="Delivery Date" />
                                         <TableColumn fx:id="priceColumn" minWidth="4.0" prefWidth="102.66668701171875" text="Price" />
                                         <TableColumn fx:id="quantityColumn" minWidth="0.0" prefWidth="137.33331298828125" text="Quantity" />
-                                        <TableColumn fx:id="amountColumn" minWidth="0.0" prefWidth="144.0001220703125" text="Amount" />
+                                        <TableColumn fx:id="amountColumn" minWidth="0.0" prefWidth="190.66668701171875" text="Amount" />
                                     </columns>
                                 </TableView>
                             </children>
