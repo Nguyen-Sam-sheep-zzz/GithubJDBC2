@@ -51,7 +51,7 @@ public class ProductOrderController {
 
         Image image = new Image(getClass().getResource("/com/example/colabjdbcmysqlthaycan/img/" + productDisplay.getImageLink()).toExternalForm());
         imageOrder.setImage(image);
-        if ("Cancelled".equalsIgnoreCase(String.valueOf(productDisplay.getPaymentStatus()))) {
+        if ("Cancelled".equalsIgnoreCase(String.valueOf(productDisplay.getPaymentStatus())) ||"Paid".equalsIgnoreCase(String.valueOf(productDisplay.getPaymentStatus())) ) {
             buttonCancel.setDisable(true);
         } else {
             buttonCancel.setDisable(false);
