@@ -157,6 +157,12 @@ public class LoginController {
             }
             Parent root = loader.load();
             Stage stage = (Stage) usernameField.getScene().getWindow();
+            if (role.equals("admin")) {
+                stage.setTitle("Home admin");
+            }
+            else {
+                stage.setTitle("Home user");
+            }
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {

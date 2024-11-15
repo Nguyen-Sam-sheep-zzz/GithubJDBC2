@@ -39,7 +39,6 @@ import java.sql.SQLException;
 
 public class BillAdminController {
     ConnectDB connectDB = new ConnectDB();
-
     @FXML
     private TableView<ProductDisplay> tableViewBill;
     @FXML
