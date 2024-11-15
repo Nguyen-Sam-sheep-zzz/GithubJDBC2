@@ -233,6 +233,7 @@ public class CartController {
             int quantity = productDisplay.getQuantity();
             addToOrderAndProductOrder(idUser, orderDate, paymentStatus, idProduct, quantity);
             deleteProductInCart(String.valueOf(productDisplay.getIdCart()));
+
         }
         showAlert("Success", "Order successful");
         loadToOrderScreenFromCart();

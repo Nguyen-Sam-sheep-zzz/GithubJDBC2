@@ -119,7 +119,10 @@
                            <font>
                               <Font size="14.0" />
                            </font></Label>
-                                <Button layoutX="777.0" layoutY="37.0" mnemonicParsing="false" onAction="#handleAddToOrder" prefHeight="25.0" prefWidth="60.0" stylesheets="@../CSS/login.css" text="Buy" />
+                                <Button layoutX="737.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleAddToOrder" prefHeight="40.0" prefWidth="114.0" styleClass="button9" stylesheets="@../CSS/login.css" text="Buy" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Button>
                         <Label fx:id="totalPriceLabel" layoutX="597.0" layoutY="37.0" prefHeight="26.0" prefWidth="122.0" textFill="#ee586a">
                            <font>
                               <Font size="14.0" />
