@@ -87,8 +87,7 @@ public class ProductDisplay {
 
     }
 
-    public ProductDisplay(int idBill, Date issueDate, int quantity, String nameProduct, String link, double price, Date orderDate) {
-        this.idBill = idBill;
+    public ProductDisplay(Date issueDate, int quantity, String nameProduct, String link, double price, Date orderDate) {
         this.issueDate = issueDate;
         this.quantity = quantity;
         this.name = nameProduct;

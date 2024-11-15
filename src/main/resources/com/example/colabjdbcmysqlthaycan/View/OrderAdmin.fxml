@@ -76,8 +76,8 @@
                                         <TableColumn fx:id="priceColumn" minWidth="4.0" prefWidth="75.33331298828125" text="Price" />
                                         <TableColumn fx:id="quantityColumn" minWidth="0.0" prefWidth="70.0" text="Quantity" />
                               <TableColumn fx:id="amountColumn" minWidth="0.0" prefWidth="108.66668701171875" text="Amount" />
-                                        <TableColumn fx:id="paymentStatusColumn" maxWidth="260.0" minWidth="6.6666259765625" prefWidth="54.0" text="Status" />
-                              <TableColumn fx:id="actionColumn" maxWidth="278.0" minWidth="0.0" prefWidth="166.0" text="Action" />
+                                        <TableColumn fx:id="paymentStatusColumn" maxWidth="260.0" minWidth="6.6666259765625" prefWidth="69.3333740234375" text="Status" />
+                              <TableColumn fx:id="actionColumn" maxWidth="278.0" minWidth="0.0" prefWidth="150.66668701171875" text="Action" />
                                     </columns>
                                 </TableView>
                                 <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="219.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
