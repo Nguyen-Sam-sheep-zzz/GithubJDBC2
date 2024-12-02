@@ -1,6 +1,7 @@
 package com.example.colabjdbcmysqlthaycan.Controller;
 
 import com.example.colabjdbcmysqlthaycan.Application.LoginApplication;
+import com.example.colabjdbcmysqlthaycan.Class.Session;
 import com.example.colabjdbcmysqlthaycan.ConnectDB;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,7 +24,6 @@ import java.sql.SQLException;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-
 
 public class LoginController {
     @FXML
@@ -84,12 +84,14 @@ public class LoginController {
         if (loginInfo != null) {
             String role = loginInfo[0];
             String status = loginInfo[1];
-            if ("active".equalsIgnoreCase(status)) {
-                showAlert("Login successful", "Welcome: " + role);
+            String name = loginInfo[2];
+            String id = loginInfo[3];
+            if ("active".equals(status)) {
+                showAlert("Login successful", "Welcome: " + role + " " + name);
                 loadNextScreen(role);
+                Session.setLoggedInCustomer(id);
             } else {
                 loginMessageLabel.setText("Account is not active.");
-                System.out.println(username + " " + password + " " + status);
             }
         } else {
             loginMessageLabel.setText("Invalid credentials. Try again.");
@@ -120,7 +122,7 @@ public class LoginController {
     private String[] validateLogin(String username, String password) {
         Connection connection = connectDB.connectionDB();
         PreparedStatement preparedStatement;
-        String LoginCheck = "select * from user where username = ? and password = ?";
+        String LoginCheck = "select * from user where LOWER(username) = LOWER(?) and password = ?";
 
         try {
             preparedStatement = connection.prepareStatement(LoginCheck);
@@ -133,11 +135,12 @@ public class LoginController {
             if (resultSet.next()) {
                 String role = resultSet.getString("role");
                 String status = resultSet.getString("status");
-                return new String[]{role, status};
+                String name = resultSet.getString("name");
+                String id = resultSet.getString("idUser");
+                return new String[]{role, status, name, id};
             } else {
                 return null;
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -154,6 +157,12 @@ public class LoginController {
             }
             Parent root = loader.load();
             Stage stage = (Stage) usernameField.getScene().getWindow();
+            if (role.equals("admin")) {
+                stage.setTitle("Home admin");
+            }
+            else {
+                stage.setTitle("Home user");
+            }
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
@@ -194,7 +203,6 @@ public class LoginController {
         String username = registerUsername.getText();
         String password = registerPassword.getText();
         String uFullName = registerFullName.getText();
-
 
         if (username.isEmpty() || password.isEmpty() || uFullName.isEmpty()) {
             showAlert("Registration failed", "Please fill in the registration information completely");
@@ -292,7 +300,5 @@ public class LoginController {
         }
         return false;
     }
-
-
 }
 

@@ -5,7 +5,8 @@ public class ProductBill {
     private int idProduct;
     private int quantity;
 
-    public ProductBill() {}
+    public ProductBill() {
+    }
 
     public ProductBill(int idBill, int idProduct, int quantity) {
         this.idBill = idBill;

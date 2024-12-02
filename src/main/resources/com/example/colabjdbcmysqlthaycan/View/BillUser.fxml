@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.colabjdbcmysqlthaycan.Controller.BillUserController">
+    <children>
+        <BorderPane prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #fff;">
+            <center>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" BorderPane.alignment="CENTER">
+                    <children>
+                        <BorderPane />
+                        <AnchorPane layoutX="7.0" layoutY="13.0" prefHeight="575.0" prefWidth="1000.0" stylesheets="@../CSS/login.css">
+                            <styleClass>
+                                <String fx:value="anchor" />
+                                <String fx:value="shadow" />
+                            </styleClass>
+                            <children>
+                                <TableView fx:id="tableViewBill" layoutX="24.0" layoutY="24.0" prefHeight="530.0" prefWidth="944.0" style="-fx-border-color: #181EFF;" styleClass="table-view1" stylesheets="@../CSS/login.css">
+                                    <columns>
+                                        <TableColumn fx:id="imageColumn" prefWidth="111.33338928222656" text="Image" />
+                                        <TableColumn fx:id="nameColumn" prefWidth="164.66665649414062" text="Name" />
+                                        <TableColumn fx:id="orderDateColumn" prefWidth="122.66668701171875" text="Order Date" />
+                                        <TableColumn fx:id="deliveryDateColumn" prefWidth="105.333251953125" text="Delivery Date" />
+                                        <TableColumn fx:id="priceColumn" minWidth="4.0" prefWidth="102.66668701171875" text="Price" />
+                                        <TableColumn fx:id="quantityColumn" minWidth="0.0" prefWidth="137.33331298828125" text="Quantity" />
+                                        <TableColumn fx:id="amountColumn" minWidth="0.0" prefWidth="190.66668701171875" text="Amount" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </AnchorPane>
+            </center>
+         <left>
+            <AnchorPane prefHeight="600.0" prefWidth="60.0" styleClass="user" stylesheets="@../CSS/login.css" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="26.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/account.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="57.0" layoutY="120.0" text="User" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="buttonProduct" layoutX="13.0" layoutY="183.0" mnemonicParsing="false" onAction="#loadToProductScreenFromBill" prefHeight="35.0" prefWidth="120.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="          Product" />
+                  <Button fx:id="buttonCart" layoutX="10.0" layoutY="238.0" mnemonicParsing="false" onAction="#loadToCartScreenFromBill" prefHeight="35.0" prefWidth="126.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="           Cart" />
+                  <Button layoutX="19.0" layoutY="348.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="117.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="         Bill" />
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/laptop3.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="19.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/order.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/bill.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="buttonSignOut" layoutX="21.0" layoutY="543.0" mnemonicParsing="false" onAction="#loadToLoginScreenFromBill" prefHeight="36.0" prefWidth="134.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="          Sign Out" />
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="28.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/signOut.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="buttonOrder" layoutX="19.0" layoutY="294.0" mnemonicParsing="false" onAction="#loadToOrderScreenFromBill" prefHeight="35.0" prefWidth="128.0" styleClass="nav-btn" stylesheets="@../CSS/login.css" text="        Your order" />
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="20.0" layoutY="299.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/order-history.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </left>
+        </BorderPane>
+    </children>
+</AnchorPane>
